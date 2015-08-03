@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.0
+Created-By: 1.5.0_22-b03 (Sun Microsystems Inc.)
+Trusted-Library: true
+Permissions: all-permissions
+Codebase: *.afa.gov.tw localhost 127.0.0.1
+Caller-Allowable-Codebase: *
+Application-Library-Allowable-Codebase: *
+Application-Name: HiCOS
+
+Name: com/chttl/sac/pki/applet/util/e$b.class
+SHA1-Digest: buZiMaRMHoICV5phFOabRGKxsd4=
+
+Name: com/chttl/sac/pki/applet/PKCS11Wrapper.dll
+SHA1-Digest: yrRM3CB76p3Fj0Krjasz6Z58Dm4=
+
+Name: com/chttl/sac/pki/applet/util/e$a.class
+SHA1-Digest: gw+UGokN4J1r+rn53+xlWSKP2qM=
+
+Name: com/chttl/sac/pki/applet/PKCS11Wrapper64.dll
+SHA1-Digest: 7jwU91+PQP8Rk7bYTffWdpLaSoU=
+
+Name: com/chttl/sac/pki/applet/util/a.class
+SHA1-Digest: MrJ3RjQLW2gnkCOQQxMSt+q9Z/c=
+
+Name: com/chttl/sac/pki/applet/util/DeviceErrorException.class
+SHA1-Digest: lg3IhGrfDY2wZdIufd+AjapKeWw=
+
+Name: com/chttl/sac/pki/applet/util/d.class
+SHA1-Digest: /OMpAkntHs2JV6I/hs3K0vSO+ek=
+
+Name: com/chttl/sac/pki/applet/util/b.class
+SHA1-Digest: tgvraCY8vUzEtqJxc4LIQ+8ZeKY=
+
+Name: com/chttl/sac/pki/applet/util/e$c.class
+SHA1-Digest: zgzIUBHUAwjNwyLzAs/kMMWVD28=
+
+Name: com/chttl/sac/pki/applet/HiCOSPKIApplet.class
+SHA1-Digest: ssCk+ue6RFOsDUkOGALGhiA7v54=
+
+Name: com/chttl/sac/pki/applet/util/e$1.class
+SHA1-Digest: MXKVFpGKNIoO+PBQm4/MejLCY3E=
+
+Name: com/chttl/sac/pki/applet/util/e.class
+SHA1-Digest: VO7NyafJsSY8/C52Y8eQ0Xdxgj4=
+
+Name: com/chttl/sac/pki/applet/util/c.class
+SHA1-Digest: a7L6oLhqNKYyOj98gZPVzIJxay0=
+

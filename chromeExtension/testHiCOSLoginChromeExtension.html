@@ -1,0 +1,414 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0055)http://www.mozilla.org/en-US/firefox/24.0/releasenotes/ -->
+
+<html lang="en-US" dir="ltr">
+
+<head>
+    <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <meta content="IE=10.000" http-equiv="X-UA-Compatible" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=1024" />
+    <meta name="GENERATOR" content="MSHTML 10.00.9200.16686" />
+    <title>HiCOSLogin Chrome Native Message Testing</title>
+    <link href="../static/min.css" rel="stylesheet" />
+    <link href="../static/tabzilla-min.css" rel="stylesheet" />
+    <link href="../static/css" rel="stylesheet" type="text/css" />
+    <link href="../static/firefox-notes.css" rel="stylesheet" media="screen" />
+    <script id="undefined" src="../static/inpage_linkid.js" type="text/javascript" async=""></script>
+    <script src="../static/ga.js" type="text/javascript" async=""></script>
+    <script src="../static/min.js"></script>
+    <script src="../static/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
+    <script src="../static/angular-utf8-base64.js"></script>
+    <script src="../static/hicos_native_messaging.js"></script>
+    <script type="text/javascript">
+        angular.module('certApp', ['HiCosNativeMessagingModule'])
+            .controller('certController', function($scope, $log, hiCosNativeMessaging) {
+
+                var cert = this;
+
+                cert.result = "";
+                cert.version = "";
+                cert.slotId = "";
+                cert.slotInfo = "";
+                cert.tokenId = "";
+                cert.tokenInfo = "";
+                cert.loginValid = "";
+                cert.signdataValid = "";
+
+                cert.getVersionInfo = function() {
+                    hiCosNativeMessaging.getVersionInfo().then(
+
+                        function(result) {
+
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+                            cert.version = result.value;
+                        },
+                        function(fail) {
+
+                            cert.version = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.getSlotIdListWithToken = function() {
+
+                    hiCosNativeMessaging.getSlotIdListWithToken().then(
+
+                        function(result) {
+
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+
+                            var slots = result.value;
+
+                            if (slots.length == 0) {
+                                slotId = "無卡片存在";
+                            } else {
+                                if (slots.length > 1) {
+                                    slotId = "有兩張以上的卡片存在";
+                                }
+                            }
+
+                            cert.slotId = slots[0];
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.getSlotInfoWithToken = function(slotId) {
+
+                    hiCosNativeMessaging.getSlotInfoWithToken(slotId).then(
+
+                        function(result) {
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+                            cert.slotInfo = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.getTokenInfo = function(slotId) {
+
+                    hiCosNativeMessaging.getTokenInfo(slotId).then(
+
+                        function(result) {
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+                            cert.tokenInfo = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.getTokenId = function(slotId) {
+
+                    hiCosNativeMessaging.getTokenId(slotId).then(
+
+                        function(result) {
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+                            cert.tokenId = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.getPemSignatureCertificate = function(pin, slotId) {
+
+                    hiCosNativeMessaging.getPemSignatureCertificate(pin, slotId).then(
+
+                        function(result) {
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+                            $scope.signcertPem = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.getJsonSignatureCertificate = function(pin, slotId) {
+
+                    hiCosNativeMessaging.getJsonSignatureCertificate(pin, slotId).then(
+
+                        function(result) {
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+                            $scope.signcertJson = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.checkLoginValid = function(pin, idn) {
+
+                    hiCosNativeMessaging.checkLoginValid(pin, idn).then(
+
+                        function(result) {
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+                            cert.loginValidResult = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.makePemLoginSignedMessage = function(pin, slotId) {
+
+                    hiCosNativeMessaging.makePemLoginSignedMessage(pin, slotId).then(
+
+                        function(result) {
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+                            $scope.loginpkcs7sign = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.verifySignature = function(pemSignedData) {
+
+                    hiCosNativeMessaging.verifySignature(pemSignedData).then(
+
+                        function(result) {
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+                            cert.signdataValid = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.getLoginInfoFromPemSignedData = function(pemSignedData) {
+
+                    hiCosNativeMessaging.getLoginInfoFromPemSignedData(pemSignedData).then(
+
+                        function(result) {
+                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
+                            $scope.logininfo = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                angular.element(document).ready(function() {
+
+                    cert.getVersionInfo();
+                });
+            });
+    </script>
+    <noscript>A browser with Javascript enabled is required for this page to operate properly.</noscript>
+</head>
+
+<body class="js platform-windows" id="firefox-notes">
+    <div id="outer-wrapper">
+        <div id="wrapper">
+            <div id="doc">
+                <div id="main-content">
+                    <section id="test">
+                        <h3>HiCOSLogin Native Message Chrome 測試</h3>
+                        <div class="section-contents" ng-app="certApp" ng-controller="certController as cert">
+                            <ul>
+                                <li>
+                                    <div>
+                                        卡片密碼 :
+                                        <input type="password" id="password" ng-model="pin">
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">元件版本資訊</span>
+                                    <!-- The description is the title for now -->
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="version">{{ cert.version }}</div>
+                                            </td>
+                                            <td>
+                                                <button ng-click="cert.getVersionInfo()">getVersionInfo</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">讀卡機連接埠</span>
+                                    <!-- The description is the title for now -->
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="slotId">{{ cert.slotId }}</div>
+                                            </td>
+                                            <td>
+                                                <button ng-click="cert.getSlotIdListWithToken()">getSlotIdListWithToken</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">讀卡機資訊</span>
+                                    <!-- The description is the title for now -->
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="slotInfo">{{ cert.slotInfo }}</div>
+                                            </td>
+                                            <td>
+                                                <button ng-click="cert.getSlotInfoWithToken(cert.slotId)">getSlotInfoWithToken</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">卡片資訊</span>
+                                    <!-- The description is the title for now -->
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="tokenInfo">{{ cert.tokenInfo }}</div>
+                                            </td>
+
+                                            <td>
+                                                <button ng-click="cert.getTokenInfo(cert.slotId)">getTokenInfo</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">卡號</span>
+                                    <!-- The description is the title for now -->
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="tokenInfo">{{ cert.tokenId }}</div>
+                                            </td>
+
+                                            <td>
+                                                <button ng-click="cert.getTokenId(cert.slotId)">getTokenId</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">簽章憑證資訊</span>
+                                    <!-- The description is the title for now -->
+
+                                    <div id="signcertPemdiv">
+                                        <textarea id="signcertPem" ng-model="signcertPem" cols="55" rows="10">
+                                        </textarea>
+                                        <button ng-click="cert.getPemSignatureCertificate(pin, cert.slotId)">getPemX509Certificate</button>
+                                    </div>
+
+                                    <div id="signcertJsondiv">
+                                        <textarea id="signcertJson" ng-model="signcertJson" cols="55" rows="10">
+                                        </textarea>
+                                        <button ng-click="cert.getJsonSignatureCertificate(pin, cert.slotId)">getJsonSignatureCertificate</button>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">卡片登入驗證</span>
+                                    <!-- The description is the title for now -->
+
+                                    <div id="loginsigndiv">
+                                        請輸入身分證字號或公司統一編號
+                                        <input id="idn" type="text" size="10" ng-model="idn"> {{ cert.loginValidResult }}
+                                        <br>
+                                        <button ng-click="cert.checkLoginValid(pin, idn)">checkLoginValid</button>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">產生登入簽章</span>
+                                    <!-- The description is the title for now -->
+
+                                    <div id="loginsigndiv">
+                                        <textarea id="loginpkcs7sign" cols="55" rows="10" ng-model="loginpkcs7sign">
+                                        </textarea>
+                                        <button ng-click="cert.makePemLoginSignedMessage(pin, cert.slodId)">makePemLoginSignedMessage</button>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">檢驗登入簽章</span>
+                                    <!-- The description is the title for now -->
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="loginsignresultdiv"> {{ cert.signdataValid}} </div>
+                                            </td>
+
+                                            <td>
+                                                <button ng-click="cert.verifySignature(loginpkcs7sign)">verifySignature</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">取得登入簽章</span>
+                                    <!-- The description is the title for now -->
+
+                                    <div id="logininfodiv">
+                                        <textarea id="logininfo" cols="55" rows="10" ng-model="logininfo">
+                                        </textarea>
+                                        <button ng-click="cert.getLoginInfoFromPemSignedData(loginpkcs7sign)">getLoginInfoFromPemSignedData</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="releasenotes">
+                        <h3>Release Note</h3>
+
+                        <div class="section-contents">
+                            <h5>- ver. 0.9.0801</h5>
+
+                            <ul>
+                                <li><span class="tag tag-resolved">Initial</span> 初版</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="knownissues">
+                        <h3>Known Issues</h3>
+
+                        <div class="section-contents">
+                            <ul>
+                                <li><span class="tag tag-unresolved">Unresolved</span> 無法文件初始化時自動顯示元件版本</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <!-- end #main-content div -->
+            </div>
+            <!-- end #doc -->
+        </div>
+        <!-- end #wrapper -->
+    </div>
+    <!-- end #outer-wrapper -->
+</body>
+
+</html>

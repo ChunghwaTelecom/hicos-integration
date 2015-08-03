@@ -1,0 +1,732 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<title>憑證登入元件環境檢測說明</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+    {font-family:Wingdings;
+    panose-1:5 0 0 0 0 0 0 0 0 0;
+    mso-font-charset:2;
+    mso-generic-font-family:auto;
+    mso-font-pitch:variable;
+    mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+    {font-family:新細明體;
+    panose-1:2 2 5 0 0 0 0 0 0 0;
+    mso-font-alt:PMingLiU;
+    mso-font-charset:136;
+    mso-generic-font-family:roman;
+    mso-font-pitch:variable;
+    mso-font-signature:-1610611969 684719354 22 0 1048577 0;}
+@font-face
+    {font-family:"Cambria Math";
+    panose-1:2 4 5 3 5 4 6 3 2 4;
+    mso-font-charset:1;
+    mso-generic-font-family:roman;
+    mso-font-format:other;
+    mso-font-pitch:variable;
+    mso-font-signature:0 0 0 0 0 0;}
+@font-face
+    {font-family:Calibri;
+    panose-1:2 15 5 2 2 2 4 3 2 4;
+    mso-font-charset:0;
+    mso-generic-font-family:swiss;
+    mso-font-pitch:variable;
+    mso-font-signature:-536870145 1073786111 1 0 415 0;}
+@font-face
+    {font-family:微軟正黑體;
+    panose-1:2 11 6 4 3 5 4 4 2 4;
+    mso-font-charset:136;
+    mso-generic-font-family:swiss;
+    mso-font-pitch:variable;
+    mso-font-signature:135 680476672 22 0 1048585 0;}
+@font-face
+    {font-family:"\@微軟正黑體";
+    panose-1:2 11 6 4 3 5 4 4 2 4;
+    mso-font-charset:136;
+    mso-generic-font-family:swiss;
+    mso-font-pitch:variable;
+    mso-font-signature:135 680476672 22 0 1048585 0;}
+@font-face
+    {font-family:"\@新細明體";
+    panose-1:2 2 5 0 0 0 0 0 0 0;
+    mso-font-charset:136;
+    mso-generic-font-family:roman;
+    mso-font-pitch:variable;
+    mso-font-signature:-1610611969 684719354 22 0 1048577 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+    {mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-parent:"";
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-pagination:none;
+    font-size:12.0pt;
+    mso-bidi-font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:新細明體;
+    mso-fareast-theme-font:minor-fareast;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-font-kerning:1.0pt;}
+a:link, span.MsoHyperlink
+    {mso-style-priority:99;
+    color:blue;
+    mso-themecolor:hyperlink;
+    text-decoration:underline;
+    text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+    {mso-style-noshow:yes;
+    mso-style-priority:99;
+    color:purple;
+    mso-themecolor:followedhyperlink;
+    text-decoration:underline;
+    text-underline:single;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+    {mso-style-noshow:yes;
+    mso-style-priority:99;
+    mso-style-link:"Balloon Text Char";
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-pagination:none;
+    font-size:9.0pt;
+    font-family:"Cambria","serif";
+    mso-ascii-font-family:Cambria;
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:新細明體;
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:Cambria;
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    mso-font-kerning:1.0pt;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:24.0pt;
+    margin-bottom:.0001pt;
+    mso-para-margin-top:0in;
+    mso-para-margin-right:0in;
+    mso-para-margin-bottom:0in;
+    mso-para-margin-left:2.0gd;
+    mso-para-margin-bottom:.0001pt;
+    mso-pagination:none;
+    font-size:12.0pt;
+    mso-bidi-font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:新細明體;
+    mso-fareast-theme-font:minor-fareast;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-font-kerning:1.0pt;}
+span.BalloonTextChar
+    {mso-style-name:"Balloon Text Char";
+    mso-style-noshow:yes;
+    mso-style-priority:99;
+    mso-style-unhide:no;
+    mso-style-locked:yes;
+    mso-style-link:"Balloon Text";
+    mso-ansi-font-size:9.0pt;
+    mso-bidi-font-size:9.0pt;
+    font-family:"Cambria","serif";
+    mso-ascii-font-family:Cambria;
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:新細明體;
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:Cambria;
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;}
+span.apple-converted-space
+    {mso-style-name:apple-converted-space;
+    mso-style-unhide:no;}
+span.SpellE
+    {mso-style-name:"";
+    mso-spl-e:yes;}
+span.GramE
+    {mso-style-name:"";
+    mso-gram-e:yes;}
+.MsoChpDefault
+    {mso-style-type:export-only;
+    mso-default-props:yes;
+    font-size:12.0pt;
+    mso-ansi-font-size:12.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:新細明體;
+    mso-fareast-theme-font:minor-fareast;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-font-kerning:1.0pt;}
+ /* Page Definitions */
+ @page
+    {mso-page-border-surround-header:no;
+    mso-page-border-surround-footer:no;}
+@page WordSection1
+    {size:595.3pt 841.9pt;
+    margin:1.0in 1.25in 1.0in 1.25in;
+    mso-header-margin:42.55pt;
+    mso-footer-margin:49.6pt;
+    mso-paper-source:0;
+    layout-grid:18.0pt;}
+div.WordSection1
+    {page:WordSection1;}
+ /* List Definitions */
+ @list l0
+    {mso-list-id:1186217464;
+    mso-list-template-ids:550033582;}
+@list l1
+    {mso-list-id:1528058370;
+    mso-list-type:hybrid;
+    mso-list-template-ids:1752466222 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+    {mso-level-number-format:bullet;
+    mso-level-text:�;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:24.0pt;
+    text-indent:-24.0pt;
+    font-family:Wingdings;}
+@list l1:level2
+    {mso-level-number-format:bullet;
+    mso-level-text:�;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:48.0pt;
+    text-indent:-24.0pt;
+    font-family:Wingdings;}
+@list l1:level3
+    {mso-level-number-format:bullet;
+    mso-level-text:�;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:1.0in;
+    text-indent:-24.0pt;
+    font-family:Wingdings;}
+@list l1:level4
+    {mso-level-number-format:bullet;
+    mso-level-text:�;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:96.0pt;
+    text-indent:-24.0pt;
+    font-family:Wingdings;}
+@list l1:level5
+    {mso-level-number-format:bullet;
+    mso-level-text:�;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:120.0pt;
+    text-indent:-24.0pt;
+    font-family:Wingdings;}
+@list l1:level6
+    {mso-level-number-format:bullet;
+    mso-level-text:�;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:2.0in;
+    text-indent:-24.0pt;
+    font-family:Wingdings;}
+@list l1:level7
+    {mso-level-number-format:bullet;
+    mso-level-text:�;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:168.0pt;
+    text-indent:-24.0pt;
+    font-family:Wingdings;}
+@list l1:level8
+    {mso-level-number-format:bullet;
+    mso-level-text:�;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:192.0pt;
+    text-indent:-24.0pt;
+    font-family:Wingdings;}
+@list l1:level9
+    {mso-level-number-format:bullet;
+    mso-level-text:�;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:3.0in;
+    text-indent:-24.0pt;
+    font-family:Wingdings;}
+@list l2
+    {mso-list-id:1793862735;
+    mso-list-type:hybrid;
+    mso-list-template-ids:323257020 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:1.0in;
+    text-indent:-24.0pt;}
+@list l2:level2
+    {mso-level-number-format:ideograph-traditional;
+    mso-level-text:%2、;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:96.0pt;
+    text-indent:-24.0pt;}
+@list l2:level3
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    margin-left:120.0pt;
+    text-indent:-24.0pt;}
+@list l2:level4
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    text-indent:-24.0pt;}
+@list l2:level5
+    {mso-level-number-format:ideograph-traditional;
+    mso-level-text:%5、;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:168.0pt;
+    text-indent:-24.0pt;}
+@list l2:level6
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    margin-left:192.0pt;
+    text-indent:-24.0pt;}
+@list l2:level7
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:3.0in;
+    text-indent:-24.0pt;}
+@list l2:level8
+    {mso-level-number-format:ideograph-traditional;
+    mso-level-text:%8、;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:240.0pt;
+    text-indent:-24.0pt;}
+@list l2:level9
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    margin-left:264.0pt;
+    text-indent:-24.0pt;}
+@list l3
+    {mso-list-id:1809854991;
+    mso-list-template-ids:951993866;}
+ol
+    {margin-bottom:0in;}
+ul
+    {margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+    {mso-style-name:"Table Normal";
+    mso-tstyle-rowband-size:0;
+    mso-tstyle-colband-size:0;
+    mso-style-noshow:yes;
+    mso-style-priority:99;
+    mso-style-parent:"";
+    mso-padding-alt:0in 5.4pt 0in 5.4pt;
+    mso-para-margin:0in;
+    mso-para-margin-bottom:.0001pt;
+    mso-pagination:widow-orphan;
+    font-size:12.0pt;
+    mso-bidi-font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-font-kerning:1.0pt;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1026"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:24.0pt;text-justify-trim:
+punctuation'>
+
+<div class=WordSection1 style='layout-grid:18.0pt'>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=ZH-TW
+style='font-size:18.0pt;font-family:"微軟正黑體","sans-serif"'>憑證登入元件環境檢測說明</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-size:18.0pt;font-family:
+"微軟正黑體","sans-serif"'>(v0.0.1<span lang=ZH-TW>，</span>2013/12/20)<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>初次使用本系統憑證登入功能請先確認下列元件已安裝且正確設定</span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>如果未安裝或未正確設定將無法正常執行憑證登入功能</span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"微軟正黑體","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:24.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level1 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><b style='mso-bidi-font-weight:normal'><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>是否已安裝</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:"微軟正黑體","sans-serif"'>Java<span
+lang=ZH-TW>應用程式</span><o:p></o:p></span></b></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>最低版本需求</span><span
+style='font-family:"微軟正黑體","sans-serif"'>: 32<span lang=ZH-TW>位元</span>Java Version
+6 (JRE 1.6)<span lang=ZH-TW>以上版本</span><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>若您尚未安裝</span><span
+style='font-family:"微軟正黑體","sans-serif"'>Java<o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><a
+href="http://java.com/zh_TW/download/installed.jsp"><span lang=ZH-TW
+style='font-family:"微軟正黑體","sans-serif"'>驗證</span><span style='font-family:
+"微軟正黑體","sans-serif"'>Java<span lang=ZH-TW>版本與免費</span>Java<span lang=ZH-TW>下載</span></span></a><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>若檢測結果為舊版的</span><span
+style='font-family:"微軟正黑體","sans-serif"'>Java<span lang=ZH-TW>，您可以依照</span></span><a
+href="http://java.com/zh_TW/download/help/uninstall_java.xml"><span lang=ZH-TW
+style='font-family:"微軟正黑體","sans-serif"'>手動解除安裝適用於</span><span
+style='font-family:"微軟正黑體","sans-serif"'> Windows <span lang=ZH-TW>的</span>
+Java </span></a><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>頁面上的指示，安全地解除安裝系統中的舊版</span><span
+style='font-family:"微軟正黑體","sans-serif"'> Java<o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>若您已經安裝</span><span
+style='font-family:"微軟正黑體","sans-serif"'>Java<o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><a
+href="http://www.java.com/zh_TW/download/installed.jsp"><span lang=ZH-TW
+style='font-family:"微軟正黑體","sans-serif"'>測試</span><span style='font-family:
+"微軟正黑體","sans-serif"'>Java<span lang=ZH-TW>在我的電腦上是否運作正常</span></span></a><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"微軟正黑體","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:24.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level1 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><b style='mso-bidi-font-weight:normal'><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>是否已安裝</span></b><span
+class=SpellE><b style='mso-bidi-font-weight:normal'><span style='font-family:
+"微軟正黑體","sans-serif"'>HiCOS</span></b></span><b style='mso-bidi-font-weight:
+normal'><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>卡片管理工具</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></b></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>最低版本需求</span><span
+style='font-family:"微軟正黑體","sans-serif"'>: 2.1.8<o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>若您尚未安裝</span><span
+class=SpellE><span style='font-family:"微軟正黑體","sans-serif"'>HiCOS</span></span><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>卡片管理工具</span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>請</span><a
+href="http://moica.nat.gov.tw/download_1.html"><span lang=ZH-TW
+style='font-family:"微軟正黑體","sans-serif"'>下載</span><span style='font-family:
+"微軟正黑體","sans-serif"'>HiCOS<span lang=ZH-TW>卡片管理工具</span></span></a><span
+class=GramE><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>並依頁面</span></span><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>上安裝手冊的說明完成安裝</span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>若您已經安裝</span><span
+class=SpellE><span style='font-family:"微軟正黑體","sans-serif"'>HiCOS</span></span><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>卡片管理工具</span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>執行</span><span
+class=SpellE><span style='font-family:"微軟正黑體","sans-serif"'>HiCOS</span></span><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>用戶端系統環境檢測工具，測試</span><span
+class=SpellE><span style='font-family:"微軟正黑體","sans-serif"'>HiCOS</span></span><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>卡片管理工具在我的電腦上是否運作正常。執行路徑為</span><span
+style='font-family:"微軟正黑體","sans-serif"'>C:\Program Files\Chunghwa Telecom\<span
+class=SpellE>HiCOS</span> PKI Smart Card</span>\<span style='font-family:"微軟正黑體","sans-serif"'>HiCOS_Inspector.exe<span
+lang=ZH-TW>或</span>C:\Program Files\Chunghwa Telecom\<span class=SpellE>HiCOS</span>
+PKI Smart Card</span>\<span style='font-family:"微軟正黑體","sans-serif"'>HiCOS_Inspector_x64.exe<span
+lang=ZH-TW>，如找不到該路徑表示</span><span class=SpellE>HiCOS</span><span lang=ZH-TW>卡片管理工具未完成安裝。</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"微軟正黑體","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:24.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level1 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>調整瀏覽器相關設定</span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>支援的瀏覽器</span><span
+style='font-family:"微軟正黑體","sans-serif"'>: Chrome<o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>若您尚未安裝</span><span
+style='font-family:"微軟正黑體","sans-serif"'>Chrome<span lang=ZH-TW>瀏覽器</span><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><a
+href="https://support.google.com/chrome/answer/95346?hl=zh-Hant"><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif";color:red'>請免費下載及安裝</span><span
+style='font-family:"微軟正黑體","sans-serif";color:red'>Chrome</span></a><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>若您已經安裝</span><span
+style='font-family:"微軟正黑體","sans-serif"'>Chrome<span lang=ZH-TW>瀏覽器，請允許本系統執行</span>Java<span
+lang=ZH-TW>外掛程式</span><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>安裝完</span><span
+style='font-family:"微軟正黑體","sans-serif"'>Java<span lang=ZH-TW>後，瀏覽器預設允許使用</span>Java<span
+lang=ZH-TW>外掛程式，不過，由於外掛程式有時會帶來安全性風險，因此</span>Chrome<span lang=ZH-TW>會封鎖過舊的外掛程式或較少見的外掛程式，若您的瀏覽器安裝完</span>Java<span
+lang=ZH-TW>後</span><a href="http://www.java.com/zh_TW/download/installed.jsp"><span
+lang=ZH-TW>測試</span>Java<span lang=ZH-TW>在我的電腦上是否運作正常</span></a><span
+lang=ZH-TW>卻無法正常執行</span>Java<span lang=ZH-TW>，您可新增例外狀況，藉此變更瀏覽器對個別網站或網域設定的處理行為，設定方式如下</span>:<o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:1.0in;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l2 level1 lfo2'><![if !supportLists]><span
+style='font-family:"微軟正黑體","sans-serif";mso-bidi-font-family:微軟正黑體'><span
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>開啟</span><span
+style='font-family:"微軟正黑體","sans-serif"'>Chrome<span lang=ZH-TW>瀏覽器，在搜尋欄位輸入</span>&nbsp;<span
+class=SpellE><b style='mso-bidi-font-weight:normal'>about:plugins</b></span><span
+lang=ZH-TW>。</span><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:1.0in;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l2 level1 lfo2'><![if !supportLists]><span
+style='font-family:"微軟正黑體","sans-serif";mso-bidi-font-family:微軟正黑體'><span
+style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>掃描</span><span
+style='font-family:"微軟正黑體","sans-serif"'>&nbsp;Java&nbsp;<span lang=ZH-TW>並確認是否已啟用</span>
+Java (<span lang=ZH-TW>若顯示「停用」連結，則表示</span> Java <span lang=ZH-TW>已啟用</span>)<span
+lang=ZH-TW>，如找不到表示您的電腦尚未安裝</span>Java<span lang=ZH-TW>，請</span></span><a
+href="http://java.com/zh_TW/download/installed.jsp"><span lang=ZH-TW
+style='font-family:"微軟正黑體","sans-serif"'>下載及安裝</span><span style='font-family:
+"微軟正黑體","sans-serif"'>Java</span></a><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>。</span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:0in;
+margin-left:1.0in;margin-bottom:.0001pt;text-indent:-24.0pt;line-height:13.5pt;
+mso-pagination:widow-orphan;mso-list:l2 level1 lfo2;background:white;
+vertical-align:baseline'><![if !supportLists]><span style='font-family:"微軟正黑體","sans-serif";
+mso-bidi-font-family:微軟正黑體'><span style='mso-list:Ignore'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>按一下</span><b
+style='mso-bidi-font-weight:normal'><span style='font-family:"微軟正黑體","sans-serif"'>[<span
+lang=ZH-TW>啟用</span>]</span></b><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>連結</span><span
+style='font-family:"微軟正黑體","sans-serif"'> (<span lang=ZH-TW>如果有的話</span>)<span
+lang=ZH-TW>。</span><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:1.0in;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l2 level1 lfo2'><![if !supportLists]><span
+style='font-family:"微軟正黑體","sans-serif";mso-bidi-font-family:微軟正黑體'><span
+style='mso-list:Ignore'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:"微軟正黑體","sans-serif"'>(<span
+lang=ZH-TW>選擇性</span>) <span lang=ZH-TW>勾選</span><b style='mso-bidi-font-weight:
+normal'>[<span lang=ZH-TW>一律允許</span>]</b><span lang=ZH-TW>方塊，即可在執行</span> Java
+<span lang=ZH-TW>內容時停止其他</span> Chrome <span lang=ZH-TW>警告。參考畫面如下。</span><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:1.0in;mso-para-margin-left:0gd'><span
+style='font-family:"微軟正黑體","sans-serif";mso-no-proof:yes'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="圖片_x0020_2" o:spid="_x0000_i1030" type="#_x0000_t75"
+ style='width:310.5pt;height:56.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="image001.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=414 height=75
+src="image001.png" v:shapes="圖片_x0020_2"><![endif]></span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:1.0in;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l2 level1 lfo2'><![if !supportLists]><span
+style='font-family:"微軟正黑體","sans-serif";mso-bidi-font-family:微軟正黑體'><span
+style='mso-list:Ignore'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>重新整理網頁，完成。</span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:24.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level1 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>是否已安裝中華電信憑證登入元件<span
+class=GramE>簽屬者憑證</span></span><span style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>若您尚未安裝中華電信憑證登入元件<span
+class=GramE>簽屬者憑證</span>，進入憑證登入頁面時會出現黃色的警告三角形</span><span style='font-family:
+"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+style='font-family:"微軟正黑體","sans-serif";color:black;mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1029" type="#_x0000_t75" style='width:393pt;height:280.5pt;
+ visibility:visible'>
+</v:shape><![endif]--><![if !vml]><img border=0 width=524 height=374
+src="image002.png" v:shapes="_x0000_i1029"><![endif]></span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>請</span><a
+href="HiCOSTrustedCert.jar"><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif";
+color:red'>下載中華電信<span class=GramE>簽屬者憑證</span>匯入元件</span></a><span lang=ZH-TW
+style='font-family:"微軟正黑體","sans-serif"'>，下載完後執行該檔案安裝中華電信憑證登入元件<span
+class=GramE>簽屬者憑證</span>。執行過程中總共會安裝</span><span style='font-family:"微軟正黑體","sans-serif"'>2<span
+lang=ZH-TW>張憑證，憑證安裝畫面如下</span>:<o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+style='font-family:"微軟正黑體","sans-serif";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="圖片_x0020_9" o:spid="_x0000_i1028" type="#_x0000_t75" style='width:372pt;
+ height:325.5pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="image003.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=496 height=434
+src="image003.png" v:shapes="圖片_x0020_9"><![endif]></span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+style='font-family:"微軟正黑體","sans-serif";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="圖片_x0020_10" o:spid="_x0000_i1027" type="#_x0000_t75" style='width:372.75pt;
+ height:313.5pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="image004.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=497 height=418
+src="image004.png" v:shapes="圖片_x0020_10"><![endif]></span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level2 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>n<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>若您已安裝中華電信憑證登入元件<span
+class=GramE>簽屬者憑證</span>，進入憑證登入頁面時會出現</span><span style='font-family:"微軟正黑體","sans-serif"'>Java<span
+lang=ZH-TW>標誌或發行者標誌，代表該應用程式已透過來自中華電信受信任憑證授權單位</span>(CA)<span lang=ZH-TW>之有效憑證識別的應用程式，請將</span><b
+style='mso-bidi-font-weight:normal'>[<span lang=ZH-TW>針對來自上述發行者和位置的應用程式不要再顯示此訊息</span>]</b><span
+class=GramE><span lang=ZH-TW>打勾後按</span></span><b style='mso-bidi-font-weight:
+normal'>[<span lang=ZH-TW>執行</span>]</b><span lang=ZH-TW>。</span><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+style='font-family:"微軟正黑體","sans-serif";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="圖片_x0020_8" o:spid="_x0000_i1026" type="#_x0000_t75" style='width:324.75pt;
+ height:213pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="image005.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=433 height=284
+src="image005.png" v:shapes="圖片_x0020_8"><![endif]></span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt;mso-para-margin-left:0gd'><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoListParagraph style='margin-left:24.0pt;mso-para-margin-left:0gd;
+text-indent:-24.0pt;mso-list:l1 level1 lfo1'><![if !supportLists]><span
+style='font-family:Wingdings;mso-fareast-font-family:Wingdings;mso-bidi-font-family:
+Wingdings'><span style='mso-list:Ignore'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ZH-TW style='font-family:"微軟正黑體","sans-serif"'>登入系統注意事項</span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:24.0pt'><span lang=ZH-TW
+style='font-family:"微軟正黑體","sans-serif"'>若您登入系統後出現此網站存取下列應用程式的安全警告，請點選</span><b
+style='mso-bidi-font-weight:normal'><span style='font-family:"微軟正黑體","sans-serif"'>[<span
+lang=ZH-TW>允許</span>]</span></b><span style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:24.0pt'><span style='font-family:"微軟正黑體","sans-serif";
+mso-no-proof:yes'><!--[if gte vml 1]><v:shape id="圖片_x0020_11" o:spid="_x0000_i1025"
+ type="#_x0000_t75" style='width:387pt;height:3in;visibility:visible;
+ mso-wrap-style:square'>
+ <v:imagedata src="image006.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=516 height=288
+src="image006.png" v:shapes="圖片_x0020_11"><![endif]></span><span
+style='font-family:"微軟正黑體","sans-serif"'><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

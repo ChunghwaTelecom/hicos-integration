@@ -1,0 +1,46 @@
+<html lang="en-US" dir="ltr">
+<head>
+  <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <META nam"D:/aa/test.htm"e="viewport" content="width=1024">
+  <TITLE>HiCOSLoginApplet</TITLE>
+  <LINK href="static/min.css" rel="stylesheet">
+  <LINK href="static/tabzilla-min.css" rel="stylesheet">
+  <SCRIPT id="undefined" src="static/inpage_linkid.js"
+    type="text/javascript" async=""></SCRIPT>
+  <SCRIPT src="static/ga.js" type="text/javascript" async=""></SCRIPT>
+  <SCRIPT src="static/min.js"></SCRIPT>
+  <LINK href="static/css" rel="stylesheet" type="text/css">
+  <LINK href="static/firefox-notes.css" rel="stylesheet" media="screen">
+  <SCRIPT src="static/jquery-1.7.1.min.js"></SCRIPT>
+  <script src="./deployJava.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.26/angular.js"></script>
+
+  <style>
+    .success {
+        background-color: lightgreen;
+    }
+    .fail {
+        background-color: lightpink;
+    }
+  </style>
+
+</head>
+<noscript>A browser with Javascript enabled is required for
+  this page to operate properly.</noscript>
+<body>
+  <div ng-app="certApp">
+     <div ng-controller="certController as cert">
+       <button ng-click="cert.getVersionInfo()">getVersionInfo()</button>
+       <button ng-click="cert.getSlotIdListWithToken()">getSlotIdListWithToken()</button>
+       <button ng-click="cert.getSlotInfoWithToken()">getSlotInfoWithToken()</button>
+       <button ng-click="cert.getSlotInfoWithToken(0)">getSlotInfoWithToken(0)</button>
+       <button ng-click="cert.getSlotInfoWithToken(1)">getSlotInfoWithToken(1)</button>
+       <div ng-class="cert.success ? 'success' : 'fail'">
+         {{ cert.message }}
+        </div>
+     </div>
+  </div>
+  <script src="./hicos_applet.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

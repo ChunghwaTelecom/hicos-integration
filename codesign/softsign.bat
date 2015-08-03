@@ -1,0 +1,1 @@
+jarsigner -keystore ../src/test/resources/signapplet.keystore -storepass abc123 sy-pkcs11-0.0.2.jar tl471

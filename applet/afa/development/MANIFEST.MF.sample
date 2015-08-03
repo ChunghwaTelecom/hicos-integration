@@ -1,0 +1,54 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.0
+Trusted-Library: true
+Application-Library-Allowable-Codebase: *
+Application-Name: HiCOS
+Permissions: all-permissions
+Created-By: 1.5.0_22-b03 (Sun Microsystems Inc.)
+Caller-Allowable-Codebase: *
+Codebase: *.nta.gov.tw 172.25.101.11 172.25.101.12 172.25.104.11 172.2
+ 5.104.12 172.25.103.11 172.25.102.11 172.25.101.81 163.29.58.1 163.29
+ .58.2 163.29.58.3 163.29.58.4 163.29.58.5 163.29.58.6
+
+Name: com/chttl/sac/pki/applet/util/e$a.class
+SHA-256-Digest: tAK8cGmEDTPr+uAVNN2ZiLATw/DIQ343T0bLUI8KFUQ=
+
+Name: com/chttl/sac/pki/applet/PKCS11Wrapper64.dll
+SHA-256-Digest: w6mwzL6TWzmcqT2WIO0+lLe+135aijfc+wSYIH+MyAw=
+
+Name: com/chttl/sac/pki/applet/util/e$b.class
+SHA-256-Digest: fZU8NzMolWDqbQ11ofBhbKnW2eHE70l1FO9CClyOCpI=
+
+Name: com/chttl/sac/pki/applet/util/c.class
+SHA-256-Digest: SwnbuT58LCHY4TaUHTHLTNTnE2kvCDkI7x7Zy16VRAk=
+
+Name: com/chttl/sac/pki/applet/util/e$c.class
+SHA-256-Digest: GfS07YTPKrPRWxYDEFGdh2hqS2uN7z7w3fe3Q3k48Kg=
+
+Name: com/chttl/sac/pki/applet/util/e.class
+SHA-256-Digest: LEvn0ggyGORQbh0HLmFGG8TRFtrYRsMJS5rAyIzQ80A=
+
+Name: com/chttl/sac/pki/applet/util/DeviceErrorException.class
+SHA-256-Digest: NtaUPZ2L+xaPDcBSPssZuoyhK8aZA/fAW5VOVSqnWOQ=
+
+Name: com/chttl/sac/pki/applet/util/d.class
+SHA-256-Digest: tDWRo7XXv6rn2+aMuWm1eyyyKvcPNd1Kl0tOAZWBDOw=
+
+Name: com/chttl/sac/pki/applet/a.class
+SHA-256-Digest: CNH6FLbRMcuz4DyfCAf7MILnlrnMDna+nROYpoTgYuI=
+
+Name: com/chttl/sac/pki/applet/HiCOSLoginApplet.class
+SHA-256-Digest: h7n1EqaBzZEUHqwyrL6jAqxRm1CH9DoePTYC1/vKRZc=
+
+Name: com/chttl/sac/pki/applet/PKCS11Wrapper.dll
+SHA-256-Digest: vVCdjX65bMk4hMQAGEv4U37BXrTcZVwt6efDUo7o/7c=
+
+Name: com/chttl/sac/pki/applet/util/a.class
+SHA-256-Digest: Nycl1J1B6qQz2h7k6NXekonetPuCc38OpsOjQu/t7BQ=
+
+Name: com/chttl/sac/pki/applet/util/b.class
+SHA-256-Digest: ag78Hd8p2JZA121DWJkZkDzfSeOLGh+TmU3DzW4chrE=
+
+Name: com/chttl/sac/pki/applet/util/e$1.class
+SHA-256-Digest: iI1eOujPV/0n7Vaf5O+2Cn8xjMTTqdnz7eAOku3eWP4=
+

@@ -1,0 +1,1257 @@
+body {
+	margin: 0px; padding: 0px; text-align: center; font-family: verdana; min-width: 990px;
+}
+#nav-access {
+	display: none;
+}
+#doc {
+	margin: auto; width: 980px; text-align: left; position: relative; z-index: 1;
+}
+[dir='rtl'] #doc {
+	text-align: right;
+}
+#doc::after {
+	height: 0px; clear: both; display: block; visibility: hidden; content: ".";
+}
+#wrapper {
+	min-width: 980px;
+}
+.hide {
+	display: none;
+}
+#outer-wrapper {
+	background: url("/img/template/page-background.png") repeat-x 50% 0px rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-top-width: 2px; border-top-style: solid; -ms-zoom: 1;
+}
+#aurora #outer-wrapper {
+	
+}
+#header {
+	margin: 0px 10px; height: 58px; text-align: center;
+}
+#header h1 {
+	margin: 0px; float: left;
+}
+#header h1 a {
+	background: url("/img/covehead/template/title.png?2013-06") no-repeat 0px 0px; width: 171px; height: 68px; text-indent: -500px; overflow: hidden; font-size: 1px; display: block; -moz-transition: background 0.2s ease-in-out;
+}
+#header h1 a:link {
+	background: url("/img/covehead/template/title.png?2013-06") no-repeat 0px 0px; width: 171px; height: 68px; text-indent: -500px; overflow: hidden; font-size: 1px; display: block; -moz-transition: background 0.2s ease-in-out;
+}
+#header h1 a:visited {
+	background: url("/img/covehead/template/title.png?2013-06") no-repeat 0px 0px; width: 171px; height: 68px; text-indent: -500px; overflow: hidden; font-size: 1px; display: block; -moz-transition: background 0.2s ease-in-out;
+}
+#footer h3 a:hover {
+	-moz-transition: background 0.2s ease-in-out;
+}
+#footer h3 a:active {
+	-moz-transition: background 0.2s ease-in-out;
+}
+#nav-main {
+	text-align: left; text-transform: uppercase; font-family: "Open Sans","Trebuchet MS",sans-serif; font-size: 13px; font-weight: 600; display: inline-block; -ms-zoom: 1; _height: 47px;
+}
+#nav-main li {
+	list-style: none;
+}
+#nav-main ul {
+	margin: 0px; padding: 0px; left: auto; float: left; z-index: 99;
+}
+#nav-main li {
+	margin: 0px 0px 0px -1px; padding: 0px; float: left; position: relative; z-index: 100;
+}
+#nav-main ul li a {
+	border-width: 0px 1px; border-style: solid; border-color: rgb(152, 178, 201); padding: 15px 30px 10px 10px; height: 18px; color: rgb(72, 72, 72); text-decoration: none; float: left; display: block; position: relative; z-index: 100;
+}
+#nav-main ul li a:link {
+	border-width: 0px 1px; border-style: solid; border-color: rgb(152, 178, 201); padding: 15px 30px 10px 10px; height: 18px; color: rgb(72, 72, 72); text-decoration: none; float: left; display: block; position: relative; z-index: 100;
+}
+#nav-main ul li a:visited {
+	border-width: 0px 1px; border-style: solid; border-color: rgb(152, 178, 201); padding: 15px 30px 10px 10px; height: 18px; color: rgb(72, 72, 72); text-decoration: none; float: left; display: block; position: relative; z-index: 100;
+}
+#nav-main ul li span {
+	border-width: 0px 1px; border-style: solid; border-color: rgb(152, 178, 201); padding: 15px 30px 10px 10px; height: 18px; color: rgb(72, 72, 72); text-decoration: none; float: left; display: block; position: relative; z-index: 100;
+}
+.locale-it #nav-main ul li a {
+	padding: 15px 10px 10px;
+}
+#nav-main ul li.last.current a {
+	border-color: rgb(152, 178, 201);
+}
+#nav-main ul li.hover a {
+	background: rgba(255, 255, 255, 0); outline: 0px; padding-bottom: 15px; box-shadow: 0px 0px 0px rgba(152,178,201,0.2), inset 0px -6px 20px 10px rgba(255,255,255,0.8); -moz-transition: 0.2s linear; -webkit-box-shadow: rgba(152, 178, 201, 0.2) 0 0px 0px, inset rgba(255, 255, 255, 0.8) 0 -6px 20px 10px; -moz-transition-property: background, box-shadow, border-right;
+}
+#nav-main ul li.hover a:link {
+	background: rgba(255, 255, 255, 0); outline: 0px; padding-bottom: 15px; box-shadow: 0px 0px 0px rgba(152,178,201,0.2), inset 0px -6px 20px 10px rgba(255,255,255,0.8); -moz-transition: 0.2s linear; -webkit-box-shadow: rgba(152, 178, 201, 0.2) 0 0px 0px, inset rgba(255, 255, 255, 0.8) 0 -6px 20px 10px; -moz-transition-property: background, box-shadow, border-right;
+}
+#nav-main ul li.hover a:visited {
+	background: rgba(255, 255, 255, 0); outline: 0px; padding-bottom: 15px; box-shadow: 0px 0px 0px rgba(152,178,201,0.2), inset 0px -6px 20px 10px rgba(255,255,255,0.8); -moz-transition: 0.2s linear; -webkit-box-shadow: rgba(152, 178, 201, 0.2) 0 0px 0px, inset rgba(255, 255, 255, 0.8) 0 -6px 20px 10px; -moz-transition-property: background, box-shadow, border-right;
+}
+#nav-main ul li.last a {
+	border-right-color: transparent;
+}
+#nav-main ul li.last span {
+	border-right-color: transparent;
+}
+#nav-main ul li.last a:hover {
+	border-right-color: rgb(152, 178, 201);
+}
+#nav-main ul li.last a:focus {
+	border-right-color: rgb(152, 178, 201);
+}
+#nav-main ul li.last a:active {
+	border-right-color: rgb(152, 178, 201);
+}
+.js #nav-main ul li.last a:focus {
+	border-right-color: rgb(152, 178, 201);
+}
+#nav-main ul li.hover a {
+	border-right-color: rgb(152, 178, 201);
+}
+.js #nav-main li.hover ul {
+	left: 0px; margin-top: 47px; opacity: 1; -moz-transition: opacity 0.2s ease-in-out; -webkit-transition: opacity 0.2s ease-in-out;
+}
+#nav-main ul ul {
+	border: 0px currentColor; height: auto; float: none;
+}
+#nav-main ul ul li {
+	border: 0px currentColor; height: auto; float: none;
+}
+#nav-main ul ul {
+	background: rgba(255, 255, 255, 0.9); border: 1px solid rgb(152, 178, 201); left: -999em; width: 190px; position: absolute; z-index: 99; opacity: 0; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; box-shadow: 0px 2px 0px rgba(152,178,201,0.2), inset 0px -2px 0px rgba(152,178,201,0.3); text-shadow: 1px 1px 0px #fff, 0px 0px 5px #fff; -webkit-box-shadow: rgba(152, 178, 201, 0.2) 0 2px 0px, inset rgba(152, 178, 201, 0.3) 0 -2px 0; -webkit-border-top-right-radius: 4px; -webkit-border-bottom-right-radius: 4px; -webkit-border-bottom-left-radius: 4px; -moz-border-radius-topright: 4px; -moz-border-radius-bottomright: 4px; -moz-border-radius-bottomleft: 4px;
+}
+#nav-main ul ul li {
+	margin-left: 0px; box-shadow: inset 0px -1px 0px 0px rgba(152,178,201,0.2); -webkit-box-shadow: inset rgba(152, 178, 201, 0.2) 0 -1px 0 0;
+}
+#nav-main ul ul li a {
+	margin: 0px; padding: 8px 10px; border: 0px currentColor; height: auto; overflow: hidden; font-size: 11px; float: none; display: block; position: relative; box-shadow: none; -moz-transition: background 0.1s ease-in; -webkit-transition: background 0.1s ease-in;
+}
+#nav-main ul ul li a:link {
+	margin: 0px; padding: 8px 10px; border: 0px currentColor; height: auto; overflow: hidden; font-size: 11px; float: none; display: block; position: relative; box-shadow: none; -moz-transition: background 0.1s ease-in; -webkit-transition: background 0.1s ease-in;
+}
+#nav-main ul ul li a:visited {
+	margin: 0px; padding: 8px 10px; border: 0px currentColor; height: auto; overflow: hidden; font-size: 11px; float: none; display: block; position: relative; box-shadow: none; -moz-transition: background 0.1s ease-in; -webkit-transition: background 0.1s ease-in;
+}
+#nav-main ul ul li span {
+	margin: 0px; padding: 8px 10px; border: 0px currentColor; height: auto; overflow: hidden; font-size: 11px; float: none; display: block; position: relative; box-shadow: none; -moz-transition: background 0.1s ease-in; -webkit-transition: background 0.1s ease-in;
+}
+#nav-main ul ul li a:hover {
+	background: rgba(152, 178, 201, 0.2); box-shadow: inset 0px 2px 0px rgba(152,178,201,0.3), inset 0px 0px 3px 2px rgba(152,178,201,0.2); -moz-transition: background 0.1s ease-out; -webkit-box-shadow: inset rgba(152, 178, 201, 0.3) 0 2px 0px, 0 0 3px 2px rgba(152, 178, 201, .2) inset; -webkit-transition: background 0.1s ease-out;
+}
+#nav-main ul ul li a:focus {
+	background: rgba(152, 178, 201, 0.2); box-shadow: inset 0px 2px 0px rgba(152,178,201,0.3), inset 0px 0px 3px 2px rgba(152,178,201,0.2); -moz-transition: background 0.1s ease-out; -webkit-box-shadow: inset rgba(152, 178, 201, 0.3) 0 2px 0px, 0 0 3px 2px rgba(152, 178, 201, .2) inset; -webkit-transition: background 0.1s ease-out;
+}
+#nav-main ul ul li a:active {
+	background: rgba(152, 178, 201, 0.2); box-shadow: inset 0px 2px 0px rgba(152,178,201,0.3), inset 0px 0px 3px 2px rgba(152,178,201,0.2); -moz-transition: background 0.1s ease-out; -webkit-box-shadow: inset rgba(152, 178, 201, 0.3) 0 2px 0px, 0 0 3px 2px rgba(152, 178, 201, .2) inset; -webkit-transition: background 0.1s ease-out;
+}
+.js #nav-main ul ul li a:focus {
+	background: rgba(152, 178, 201, 0.2); box-shadow: inset 0px 2px 0px rgba(152,178,201,0.3), inset 0px 0px 3px 2px rgba(152,178,201,0.2); -moz-transition: background 0.1s ease-out; -webkit-box-shadow: inset rgba(152, 178, 201, 0.3) 0 2px 0px, 0 0 3px 2px rgba(152, 178, 201, .2) inset; -webkit-transition: background 0.1s ease-out;
+}
+#nav-main ul li.current ul li a:hover {
+	background: rgba(152, 178, 201, 0.2); box-shadow: inset 0px 2px 0px rgba(152,178,201,0.3), inset 0px 0px 3px 2px rgba(152,178,201,0.2); -moz-transition: background 0.1s ease-out; -webkit-box-shadow: inset rgba(152, 178, 201, 0.3) 0 2px 0px, 0 0 3px 2px rgba(152, 178, 201, .2) inset; -webkit-transition: background 0.1s ease-out;
+}
+#nav-main ul li.current ul li a:focus {
+	background: rgba(152, 178, 201, 0.2); box-shadow: inset 0px 2px 0px rgba(152,178,201,0.3), inset 0px 0px 3px 2px rgba(152,178,201,0.2); -moz-transition: background 0.1s ease-out; -webkit-box-shadow: inset rgba(152, 178, 201, 0.3) 0 2px 0px, 0 0 3px 2px rgba(152, 178, 201, .2) inset; -webkit-transition: background 0.1s ease-out;
+}
+#nav-main ul li.current ul li a:active {
+	background: rgba(152, 178, 201, 0.2); box-shadow: inset 0px 2px 0px rgba(152,178,201,0.3), inset 0px 0px 3px 2px rgba(152,178,201,0.2); -moz-transition: background 0.1s ease-out; -webkit-box-shadow: inset rgba(152, 178, 201, 0.3) 0 2px 0px, 0 0 3px 2px rgba(152, 178, 201, .2) inset; -webkit-transition: background 0.1s ease-out;
+}
+.js #nav-main ul li.current ul li a:focus {
+	background: rgba(152, 178, 201, 0.2); box-shadow: inset 0px 2px 0px rgba(152,178,201,0.3), inset 0px 0px 3px 2px rgba(152,178,201,0.2); -moz-transition: background 0.1s ease-out; -webkit-box-shadow: inset rgba(152, 178, 201, 0.3) 0 2px 0px, 0 0 3px 2px rgba(152, 178, 201, .2) inset; -webkit-transition: background 0.1s ease-out;
+}
+#nav-main ul li:hover ul li a {
+	padding-bottom: 8px;
+}
+#nav-main ul li.hover ul li a:link {
+	padding-bottom: 8px;
+}
+#nav-main ul li.hover ul li a:visited {
+	padding-bottom: 8px;
+}
+#nav-main ul li.current span {
+	background: rgb(251, 253, 255); padding-right: 30px; padding-bottom: 15px; border-bottom-width: 1px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; box-shadow: 0px 0px 0px rgba(152,178,201,0.2), inset 0px -2px 0px rgba(152,178,201,0.3), inset 0px -6px 6px 4px rgba(255,255,255,0.8); -webkit-box-shadow: rgba(152, 178, 201, 0.2) 0 0px 0px, inset rgba(152, 178, 201, 0.3) 0 -2px 0, inset rgba(255, 255, 255, 0.8) 0 -6px 6px 4px; -webkit-border-bottom-right-radius: 4px; -webkit-border-bottom-left-radius: 4px; -moz-border-radius-bottomright: 4px; -moz-border-radius-bottomleft: 4px;
+}
+#nav-main ul li.current a {
+	background: rgb(251, 253, 255); padding-right: 30px; padding-bottom: 15px; border-bottom-width: 1px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; box-shadow: 0px 0px 0px rgba(152,178,201,0.2), inset 0px -2px 0px rgba(152,178,201,0.3), inset 0px -6px 6px 4px rgba(255,255,255,0.8); -webkit-box-shadow: rgba(152, 178, 201, 0.2) 0 0px 0px, inset rgba(152, 178, 201, 0.3) 0 -2px 0, inset rgba(255, 255, 255, 0.8) 0 -6px 6px 4px; -webkit-border-bottom-right-radius: 4px; -webkit-border-bottom-left-radius: 4px; -moz-border-radius-bottomright: 4px; -moz-border-radius-bottomleft: 4px;
+}
+#nav-main ul li.current a:link {
+	background: rgb(251, 253, 255); padding-right: 30px; padding-bottom: 15px; border-bottom-width: 1px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; box-shadow: 0px 0px 0px rgba(152,178,201,0.2), inset 0px -2px 0px rgba(152,178,201,0.3), inset 0px -6px 6px 4px rgba(255,255,255,0.8); -webkit-box-shadow: rgba(152, 178, 201, 0.2) 0 0px 0px, inset rgba(152, 178, 201, 0.3) 0 -2px 0, inset rgba(255, 255, 255, 0.8) 0 -6px 6px 4px; -webkit-border-bottom-right-radius: 4px; -webkit-border-bottom-left-radius: 4px; -moz-border-radius-bottomright: 4px; -moz-border-radius-bottomleft: 4px;
+}
+#nav-main ul li.current a:visited {
+	background: rgb(251, 253, 255); padding-right: 30px; padding-bottom: 15px; border-bottom-width: 1px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; box-shadow: 0px 0px 0px rgba(152,178,201,0.2), inset 0px -2px 0px rgba(152,178,201,0.3), inset 0px -6px 6px 4px rgba(255,255,255,0.8); -webkit-box-shadow: rgba(152, 178, 201, 0.2) 0 0px 0px, inset rgba(152, 178, 201, 0.3) 0 -2px 0, inset rgba(255, 255, 255, 0.8) 0 -6px 6px 4px; -webkit-border-bottom-right-radius: 4px; -webkit-border-bottom-left-radius: 4px; -moz-border-radius-bottomright: 4px; -moz-border-radius-bottomleft: 4px;
+}
+#nav-main ul li.current:hover a {
+	border-radius: 0px; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none; box-shadow: none; -webkit-border-radius: 0; -moz-border-radius: 0;
+}
+#nav-main ul li.hover.current a {
+	border-radius: 0px; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none; box-shadow: none; -webkit-border-radius: 0; -moz-border-radius: 0;
+}
+#nav-main ul li.current a:hover {
+	border-radius: 0px; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none; box-shadow: none; -webkit-border-radius: 0; -moz-border-radius: 0;
+}
+#nav-main ul li.current a:focus {
+	border-radius: 0px; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none; box-shadow: none; -webkit-border-radius: 0; -moz-border-radius: 0;
+}
+#nav-main ul li.current a:active {
+	border-radius: 0px; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none; box-shadow: none; -webkit-border-radius: 0; -moz-border-radius: 0;
+}
+.js #nav-main ul li.current a:focus {
+	border-radius: 0px; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none; box-shadow: none; -webkit-border-radius: 0; -moz-border-radius: 0;
+}
+#nav-main ul li.current ul span {
+	padding: 8px 10px; height: auto; box-shadow: none; -moz-box-shadow: none;
+}
+#nav-main ul li.current ul a {
+	padding: 8px 10px; height: auto; box-shadow: none; -moz-box-shadow: none;
+}
+#nav-main ul li.current ul a:link {
+	padding: 8px 10px; height: auto; box-shadow: none; -moz-box-shadow: none;
+}
+#nav-main ul li.current ul a:visited {
+	padding: 8px 10px; height: auto; box-shadow: none; -moz-box-shadow: none;
+}
+.darkbg #nav-main ul li a {
+	border-color: rgb(85, 85, 85); color: rgb(255, 255, 255);
+}
+.darkbg #nav-main ul li a:link {
+	border-color: rgb(85, 85, 85); color: rgb(255, 255, 255);
+}
+.darkbg #nav-main ul li a:visited {
+	border-color: rgb(85, 85, 85); color: rgb(255, 255, 255);
+}
+.darkbg #nav-main ul li span {
+	border-color: rgb(85, 85, 85); color: rgb(255, 255, 255);
+}
+.darkbg #nav-main ul li li a {
+	color: rgb(72, 72, 72);
+}
+.darkbg #nav-main ul li li a:link {
+	color: rgb(72, 72, 72);
+}
+.darkbg #nav-main ul li li a:visited {
+	color: rgb(72, 72, 72);
+}
+.darkbg #nav-main ul li li span {
+	color: rgb(72, 72, 72);
+}
+.darkbg #nav-main ul li a:hover {
+	background: rgb(204, 204, 204); border-color: rgb(152, 178, 201); color: rgb(72, 72, 72);
+}
+.darkbg #nav-main ul li:hover a {
+	background: rgb(204, 204, 204); border-color: rgb(152, 178, 201); color: rgb(72, 72, 72);
+}
+.darkbg #nav-main ul li.hover a {
+	background: rgb(204, 204, 204); border-color: rgb(152, 178, 201); color: rgb(72, 72, 72);
+}
+.darkbg #nav-main ul li.hover a:link {
+	background: rgb(204, 204, 204); border-color: rgb(152, 178, 201); color: rgb(72, 72, 72);
+}
+.darkbg #nav-main ul li.hover a:visited {
+	background: rgb(204, 204, 204); border-color: rgb(152, 178, 201); color: rgb(72, 72, 72);
+}
+.darkbg #header h1 a {
+	background-image: url("/img/covehead/template/title-darkbg.png?2013-06");
+}
+.darkbg #header h1 a:link {
+	background-image: url("/img/covehead/template/title-darkbg.png?2013-06");
+}
+.darkbg #header h1 a:visited {
+	background-image: url("/img/covehead/template/title-darkbg.png?2013-06");
+}
+.darkbg a.mozilla {
+	background-image: url("/img/covehead/template/title-darkbg.png?2013-06");
+}
+#sub-footer {
+	background: url("/img/template/footer-background.png") repeat-x top rgb(61, 109, 181); color: rgb(71, 111, 190); clear: both;
+}
+#sub-footer #sub-footer-contents {
+	margin: auto; width: 980px; text-align: left;
+}
+#sub-footer h3 {
+	background: url("/img/template/footer-social.png") no-repeat 50% 0px; margin: 115px 0px 10px; padding: 15px 0px 0px 25px; width: 126px; height: 100px; color: rgb(51, 85, 155); line-height: 22px; font-family: georgia,serif; font-size: 22px; font-style: italic; font-weight: normal; float: left;
+}
+#sub-footer h3 span {
+	color: rgb(255, 255, 255); text-transform: uppercase; font-family: MetaBlack,"Trebuchet MS",sans-serif; font-size: 22px; font-style: normal; font-weight: bold;
+}
+#sub-footer ul {
+	margin: 100px 0px 0px; left: auto; float: left;
+}
+#sub-footer ul li {
+	margin: 0px 15px 0px 0px; padding: 0px; float: left;
+}
+#sub-footer ul li a {
+	background: url("/img/template/footer-social.png") no-repeat 50% 0px; padding: 60px 0px 0px; width: 110px; text-align: center; color: rgb(255, 255, 255); line-height: 18px; font-family: georgia,serif; font-size: 18px; font-style: italic; font-weight: normal; display: block; -moz-transition: text-shadow 0.2s ease-out; -webkit-transition: text-shadow 0.2s ease-out;
+}
+#sub-footer ul li a:link {
+	background: url("/img/template/footer-social.png") no-repeat 50% 0px; padding: 60px 0px 0px; width: 110px; text-align: center; color: rgb(255, 255, 255); line-height: 18px; font-family: georgia,serif; font-size: 18px; font-style: italic; font-weight: normal; display: block; -moz-transition: text-shadow 0.2s ease-out; -webkit-transition: text-shadow 0.2s ease-out;
+}
+#sub-footer ul li a:visited {
+	background: url("/img/template/footer-social.png") no-repeat 50% 0px; padding: 60px 0px 0px; width: 110px; text-align: center; color: rgb(255, 255, 255); line-height: 18px; font-family: georgia,serif; font-size: 18px; font-style: italic; font-weight: normal; display: block; -moz-transition: text-shadow 0.2s ease-out; -webkit-transition: text-shadow 0.2s ease-out;
+}
+#sub-footer a:hover {
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.5), 0px 0px 5px rgba(51,85,155,1), 0px 0px 20px rgba(255,255,255,0.6); -moz-transition: text-shadow 0.1s ease-out; -webkit-transition: text-shadow 0.1s ease-out;
+}
+#sub-footer a:active {
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.5), 0px 0px 5px rgba(51,85,155,1), 0px 0px 20px rgba(255,255,255,0.6); -moz-transition: text-shadow 0.1s ease-out; -webkit-transition: text-shadow 0.1s ease-out;
+}
+#sub-footer ul {
+	background-position: 50% -115px; margin-bottom: 30px;
+}
+#sub-footer ul li#footer-twitter a {
+	background-position: 50% -115px;
+}
+#sub-footer ul li#footer-facebook a {
+	background-position: 50% -215px;
+}
+#sub-footer ul li#footer-connect a {
+	background-position: 50% -315px;
+}
+#sub-footer ul li#footer-affiliates a {
+	background-position: 50% -315px;
+}
+#sub-footer #sub-footer-newsletter {
+	background: url("/img/template/footer-social.png") no-repeat 30% -412px; margin: 0px 32px 0px 0px; padding: 135px 0px 0px; text-align: left; line-height: 1em; float: right;
+}
+#sub-footer #sub-footer-newsletter span.intro {
+	color: rgb(255, 255, 255); line-height: 18px; font-family: georgia,serif; font-size: 18px; font-style: italic; font-weight: normal; display: block;
+}
+#footer {
+	background: url("/img/template/footer-background.png") repeat-x -200px rgb(51, 85, 155); padding: 5px 0px; text-align: center; color: rgb(71, 111, 190); clear: both;
+}
+#footer a:link {
+	color: rgb(102, 155, 225); text-decoration: none; -moz-transition: color 0.1s ease-in; -webkit-transition: color 0.1s ease-in;
+}
+#footer a:visited {
+	color: rgb(102, 155, 225); text-decoration: none; -moz-transition: color 0.1s ease-in; -webkit-transition: color 0.1s ease-in;
+}
+#footer a:hover {
+	color: rgb(255, 255, 255); text-decoration: underline; -moz-transition: color 0.1s ease-out; -webkit-transition: color 0.1s ease-out;
+}
+#footer a:active {
+	color: rgb(255, 255, 255); text-decoration: underline; -moz-transition: color 0.1s ease-out; -webkit-transition: color 0.1s ease-out;
+}
+#footer-contents {
+	margin: auto; width: 980px; text-align: left;
+}
+[dir=rtl]#footer-contents {
+	text-align: right;
+}
+#footer h3 a {
+	background: url("/img/covehead/template/footer-title.png") no-repeat 0px 0px; width: 100px; height: 40px; text-indent: -200px; overflow: hidden; font-size: 1px; display: block;
+}
+#footer h3 a:link {
+	background: url("/img/covehead/template/footer-title.png") no-repeat 0px 0px; width: 100px; height: 40px; text-indent: -200px; overflow: hidden; font-size: 1px; display: block;
+}
+#footer h3 a:visited {
+	background: url("/img/covehead/template/footer-title.png") no-repeat 0px 0px; width: 100px; height: 40px; text-indent: -200px; overflow: hidden; font-size: 1px; display: block;
+}
+#footer-logo {
+	margin: 15px 40px 0px 10px; float: left; display: inline;
+}
+#footer-logo a {
+	padding: 0px; font-size: 28px;
+}
+#footer-logo a:link {
+	padding: 0px; font-size: 28px;
+}
+#footer-logo a:visited {
+	padding: 0px; font-size: 28px;
+}
+#footer-menu {
+	margin: 0px; padding: 0px; left: auto; list-style-type: none;
+}
+#footer-menu ul {
+	margin: 0px; padding: 0px; left: auto; list-style-type: none;
+}
+#footer-menu li {
+	margin: 15px 10px 0px 0px; padding: 0px; width: 100px; font-weight: bold; float: left; display: inline; list-style-type: none; position: relative;
+}
+#footer-menu li a {
+	color: rgb(255, 255, 255); text-transform: uppercase; font-family: MetaBlack,TrechuchetMS,sans-serif; font-size: 14px; font-weight: bold;
+}
+#footer-menu li a:link {
+	color: rgb(255, 255, 255); text-transform: uppercase; font-family: MetaBlack,TrechuchetMS,sans-serif; font-size: 14px; font-weight: bold;
+}
+#footer-menu li a:visited {
+	color: rgb(255, 255, 255); text-transform: uppercase; font-family: MetaBlack,TrechuchetMS,sans-serif; font-size: 14px; font-weight: bold;
+}
+#footer #lang_form label {
+	color: rgb(255, 255, 255); text-transform: uppercase; font-family: MetaBlack,TrechuchetMS,sans-serif; font-size: 14px; font-weight: bold;
+}
+#footer li li a:link {
+	color: rgb(102, 155, 225); text-transform: none; font-family: georgia,serif; font-size: 13px; font-weight: normal;
+}
+#footer li li a:visited {
+	color: rgb(102, 155, 225); text-transform: none; font-family: georgia,serif; font-size: 13px; font-weight: normal;
+}
+#footer li li a:hover {
+	color: rgb(255, 255, 255);
+}
+#footer li li a:active {
+	color: rgb(255, 255, 255);
+}
+#footer-menu ul li ul {
+	margin: 4px 0px 15px;
+}
+#footer-menu li.last {
+	margin-right: 0px;
+}
+#footer-menu ul ul li {
+	margin: 0px; padding: 0px 0px 0.4em; width: auto; font-weight: normal; float: none; display: block;
+}
+#footer #footer-right {
+	width: 170px; float: right;
+}
+#footer #lang_form {
+	margin: 0px 0px 15px 14px;
+}
+#footer #lang_form label {
+	margin: 10px 0px 4px; display: block;
+}
+#footer #lang_form select {
+	width: 140px; font-family: sans-serif;
+}
+#footer #lang_form div {
+	display: inline;
+}
+#footer #copyright {
+	clear: both;
+}
+#footer #copyright p {
+	font-size: 85%; margin-bottom: 0.5em;
+}
+#footer #copyright a:hover {
+	text-decoration: underline;
+}
+#footer #copyright a:active {
+	text-decoration: underline;
+}
+#footer #footer-links {
+	font-size: 85%;
+}
+.portal-page #footer {
+	background: url("/img/template/footer-background-minimal.png") repeat-x 0px 0px rgb(255, 255, 255); padding: 100px 0px 20px; text-align: center; color: rgb(153, 153, 153); clear: both;
+}
+.portal-page #footer a:hover {
+	color: rgb(68, 123, 196);
+}
+.portal-page #footer a:active {
+	color: rgb(68, 123, 196);
+}
+#side-menu {
+	margin: 0px; padding: 0px; left: auto; top: 75px; width: 170px; right: 35px; line-height: 1; font-family: verdana; font-size: 80%; list-style-type: none; position: absolute;
+}
+#side-menu li {
+	background: url("/img/tignish/template/side-menu-divider.png") no-repeat top; margin: 0px; padding: 7px 3px 5px 5px; list-style-type: none;
+}
+#side-menu li.first {
+	
+}
+#side-menu li ul {
+	margin: 5px 0px 0px; left: auto;
+}
+#side-menu li ul li {
+	padding-left: 8px;
+}
+#side-menu span {
+	color: rgb(255, 255, 255); font-weight: bold;
+}
+#side-menu h3 span {
+	font-weight: normal;
+}
+#side-menu h3 {
+	margin: 0px; color: rgb(255, 255, 255);
+}
+#side-menu a:link {
+	color: rgb(30, 66, 98);
+}
+#side-menu a:visited {
+	color: rgb(30, 66, 98);
+}
+#side-menu a:hover {
+	color: rgb(30, 66, 98);
+}
+#side-menu a:active {
+	color: rgb(30, 66, 98);
+}
+#breadcrumbs {
+	margin: 15px 10px 20px 25px; color: rgb(48, 48, 48);
+}
+#breadcrumbs b {
+	font-size: 120%; font-weight: bold;
+}
+#breadcrumbs a.home {
+	background: url("/img/template/breadcrumb-home.png") no-repeat 0px 0px; margin: 5px 5px 0px 0px; width: 15px; height: 13px; line-height: 50px; overflow: hidden; float: left; display: inline;
+}
+#main-content {
+	margin: 0px 20px; -ms-zoom: 1;
+}
+#content {
+	margin: 0px 20px;
+}
+@media handheld
+{
+#main-content {
+	font-size: 130%;
+}
+#main-feature {
+	font-size: 130%;
+}
+}
+#sub-footer-newsletter .email-form .email-open {
+	border-radius: 7px; width: 26px; height: 24px; text-align: center; color: rgb(72, 120, 191); line-height: 1.1; font-size: 19px; font-weight: bold; display: inline-block; box-shadow: inset -2px 0px 1px #6a95cc, 2px 0px 0px rgba(0,0,0,0.1); text-shadow: 1px 0px 2px rgba(255,255,255,0.5), 1px 0px 1px rgba(255,255,255,0.4); -moz-border-radius: 7px; -moz-box-shadow: -2px 0 1px #6a95cc inset, 2px 0 0 rgba(0, 0, 0, 0.1); -moz-transform: rotate(90deg);
+}
+.email-form .email-open {
+	border-radius: 7px; width: 26px; height: 24px; text-align: center; color: rgb(72, 120, 191); line-height: 1.1; font-size: 19px; font-weight: bold; display: inline-block; box-shadow: inset -2px 0px 1px #6a95cc, 2px 0px 0px rgba(0,0,0,0.1); text-shadow: 1px 0px 2px rgba(255,255,255,0.5), 1px 0px 1px rgba(255,255,255,0.4); -moz-border-radius: 7px; -moz-box-shadow: -2px 0 1px #6a95cc inset, 2px 0 0 rgba(0, 0, 0, 0.1); -moz-transform: rotate(90deg);
+}
+.email-form .opened.email-open {
+	cursor: default; opacity: 0.5; box-shadow: inset -2px 0px 1px #6a95cc, 2px 0px 0px rgba(0,0,0,0.2); -moz-box-shadow: -2px 0 1px #6a95cc inset, 2px 0 0 rgba(0, 0, 0, 0.2);
+}
+.email-form ul.error .email-open:active {
+	
+}
+.email-form ul.error .email-open:focus {
+	
+}
+.email-form .opened.email-open:active {
+	
+}
+.email-form .opened.email-open:focus {
+	
+}
+.error#newsletter .form-pane {
+	display: block;
+}
+.form-pane .form-details {
+	color: rgb(85, 85, 85); line-height: 1.2; font-size: 14px;
+}
+.success-pane p {
+	color: rgb(85, 85, 85); line-height: 1.2; font-size: 14px;
+}
+#firstrun .form-pane .form-details {
+	margin-left: 240px;
+}
+.success-pane p {
+	padding: 10px 0px;
+}
+.form-pane {
+	clear: left; position: relative;
+}
+.success-pane {
+	clear: left; position: relative;
+}
+.success-pane h3 {
+	margin: 0px; font-style: italic; font-weight: normal;
+}
+.success-pane h3 img {
+	top: -12px; right: 0px; position: absolute;
+}
+.form-pane p.intro {
+	margin: 5px 0px 0px 50px; width: 170px; font-size: 13px; float: left;
+}
+#firstrun .form-pane p.footnote {
+	color: rgb(153, 153, 153);
+}
+#whatsnew #sidebar .form-pane p.footnote {
+	color: rgb(153, 153, 153);
+}
+#whatsnew #sidebar .form-pane p.footnote {
+	margin: 0px; font-size: 10px;
+}
+.footnote {
+	padding: 5px 0px; font-size: 12px;
+}
+.email-form select.country {
+	background: rgb(255, 255, 255); border-width: 1px; border-style: solid; padding: 3px; color: rgb(85, 85, 85); -moz-border-radius: 3px;
+}
+.email-form select.lang {
+	background: rgb(255, 255, 255); border-width: 1px; border-style: solid; padding: 3px; color: rgb(85, 85, 85); -moz-border-radius: 3px;
+}
+.email-form input.email {
+	background: rgb(255, 255, 255); border-width: 1px; border-style: solid; padding: 3px; color: rgb(85, 85, 85); -moz-border-radius: 3px;
+}
+.email-form input.email {
+	border-color: rgb(170, 170, 170) rgb(205, 205, 205) rgb(205, 205, 205) rgb(170, 170, 170); width: 218px; -moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+#whatsnew .email-form input.email {
+	width: 200px;
+}
+.email-form input.placeholder.email {
+	color: rgb(153, 153, 153);
+}
+.email-form input.email:focus {
+	
+}
+.form-pane .country-field {
+	padding: 12px 2px 2px;
+}
+.email-form select.country {
+	border-color: rgb(205, 205, 205) rgb(170, 170, 170) rgb(170, 170, 170) rgb(205, 205, 205); width: 225px; color: rgb(85, 85, 85); font-size: 14px; -moz-box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+.email-form select.lang {
+	border-color: rgb(205, 205, 205) rgb(170, 170, 170) rgb(170, 170, 170) rgb(205, 205, 205); width: 225px; color: rgb(85, 85, 85); font-size: 14px; -moz-box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+#whatsnew .email-form select.country {
+	width: 208px;
+}
+.email-form .form-pane input.subscribe {
+	background: rgb(102, 102, 102); margin: 10px 0px 0px 2px; padding: 6px 32px 8px; border: currentColor; color: rgb(255, 255, 255); font-family: "Trebuchet MS",sans-serif; font-size: 16px; font-style: normal; font-weight: bold; white-space: nowrap; -moz-border-radius: 5px; -moz-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1), 0 -3px 0 rgba(0, 0, 0, 0.1) inset;
+}
+.email-form .form-pane input.subscribe:hover {
+	-moz-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1), 0 -3px 0 rgba(0, 0, 0, 0.1) inset, 0 -1px 80px rgba(0, 0, 0, 0.1) inset;
+}
+.email-form .form-pane input.subscribe:active {
+	top: 1px; position: relative; -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1), 0 -3px 0 rgba(0, 0, 0, 0.1) inset, 0 -1px 80px rgba(0, 0, 0, 0.1) inset;
+}
+.email-form .form-pane label {
+	padding: 10px 0px 0px; display: block;
+}
+#meil-form .form-pane label input {
+	vertical-align: middle;
+}
+.email-form .form-pane .form-error input.email {
+	border-width: 2px; border-color: rgb(204, 73, 39); padding: 2px;
+}
+.email-form .error-wrapper {
+	padding: 2px; border-radius: 4px; display: inline-block; -webkit-border-radius: 4px; -moz-border-radius: 4px;
+}
+#email-form .error-wrapper {
+	padding: 2px; border-radius: 4px; display: inline-block; -webkit-border-radius: 4px; -moz-border-radius: 4px;
+}
+.email-form .form-pane label.privacy-check-label a {
+	text-decoration: underline;
+}
+#whatsnew #sidebar .email-form p.form-error {
+	background: rgb(177, 26, 4); padding: 7px 13px; border: currentColor; left: 475px; width: 150px; color: rgb(255, 255, 255); font-family: MetaWebPro-Book,sans-serif; font-size: 13px; position: absolute; z-index: 1000; text-shadow: none; -moz-border-radius: 5px; -moz-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+#sub-footer #newsletter ul.field-errors li {
+	margin: 5px 0px; line-height: 1.2em; font-size: 0.9em;
+}
+#sub-footer #newsletter ul.field-errors {
+	background: rgb(177, 26, 4); padding: 5px 15px; border-radius: 4px; color: rgb(255, 255, 255); font-size: 1.25em; -webkit-border-radius: 4px; -moz-border-radius: 4px;
+}
+#whatsnew #sidebar .email-form p.form-error {
+	left: 217px;
+}
+.email-form p.form-error-visible {
+	display: block;
+}
+.email-form .format-field {
+	padding-top: 10px;
+}
+.email-form .form-pane .privacy-field {
+	clear: left; font-size: 12px;
+}
+.email-form .radio-wrapper {
+	margin: 0px; padding: 1px 4px; line-height: 0.8; float: left; display: inline-block;
+}
+.email-form .form-pane .format-field label {
+	margin: 0px 12px 0px 0px; padding: 0px; width: auto; float: left;
+}
+.email-form .form-pane .format-field input {
+	margin: 0px 4px; width: auto; float: none;
+}
+.error-email .email-error {
+	display: block !important;
+}
+.error-email #email-error {
+	display: block !important;
+}
+.error-privacy .privacy-error {
+	display: block !important;
+}
+.error-privacy #privacy-error {
+	display: block !important;
+}
+.email-field .field-error.error-wrapper {
+	background: rgb(177, 26, 4);
+}
+.privacy-field .field-error.error-wrapper {
+	background: rgb(235, 122, 107); border-color: rgb(177, 26, 4);
+}
+#privacy-field .field-error.error-wrapper {
+	background: rgb(235, 122, 107); border-color: rgb(177, 26, 4);
+}
+.success .open-pane {
+	display: none !important;
+}
+.success #open-pane {
+	display: none !important;
+}
+.success .form-pane {
+	display: none !important;
+}
+.success #form-pane {
+	display: none !important;
+}
+.success .success-pane {
+	display: block !important;
+}
+.success #success-pane {
+	display: block !important;
+}
+.success-pane {
+	display: none;
+}
+#success-pane {
+	display: none;
+}
+.form-pane {
+	display: none;
+}
+#sub-footer #newsletter .form-pane {
+	position: absolute;
+}
+#sub-footer #newsletter {
+	overflow: visible; position: relative;
+}
+#sub-footer #newsletter .success-pane p {
+	color: white;
+}
+#sub-footer .form-pane {
+	padding: 15px; border-radius: 15px; top: 55px; position: absolute; z-index: 20; background-color: white;
+}
+#sub-footer #newsletter p {
+	color: white; max-width: 250px;
+}
+#sub-footer .email-form p.form-error {
+	color: white !important; position: static;
+}
+#sub-footer #newsletter {
+	color: black;
+}
+#sub-footer #newsletter p {
+	color: black;
+}
+#sub-footer .form-pane p {
+	color: black;
+}
+#sub-footer .form-pane {
+	color: black;
+}
+#sub-footer .form-pane .form-details {
+	color: black;
+}
+#sub-footer #newsletter ul {
+	list-style: none; margin: 0px; left: 0px; color: white; float: none; position: relative;
+}
+#sub-footer #newsletter ul li {
+	list-style: none; margin: 0px; left: 0px; color: white; float: none; position: relative;
+}
+#sub-footer #newsletter h3 {
+	margin: 0px; padding: 0px; width: auto; height: auto; color: white; float: none;
+}
+#sub-footer #newsletter .privacy-field a {
+	font-size: 12px; display: inline;
+}
+#sub-footer #newsletter a {
+	margin: 0px; padding: 2px 1px; color: black; font-family: Georgia,serif; font-style: normal;
+}
+#sub-footer #newsletter a:link {
+	margin: 0px; padding: 2px 1px; color: black; font-family: Georgia,serif; font-style: normal;
+}
+#sub-footer #newsletter a:visited {
+	margin: 0px; padding: 2px 1px; color: black; font-family: Georgia,serif; font-style: normal;
+}
+#sub-footer #newsletter a:hover {
+	text-decoration: none; text-shadow: none;
+}
+#sub-footer #newsletter a.email-open {
+	text-align: center; color: rgb(72, 120, 191);
+}
+.clear {
+	clear: both;
+}
+body {
+	color: rgb(109, 117, 129); line-height: 1.231; font-family: georgia,serif; font-size: 13px;
+}
+a:link {
+	color: rgb(68, 123, 196); text-decoration: none;
+}
+a:visited {
+	color: rgb(68, 123, 196); text-decoration: none;
+}
+a:hover {
+	color: rgb(68, 123, 196); text-decoration: underline;
+}
+a:active {
+	color: rgb(68, 123, 196); text-decoration: underline;
+}
+a.external:link {
+	padding-right: 8px;
+}
+a.external:visited {
+	padding-right: 8px;
+}
+a.external:hover {
+	background: url("/img/tignish/content/external-link.png") no-repeat right; padding-right: 8px;
+}
+a.external:active {
+	background: url("/img/tignish/content/external-link.png") no-repeat right; padding-right: 8px;
+}
+h1 a.external:link {
+	padding-right: 16px;
+}
+h2 a.external:link {
+	padding-right: 16px;
+}
+h3 a.external:link {
+	padding-right: 16px;
+}
+h4 a.external:link {
+	padding-right: 16px;
+}
+h5 a.external:link {
+	padding-right: 16px;
+}
+h6 a.external:link {
+	padding-right: 16px;
+}
+h1 a.external:visited {
+	padding-right: 16px;
+}
+h2 a.external:visited {
+	padding-right: 16px;
+}
+h3 a.external:visited {
+	padding-right: 16px;
+}
+h4 a.external:visited {
+	padding-right: 16px;
+}
+h5 a.external:visited {
+	padding-right: 16px;
+}
+h6 a.external:visited {
+	padding-right: 16px;
+}
+h1 a.external:hover {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h2 a.external:hover {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h3 a.external:hover {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h4 a.external:hover {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h5 a.external:hover {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h6 a.external:hover {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h1 a.external:active {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h2 a.external:active {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h3 a.external:active {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h4 a.external:active {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h5 a.external:active {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+h6 a.external:active {
+	background: url("/img/tignish/content/external-link-large.png") no-repeat right; padding-right: 16px;
+}
+a.email:link {
+	padding-right: 16px;
+}
+a.email:visited {
+	padding-right: 16px;
+}
+a.email:hover {
+	background: url("/img/tignish/content/email-link.png") no-repeat right; padding-right: 16px;
+}
+a.email:hover {
+	background: url("/img/tignish/content/email-link.png") no-repeat right; padding-right: 16px;
+}
+p {
+	margin: 0px 0px 1em;
+}
+img {
+	border: 0px currentColor;
+}
+p {
+	line-height: 1.5;
+}
+dd {
+	line-height: 1.5;
+}
+#content li {
+	line-height: 1.5;
+}
+#main-content li {
+	line-height: 1.5;
+}
+#footer a.external:hover {
+	background-image: url("/img/tignish/content/external-link-footer.png");
+}
+#footer a.external:hover {
+	background-image: url("/img/tignish/content/external-link-footer.png");
+}
+strong {
+	font-weight: bold;
+}
+em {
+	font-style: italic;
+}
+abbr {
+	border-bottom-color: rgb(0, 0, 0); border-bottom-width: 1px; border-bottom-style: dotted; cursor: help;
+}
+acronym {
+	border-bottom-color: rgb(0, 0, 0); border-bottom-width: 1px; border-bottom-style: dotted; cursor: help;
+}
+p {
+	margin-bottom: 1em;
+}
+fieldset {
+	margin-bottom: 1em;
+}
+table {
+	margin-bottom: 1em;
+}
+pre {
+	margin-bottom: 1em;
+}
+h1 {
+	color: rgb(72, 72, 72); font-family: georgia,serif; font-style: italic; font-weight: normal;
+}
+h2 {
+	color: rgb(72, 72, 72); font-family: georgia,serif; font-style: italic; font-weight: normal;
+}
+h3 {
+	color: rgb(72, 72, 72); font-family: georgia,serif; font-style: italic; font-weight: normal;
+}
+h4 {
+	color: rgb(72, 72, 72); font-family: georgia,serif; font-style: italic; font-weight: normal;
+}
+h5 {
+	color: rgb(72, 72, 72); font-family: georgia,serif; font-style: italic; font-weight: normal;
+}
+h6 {
+	color: rgb(72, 72, 72); font-family: georgia,serif; font-style: italic; font-weight: normal;
+}
+h1 span {
+	text-transform: uppercase; letter-spacing: -0.02em; font-family: MetaBlack,"Trebuchet MS",sans-serif; font-size: 130%; font-style: normal; font-weight: bold; display: block;
+}
+h2 span {
+	text-transform: uppercase; letter-spacing: -0.02em; font-family: MetaBlack,"Trebuchet MS",sans-serif; font-size: 130%; font-style: normal; font-weight: bold; display: block;
+}
+h3 span {
+	text-transform: uppercase; letter-spacing: -0.02em; font-family: MetaBlack,"Trebuchet MS",sans-serif; font-size: 130%; font-style: normal; font-weight: bold; display: block;
+}
+h4 span {
+	text-transform: uppercase; letter-spacing: -0.02em; font-family: MetaBlack,"Trebuchet MS",sans-serif; font-size: 130%; font-style: normal; font-weight: bold; display: block;
+}
+h5 span {
+	text-transform: uppercase; letter-spacing: -0.02em; font-family: MetaBlack,"Trebuchet MS",sans-serif; font-size: 130%; font-style: normal; font-weight: bold; display: block;
+}
+h6 span {
+	text-transform: uppercase; letter-spacing: -0.02em; font-family: MetaBlack,"Trebuchet MS",sans-serif; font-size: 130%; font-style: normal; font-weight: bold; display: block;
+}
+h1 {
+	font-size: 36px;
+}
+h2 {
+	font-size: 28px;
+}
+h3 {
+	font-size: 22px;
+}
+h4 {
+	font-size: 18px;
+}
+h5 {
+	font-size: 16px;
+}
+h6 {
+	font-size: 14px;
+}
+h1 {
+	margin: 1em 0px 0.5em;
+}
+h2 {
+	margin: 1em 0px 0.5em;
+}
+h3 {
+	margin: 1em 0px 0.5em;
+}
+ul {
+	margin: 1em 0px; padding: 0px;
+}
+blockquote {
+	margin: 1em;
+}
+ol {
+	margin: 1em;
+}
+dl {
+	margin: 1em;
+}
+ol {
+	padding-left: 1.5em; margin-left: 0px;
+}
+dl {
+	padding-left: 1.5em; margin-left: 0px;
+}
+ol li {
+	list-style: decimal;
+}
+ul li ol li {
+	list-style: decimal;
+}
+dl dd {
+	margin-left: 1em;
+}
+td {
+	border: 0px currentColor;
+}
+th {
+	border: 0px currentColor;
+}
+table.data-table {
+	border-top-color: rgb(238, 238, 238); border-top-width: 1px; border-top-style: solid;
+}
+table.data-table td {
+	padding: 0.5em; border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: solid;
+}
+table.data-table th {
+	padding: 0.5em; border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: solid;
+}
+ul.home-download {
+	margin: 0px; padding: 0px; list-style-type: none;
+}
+ul.home-download li {
+	margin: 0px; padding: 0px; list-style-type: none;
+}
+ul.home-download {
+	width: 300px; overflow: hidden; margin-left: 0px; position: relative;
+}
+a.download-link {
+	background: rgb(88, 161, 0); margin: 0px 0px 10px 50px; border-radius: 6px; transition:box-shadow 0.2s ease-in-out; height: 95px; color: rgb(255, 255, 255); overflow: visible; display: block; -ms-zoom: 1; box-shadow: 0px 3px rgba(0,0,0,0.1), inset 0px -4px rgba(0,0,0,0.1); -moz-transition: box-shadow 0.2s ease-in-out; -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webkit-border-radius: 6px; -moz-border-radius: 6px; -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webit-transition: box-shadow 0.2s ease-in-out;
+}
+a.download-link:link {
+	background: rgb(88, 161, 0); margin: 0px 0px 10px 50px; border-radius: 6px; transition:box-shadow 0.2s ease-in-out; height: 95px; color: rgb(255, 255, 255); overflow: visible; display: block; -ms-zoom: 1; box-shadow: 0px 3px rgba(0,0,0,0.1), inset 0px -4px rgba(0,0,0,0.1); -moz-transition: box-shadow 0.2s ease-in-out; -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webkit-border-radius: 6px; -moz-border-radius: 6px; -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webit-transition: box-shadow 0.2s ease-in-out;
+}
+a.download-link:visited {
+	background: rgb(88, 161, 0); margin: 0px 0px 10px 50px; border-radius: 6px; transition:box-shadow 0.2s ease-in-out; height: 95px; color: rgb(255, 255, 255); overflow: visible; display: block; -ms-zoom: 1; box-shadow: 0px 3px rgba(0,0,0,0.1), inset 0px -4px rgba(0,0,0,0.1); -moz-transition: box-shadow 0.2s ease-in-out; -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webkit-border-radius: 6px; -moz-border-radius: 6px; -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webit-transition: box-shadow 0.2s ease-in-out;
+}
+a.download-link:hover {
+	transition:box-shadow 0.2s ease-in-out; box-shadow: 0px 3px rgba(0,0,0,0.15), inset 0px -4px rgba(0,0,0,0.15), inset 0px 0px 80px rgba(255,255,255,0.3); -moz-transition: box-shadow 0.2s ease-in-out; -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.15), inset 0 -4px rgba(0, 0, 0, 0.15), inset 0 0 80px rgba(255, 255, 255, 0.3); -webkit-transition: box-shadow 0.2s ease-in-out; -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.15), inset 0 -4px rgba(0, 0, 0, 0.15), inset 0 0 80px rgba(255, 255, 255, 0.3);
+}
+a.download-link:active {
+	transition:box-shadow 0.2s ease-in-out; box-shadow: 0px 3px rgba(0,0,0,0.15), inset 0px -4px rgba(0,0,0,0.15), inset 0px 0px 80px rgba(255,255,255,0.3); -moz-transition: box-shadow 0.2s ease-in-out; -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.15), inset 0 -4px rgba(0, 0, 0, 0.15), inset 0 0 80px rgba(255, 255, 255, 0.3); -webkit-transition: box-shadow 0.2s ease-in-out; -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.15), inset 0 -4px rgba(0, 0, 0, 0.15), inset 0 0 80px rgba(255, 255, 255, 0.3);
+}
+a.download-link span.download-content {
+	background: url("/img/home/download-logo.png?2013-06") no-repeat 0px 0px; padding: 10px 10px 0px 112px; height: 95px; line-height: 18px; font-family: georgia,"Bitstream Charter",serif; font-size: 18px; font-style: italic; font-weight: normal; margin-left: -50px; display: block; position: relative;
+}
+* html a.download-link {
+	box-shadow: none;
+}
+* html a.download-link:link {
+	box-shadow: none;
+}
+* html a.download-link:active {
+	box-shadow: none;
+}
+* html a.download-link:hover {
+	box-shadow: none;
+}
+* html a.download-link:active {
+	box-shadow: none;
+}
+* html a.download-link span.download-content {
+	background: url("/img/home/download-ie6.jpg") no-repeat 0px 0px;
+}
+a.download-link span.download-title {
+	line-height: 28px; letter-spacing: -0.02em; font-size: 28px; font-style: normal; display: block;
+}
+.home-download a.download-link span.download-title {
+	font-size: 26px;
+}
+a.download-link:hover {
+	background-position: -300px 0px; text-decoration: none; cursor: pointer;
+}
+a.download-link:active {
+	background-position: -300px 0px; text-decoration: none; cursor: pointer;
+}
+* html ul.home-download li a.download-link {
+	height: 105px; overflow: hidden; filter:;
+}
+ul.home-download li a.download-link span.download-info {
+	color: rgb(52, 96, 18); line-height: 12px; font-size: 12px; font-style: normal; margin-top: 3px; display: block;
+}
+ul.beta-download li a.download-link span.download-info {
+	color: rgb(255, 255, 255);
+}
+ul.home-download li a.download-link #download-arrow {
+	top: 15px; right: 15px; position: absolute;
+}
+ul.home-download li a.download-link .download-arrow {
+	top: 15px; right: 15px; position: absolute;
+}
+ul.home-download li a.download-link span.download-info em {
+	font-style: normal; display: block;
+}
+.download-noscript {
+	width: 400px; margin-left: 35px;
+}
+.download-noscript h3 {
+	font-size: 120%; margin-bottom: 0px;
+}
+.download-noscript h3 span {
+	color: rgb(137, 131, 120); font-size: 75%; display: block;
+}
+.download-noscript ul {
+	margin-top: 0.5em;
+}
+.download-other {
+	margin: 0px; width: 310px; text-align: center; color: rgb(204, 204, 204); font-family: "Trebuchet MS",sans-serif; font-size: 11px;
+}
+#download .download-noscript h3 span a {
+	color: rgb(153, 153, 153); white-space: nowrap;
+}
+#download .download-noscript h3 span a:link {
+	color: rgb(153, 153, 153); white-space: nowrap;
+}
+#download .download-noscript h3 span a:visited {
+	color: rgb(153, 153, 153); white-space: nowrap;
+}
+.download-other a {
+	color: rgb(153, 153, 153); white-space: nowrap;
+}
+.download-other a:link {
+	color: rgb(153, 153, 153); white-space: nowrap;
+}
+.download-other a:visited {
+	color: rgb(153, 153, 153); white-space: nowrap;
+}
+.home-download abbr {
+	border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+.download-noscript abbr {
+	border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+.top-right#download {
+	top: 85px; right: 10px; position: absolute; z-index: 9;
+}
+.top-right#download ul.home-download {
+	width: auto;
+}
+* html .top-right#download ul.home-download {
+	width: 330px;
+}
+#download a.download-link {
+	height: 45px; margin-bottom: 3px;
+}
+* html #download a.download-link {
+	background: rgb(88, 161, 0); height: 48px;
+}
+#download a.download-link span.download-content {
+	height: 40px; padding-top: 8px; padding-left: 55px; font-size: 14px; margin-left: -25px; background-image: url("/img/download-logo-sub.png?2013-06");
+}
+#download a.download-link span.download-title {
+	background: url("/img/firefox/download-arrow.png") no-repeat 100% 50%; padding-right: 20px; padding-bottom: 3px; font-size: 22px; margin-right: 5px; vertical-align: middle; display: inline-block;
+}
+#download .download-other {
+	margin: 0px 0px 0px 80px; width: auto; text-align: left;
+}
+#download .download-noscript {
+	background: url("/img/download-logo-sub.png?2013-06") no-repeat 0px 0px; width: 275px; padding-left: 55px; margin-left: 25px;
+}
+#download .download-noscript h3 {
+	margin: 0px;
+}
+#download .download-noscript h3 span {
+	text-transform: none; font-family: "Trebuchet MS",sans-serif; font-size: 11px; font-weight: normal;
+}
+#download .download-noscript ul {
+	margin: 0px; list-style-type: none;
+}
+#download .download-noscript ul li {
+	font-family: "Trebuchet MS",sans-serif; font-size: 11px; margin-right: 10px; display: inline;
+}
+* html .mobile#download {
+	width: 250px;
+}
+.mobile#download .dl {
+	background: rgb(132, 198, 60); border-radius: 6px; transition:box-shadow 0.2s ease-in-out; color: rgb(255, 255, 255); overflow: visible; font-size: 17px; margin-bottom: 5px; display: block; box-shadow: 0px 3px rgba(0,0,0,0.1), inset 0px -4px rgba(0,0,0,0.1); -moz-transition: box-shadow 0.2s ease-in-out; -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webkit-border-radius: 6px; -moz-border-radius: 6px; -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webit-transition: box-shadow 0.2s ease-in-out;
+}
+.mobile#download .dl:link {
+	background: rgb(132, 198, 60); border-radius: 6px; transition:box-shadow 0.2s ease-in-out; color: rgb(255, 255, 255); overflow: visible; font-size: 17px; margin-bottom: 5px; display: block; box-shadow: 0px 3px rgba(0,0,0,0.1), inset 0px -4px rgba(0,0,0,0.1); -moz-transition: box-shadow 0.2s ease-in-out; -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webkit-border-radius: 6px; -moz-border-radius: 6px; -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webit-transition: box-shadow 0.2s ease-in-out;
+}
+.mobile#download .dl:visited {
+	background: rgb(132, 198, 60); border-radius: 6px; transition:box-shadow 0.2s ease-in-out; color: rgb(255, 255, 255); overflow: visible; font-size: 17px; margin-bottom: 5px; display: block; box-shadow: 0px 3px rgba(0,0,0,0.1), inset 0px -4px rgba(0,0,0,0.1); -moz-transition: box-shadow 0.2s ease-in-out; -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webkit-border-radius: 6px; -moz-border-radius: 6px; -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.1), inset 0 -4px rgba(0, 0, 0, 0.1); -webit-transition: box-shadow 0.2s ease-in-out;
+}
+.mobile#download .dl span {
+	background: url("/img/firefox/download-arrow.png") no-repeat 10px 14px; padding: 8px 20px 8px 30px; display: block;
+}
+.mobile#download .dl:hover {
+	transition:box-shadow 0.2s ease-in-out; box-shadow: 0px 3px rgba(0,0,0,0.15), inset 0px -4px rgba(0,0,0,0.15), inset 0px 0px 80px rgba(255,255,255,0.3); -moz-transition: box-shadow 0.2s ease-in-out; -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.15), inset 0 -4px rgba(0, 0, 0, 0.15), inset 0 0 80px rgba(255, 255, 255, 0.3); -webkit-transition: box-shadow 0.2s ease-in-out; -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.15), inset 0 -4px rgba(0, 0, 0, 0.15), inset 0 0 80px rgba(255, 255, 255, 0.3);
+}
+.mobile#download .dl:active {
+	transition:box-shadow 0.2s ease-in-out; box-shadow: 0px 3px rgba(0,0,0,0.15), inset 0px -4px rgba(0,0,0,0.15), inset 0px 0px 80px rgba(255,255,255,0.3); -moz-transition: box-shadow 0.2s ease-in-out; -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.15), inset 0 -4px rgba(0, 0, 0, 0.15), inset 0 0 80px rgba(255, 255, 255, 0.3); -webkit-transition: box-shadow 0.2s ease-in-out; -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.15), inset 0 -4px rgba(0, 0, 0, 0.15), inset 0 0 80px rgba(255, 255, 255, 0.3);
+}
+.mobile#download h3 {
+	margin: 0px 0px 20px; line-height: 0.9; -ms-zoom: 1;
+}
+.mobile#download h3 span {
+	color: rgb(68, 123, 196);
+}
+.mobile#download .notes {
+	font-family: "Trebuchet MS",sans-serif; font-size: 11px; -ms-zoom: 1;
+}
+li.os_linux {
+	display: none;
+}
+li.os_windows {
+	display: none;
+}
+li.os_osx {
+	display: none;
+}
+li.os_android {
+	display: none;
+}
+ul.os_linux li.os_linux {
+	display: block;
+}
+ul.os_windows li.os_windows {
+	display: block;
+}
+ul.os_osx li.os_osx {
+	display: block;
+}
+ul.os_android li.os_android {
+	display: block;
+}
+noscript li.os_linux {
+	display: block;
+}
+noscript li.os_windows {
+	display: block;
+}
+noscript li.os_osx {
+	display: block;
+}
+noscript li.os_android {
+	display: block;
+}
+#main-feature {
+	margin: 0px 20px;
+}
+#main-feature h2 {
+	margin: 0px; padding: 10px 0px; line-height: 1.2em; font-size: 40px;
+}
+#main-feature h2 span {
+	font-size: 65px;
+}
+#main-feature p {
+	color: rgb(72, 72, 72); line-height: 1.4em; font-size: 20px;
+}

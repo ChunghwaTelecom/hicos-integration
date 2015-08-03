@@ -1,0 +1,11 @@
+// (c) Copyright Chunghwa Telecom Corp., Ltd. All rights reserved.
+
+{
+  "name": "com.chttl.sac.pki.console",
+  "description": "Chrome Native Messaging API Host",
+  "path": "native-messaging-host.bat",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://ibljnjgefkkigimmcnoblmfoffiekkhc/"
+  ]
+}

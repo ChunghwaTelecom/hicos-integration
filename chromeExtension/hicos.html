@@ -1,0 +1,487 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0055)http://www.mozilla.org/en-US/firefox/24.0/releasenotes/ -->
+<HTML lang="en-US" dir="ltr">
+<HEAD>
+<META content="IE=10.000" http-equiv="X-UA-Compatible">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META name="viewport" content="width=1024">
+<TITLE>HiCOS Chrome 版本讀卡元件功能展示</TITLE>
+<LINK href="../static/min.css" rel="stylesheet">
+<LINK href="../static/tabzilla-min.css" rel="stylesheet">
+<SCRIPT id="undefined" src="../static/inpage_linkid.js"
+	type="text/javascript" async=""></SCRIPT>
+<SCRIPT src="../static/ga.js" type="text/javascript" async=""></SCRIPT>
+<SCRIPT src="../static/min.js"></SCRIPT>
+<SCRIPT src="../static/base64.js"></SCRIPT>
+<LINK href="../static/css" rel="stylesheet" type="text/css">
+<LINK href="../static/firefox-notes.css" rel="stylesheet" media="screen">
+<SCRIPT src="../static/jquery-1.7.1.min.js"></SCRIPT>
+<META name="GENERATOR" content="MSHTML 10.00.9200.16686">
+</HEAD>
+<script>
+	var correls = {};
+	//var hicoscode = null;
+	//var hicosdesc = null;
+	//var hicosrtn = null;
+	var slotId = 0;
+	
+	function getVersionInfo() {
+		message = {"f": "getVersionInfo"};
+		dispatchEvent(message);
+	}
+
+	function getSlotIdListWithToken() {
+		message = {"f": "getSlotIdListWithToken"};
+		dispatchEvent(message);
+	}
+
+	function getSlotInfoWithToken(slotId) {
+		message = {"f": "getSlotInfoWithToken", "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function getTokenInfo(slotId) {
+		message = {"f": "getTokenInfo", "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function getTokenId(slotId) {
+		message = {"f": "getTokenId", "slotId": slotId};
+		dispatchEvent(message);
+	}
+	
+	function getPemX509Certificate(pin, slotId, certType) {
+		message = {"f": "getPemX509Certificate", "pin": pin, "slotId": slotId, "certType": certType};
+		dispatchEvent(message);
+	}
+
+	function getPemSignatureCertficate(pin, slotId) {
+		message = {"f": "getPemSignatureCertficate", "pin": pin, "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function getPemEncryptedCertficate(pin, slotId) {
+		message = {"f": "getPemEncryptedCertficate", "pin": pin, "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function getJsonX509Certificate(pin, certType) {
+		message = {"f": "getJsonX509Certificate", "pin": pin, "certType": certType};
+		dispatchEvent(message);
+	}
+
+	function getJsonSignatureCertficate(pin) {
+		message = {"f": "getJsonSignatureCertficate", "pin": pin};
+		dispatchEvent(message);
+	}
+
+	function getJsonEncryptedCertficate(pin) {
+		message = {"f": "getJsonEncryptedCertficate", "pin": pin};
+		dispatchEvent(message);
+	}
+
+	function checkLoginValid(pin, idn) {
+		message = {"f": "checkLoginValid", "pin": pin, "idn": idn};
+		dispatchEvent(message);
+	}
+
+	function makePemLoginSignedMessage(pin, slotId) {
+		message = {"f": "makePemLoginSignedMessage", "pin": pin, "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function verifySignature(pemSignedData) {
+		message = {"f": "verifySignature", "pemSignedData": pemSignedData};
+		dispatchEvent(message);
+	}
+
+	function getLoginInfoFromPemSignedData(pemSignedData) {
+		message = {"f": "getLoginInfoFromPemSignedData", "pemSignedData": pemSignedData};
+		dispatchEvent(message);
+	}
+
+	function makeBase64PKCS1Signature(tbs, pin, slotId) {
+		message = {"f": "makeBase64PKCS1Signature", "tbs": tbs, "pin": pin, "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function verifyBase64PKCS1Signature(data, base64SignBytes, pin, slotId) {
+		message = {"f": "verifyBase64PKCS1Signature", "data": data, "base64SignBytes": base64SignBytes, "pin": pin, "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function makeBase64PKCS1RawData(tbs, pin, slotId) {
+		message = {"f": "makeBase64PKCS1RawData", "tbs": tbs, "pin": pin, "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function decryptBase64PKCS1RawData(base64EncryptedData, pin, slotId) {
+		message = {"f": "decryptBase64PKCS1RawData", "base64EncryptedData": base64EncryptedData, "pin": pin, "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function makePemPKCS7Signature(tbs, pin, slotId) {
+		message = {"f": "makePemPKCS7Signature", "tbs": tbs, "pin": pin, "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function verifyPemPKCS7Signature(pemSignedData) {
+		message = {"f": "verifyPemPKCS7Signature", "pemSignedData": pemSignedData};
+		dispatchEvent(message);
+	}
+
+	function makePKCS7EnvelopedData(tbs, pin, slotId) {
+		message = {"f": "makePKCS7EnvelopedData", "tbs": tbs, "pin": pin, "slotId": slotId};
+		dispatchEvent(message);
+	}
+
+	function decryptPemPKCS7EnvelopedData(pemEnvelopedData, pin, slotId) {
+		message = {"f": "decryptPemPKCS7EnvelopedData", "pemEnvelopedData": pemEnvelopedData, "pin": pin, "slotId": slotId};
+		dispatchEvent(message);
+	}
+	
+	function dispatchEvent(message) {
+		message.correlId = randomString();
+	
+		var event = new CustomEvent(
+		"hicosreq", 
+		{
+		detail: {
+		message: message,
+		},
+		bubbles: true,
+		cancelable: true
+		}
+		);
+		
+		document.dispatchEvent(event);
+		correls[message.correlId] = {f: message.f};
+	}
+	
+	function randomString() {
+		var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+		var string_length = 16;
+		var result = '';
+		for (var i = 0; i < string_length; i++) {
+			var rnum = Math.floor(Math.random() * chars.length);
+			result += chars.substring(rnum,rnum+1);
+		}
+		
+		return result;
+	}
+	
+	var go = function() {
+		getVersionInfo();
+	}
+	
+	document.addEventListener("hicosresp", function(data) {
+		//alert('contentscript said: ' + data);
+		//alert("data.type = " + data.type);
+		//alert("code = " + data.detail.code + ", desc = " + data.detail.desc + ", rtn = " + data.detail.rtn);
+		alert(data.detail.code + "-" + data.detail.desc);
+		
+		if (correls[message.correlId]) {
+			var f = correls[message.correlId].f;
+			delete correls[message.correlId];
+			
+			switch (f) {
+				case "getVersionInfo":
+					document.getElementById("version").textContent = data.detail.rtn;
+					break;
+				case "getSlotIdListWithToken":
+					document.getElementById("tokeninfo").textContent = data.detail.rtn;
+					
+					var slots = JSON.parse(data.detail.rtn);
+					if (slots.length == 0) {
+						alert("無卡片存在");
+					}
+					if (slots.length > 1) {
+						alert("有兩張以上的卡片存在")
+					}
+					
+					slotId = slots[0];
+					break;
+				case "getSlotInfoWithToken":
+					document.getElementById("slot").textContent = data.detail.rtn;
+					break;
+				case "getTokenInfo":
+					document.getElementById("tokenInfo").textContent = data.detail.rtn;
+					break;
+				case "makeBase64PKCS1Signature":
+					document.getElementById("pkcs1signdata").textContent = data.detail.rtn;
+					break;
+				case "verifyBase64PKCS1Signature":
+					document.getElementById("pkcs1signresultdiv").textContent = data.detail.rtn;
+					break;
+				case "makeBase64PKCS1RawData":
+					document.getElementById("pkcs1rawdata").textContent = data.detail.rtn;
+					break;
+				case "decryptBase64PKCS1RawData":
+					document.getElementById("pkcs1rawdatadiv").textContent = Base64.decode(data.detail.rtn);
+					break;
+				case "makePemPKCS7Signature":
+					document.getElementById("pkcs7signdata").textContent = data.detail.rtn;
+					break;
+				case "verifyPemPKCS7Signature":
+					document.getElementById("pkcs7signresultdiv").textContent = data.detail.rtn;
+					break;
+				case "makePKCS7EnvelopedData":
+					document.getElementById("pkcs7envelopeddata").textContent = data.detail.rtn;
+					break;
+				case "decryptPemPKCS7EnvelopedData":
+					document.getElementById("pkcs7decryptresultdiv").textContent = data.detail.rtn;
+					break;
+				case "getPemSignatureCertficate":
+					document.getElementById("signcertPem").textContent = data.detail.rtn;
+					break;
+				case "getPemEncryptedCertficate":
+					document.getElementById("encryptcertPem").textContent = data.detail.rtn;
+					break;
+				case "getJsonSignatureCertficate":
+					document.getElementById("signcertJson").textContent = Base64.decode(data.detail.rtn);
+					break;
+				case "getJsonEncryptedCertficate":
+					document.getElementById("encryptcertJson").textContent = Base64.decode(data.detail.rtn);
+					break;
+				case "checkLoginValid":
+					document.getElementById("checkloginresultdiv").textContent = data.detail.rtn;
+					break;
+				case "makePemLoginSignedMessage":
+					document.getElementById("loginsign").textContent = data.detail.rtn;
+					break;
+				case "verifySignature":
+					document.getElementById("loginsignresultdiv").textContent = data.detail.rtn;
+					break;
+				case "getLoginInfoFromPemSignedData":
+					document.getElementById("logininfo").textContent = Base64.decode(data.detail.rtn);
+					break;
+				case "getTokenId":
+					document.getElementById("tokenid").textContent = data.detail.rtn;
+					break;
+				//default:
+					//alert("unknown function " + f);
+			}
+		}
+		
+		//hicoscode = data.detail.code;
+		//hicosdesc = data.detail.desc;
+		//hicosrtn = data.detail.rtn;
+		
+		//document.getElementById("code").textContent = hicoscode;
+		//document.getElementById("desc").textContent = hicosdesc;
+		//document.getElementById("rtn").textContent = hicosrtn;
+	});
+</script>
+<noscript>A browser with Javascript enabled is required for
+	this page to operate properly.</noscript>
+<BODY class="js platform-windows" id="firefox-notes">
+	<DIV id="outer-wrapper">
+		<DIV id="wrapper">
+			<DIV id="doc">
+				<DIV id="main-content">
+					<SECTION id="test">
+					<H3>
+						HiCOS Chrome 版本讀卡元件功能展示
+					</H3>
+					<DIV class="section-contents">
+						<ul>
+							<li>
+								<div>
+									卡片密碼 : <input type="password" id="password">
+								</div>
+							</li>
+							<LI><SPAN class="tag tag-resolved">元件版本資訊</SPAN> <!-- The description is the title for now -->
+								<table>
+									<tr>
+										<td>
+											<div id="version"></div>
+										</td>
+										<td><input type="button" value="getVersionInfo"
+											onclick="getVersionInfo()"></td>
+									</tr>
+								</table></LI>
+							<LI><SPAN class="tag tag-resolved">讀卡機連接埠</SPAN> <!-- The description is the title for now -->
+								<table>
+									<tr>
+										<td>
+											<div id="tokeninfo"></div>
+										</td>
+										<td><input type="button" value="getSlotIdListWithToken"
+											onclick="getSlotIdListWithToken()"></td>
+									</tr>
+							</table></LI>
+							<LI><SPAN class="tag tag-resolved">讀卡機資訊</SPAN> <!-- The description is the title for now -->
+								<table>
+									<tr>
+										<td>
+											<div id="slot"></div>
+										</td>
+										<td><input type="button" value="getSlotInfoWithToken"
+											onclick="javascript:getSlotInfoWithToken(slotId)"></td>
+									</tr>
+								</table></LI>
+							<LI><SPAN class="tag tag-resolved">卡片資訊</SPAN> <!-- The description is the title for now -->
+								<table>
+									<tr>
+										<td>
+											<div id="tokenInfo"></div>
+										</td>
+										<td><input type="button" value="getTokenInfo"
+											onclick="javascript:getTokenInfo(slotId)"></td>
+									</tr>
+								</table></LI>
+							<LI><SPAN class="tag tag-resolved">卡號</SPAN> <!-- The description is the title for now -->
+								<table>
+									<tr>
+										<td>
+											<div id="tokenid"></div>
+										</td>
+										<td><input type="button" value="getTokenId"
+											onclick="javascript:getTokenId(slotId)"></td>
+									</tr>
+								</table></LI>
+							<LI><SPAN class="tag tag-resolved">PKCS#1 簽章</SPAN> <!-- The description is the title for now -->
+								<div id="pkcs1signdiv">
+									原始資料 <br>
+									<input id="origindata" type="text" size="50"></input><br>
+									簽章資料 Base64 <br>
+									<textarea id="pkcs1signdata" cols="55" rows="8"></textarea>
+									<input type="button" value="makeBase64PKCS1Signature"
+										onclick="javascript:makeBase64PKCS1Signature(document.getElementById('origindata').value, document.getElementById('password').value, slotId)">
+								</div></LI>
+							<LI><SPAN class="tag tag-resolved">PKCS#1 驗章</SPAN> <!-- The description is the title for now -->
+								<table>
+									<tr>
+										<td>
+											<div id="pkcs1signresultdiv"></div>
+										</td>
+										<td><input type="button" value="verifyBase64PKCS1Signature"
+											onclick="javascript:verifyBase64PKCS1Signature(document.getElementById('origindata').value, document.getElementById('pkcs1signdata').value, document.getElementById('password').value, slotId)"></td>
+									</tr>
+								</table></LI>
+							<LI><SPAN class="tag tag-resolved">PKCS#1 加密</SPAN> <!-- The description is the title for now -->
+								<div id="pkcs1signdiv">
+									原始資料 <br>
+									<input id="pkcs1origindata" type="text" size="50"></input><br>
+									加密資料 Base64 <br>
+									<textarea id="pkcs1rawdata" cols="55" rows="4"></textarea>
+									<input type="button" value="makeBase64PKCS1RawData"
+										onclick="javascript:makeBase64PKCS1RawData(document.getElementById('pkcs1origindata').value, document.getElementById('password').value, slotId)">
+								</div></LI>
+							<LI><SPAN class="tag tag-resolved">PKCS#1 解密</SPAN> <!-- The description is the title for now -->
+								<table>
+									<tr>
+										<td>
+											<div id="pkcs1rawdatadiv"></div>
+										</td>
+										<td><input type="button" value="decryptBase64PKCS1RawData"
+											onclick="javascript:decryptBase64PKCS1RawData(document.getElementById('pkcs1rawdata').value, document.getElementById('password').value, slotId)"></td>
+									</tr>
+								</table></LI>								
+							<LI><SPAN class="tag tag-resolved">PKCS#7 簽章</SPAN> <!-- The description is the title for now -->
+								<div id="pkcs7signdiv">
+									原始資料 <br>
+									<input id="p7origindata" type="text" size="50"></input><br>
+									簽章資料 PEM <br>
+									<textarea id="pkcs7signdata" cols="55" rows="8"></textarea>
+									<input type="button" value="makePemPKCS7Signature"
+										onclick="javascript:makePemPKCS7Signature(document.getElementById('p7origindata').value, document.getElementById('password').value, slotId)">
+								</div></LI>
+							<LI><SPAN class="tag tag-resolved">PKCS#7 驗章</SPAN> <!-- The description is the title for now -->
+								<table>
+									<tr>
+										<td>
+											<div id="pkcs7signresultdiv"></div>
+										</td>
+										<td><input type="button" value="verifyPemPKCS7Signature"
+											onclick="javascript:verifyPemPKCS7Signature(document.getElementById('pkcs7signdata').value)"></td>
+									</tr>
+								</table></LI>	
+							<LI><SPAN class="tag tag-resolved">PKCS#7 加密</SPAN> <!-- The description is the title for now -->
+								<div id="pkcs7envelopediv">
+									原始資料 <br>
+									<input id="originenvelopeddata" type="text" size="50"></input><br>
+									加密資料 PEM <br>
+									<textarea id="pkcs7envelopeddata" cols="55" rows="8"></textarea>
+									<input type="button" value="makePKCS7EnvelopedData"
+										onclick="javascript:makePKCS7EnvelopedData(document.getElementById('originenvelopeddata').value, document.getElementById('password').value, slotId)">
+								</div></LI>
+							<LI><SPAN class="tag tag-resolved">PKCS#7 解密</SPAN> <!-- The description is the title for now -->
+								<table>
+									<tr>
+										<td>解密資料 
+											<div id="pkcs7decryptresultdiv"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="button" value="decryptPemPKCS7EnvelopedData"
+											onclick="javascript:decryptPemPKCS7EnvelopedData(document.getElementById('pkcs7envelopeddata').value, document.getElementById('password').value, slotId)"></td>
+										</td>
+									</tr>
+								</table></LI>															
+							<LI><SPAN class="tag tag-resolved">簽章憑證資訊</SPAN> <!-- The description is the title for now -->
+								<div id="signcertPemdiv">
+									<textarea id="signcertPem" cols="55" rows="10"></textarea>
+									<input type="button" value="getPemSignatureCertficate"
+										onclick="javascript:getPemSignatureCertficate(document.getElementById('password').value, slotId)">
+								</div>
+								<div id="signcertJsondiv">
+									<textarea id="signcertJson" cols="55" rows="5"></textarea>
+									<input type="button" value="getJsonSignatureCertficate"
+										onclick="javascript:getJsonSignatureCertficate(document.getElementById('password').value)">
+								</div>
+							</LI>
+							<LI><SPAN class="tag tag-resolved">加密憑證資訊</SPAN> <!-- The description is the title for now -->
+								<div id="encryptcertPemdiv">
+									<textarea id="encryptcertPem" cols="55" rows="10"></textarea>
+									<input type="button" value="getPemEncryptedCertficate"
+										onclick="javascript:getPemEncryptedCertficate(document.getElementById('password').value, slotId)">
+								</div>
+								<div id="encryptcertJsondiv">
+									<textarea id="encryptcertJson" cols="55" rows="5"></textarea>
+									<input type="button" value="getJsonEncryptedCertficate"
+										onclick="javascript:getJsonEncryptedCertficate(document.getElementById('password').value)">
+								</div>								
+							</LI>
+							<LI><SPAN class="tag tag-resolved">卡片登入驗證</SPAN>
+								<div id="loginsigndiv">
+									請輸入身分證字號或公司統一編號 <input id="idn" type="text" size="10"> <div id="checkloginresultdiv"></div>
+									<br/>
+									<input type="button" value="checkLoginValid" onclick="javascript:checkLoginValid(document.getElementById('password').value, document.getElementById('idn').value)">
+								</div></LI>							
+							<LI><SPAN class="tag tag-resolved">產生登入簽章</SPAN>
+								<div id="loginsigndiv">
+									<textarea id="loginsign" cols="55" rows="10"></textarea>
+									<input type="button" value="makePemLoginSignedMessage"
+										onclick="javascript:makePemLoginSignedMessage(document.getElementById('password').value, slotId)">
+								</div></LI>
+							<LI><SPAN class="tag tag-resolved">檢驗登入簽章</SPAN>
+								<table>
+									<tr>
+										<td>
+											<div id="loginsignresultdiv"></div>
+										</td>
+										<td><input type="button" value="verifySignature"
+											onclick="javascript:verifySignature(document.getElementById('loginsign').value)"></td>
+									</tr>
+								</table></LI>
+							<LI><SPAN class="tag tag-resolved">取得登入簽章</SPAN>
+								<div id="logininfodiv">
+									<textarea id="logininfo" cols="55" rows="10"></textarea>
+									<input type="button" value="getLoginInfoFromPemSignedData"
+										onclick="javascript:getLoginInfoFromPemSignedData(document.getElementById('loginsign').value)">
+								</div></LI>							
+						</ul>
+					</DIV>
+					</SECTION>
+				</DIV>
+				<!-- end #main-content div -->
+			</DIV>
+			<!-- end #doc -->
+		</DIV>
+		<!-- end #wrapper -->
+	</DIV>
+	<!-- end #outer-wrapper -->
+</BODY>
+</HTML>
