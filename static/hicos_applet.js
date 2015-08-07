@@ -1,38 +1,44 @@
 (function (angular) {
     'use strict';
-  
-    angular.module("HiCosAppletModule", []);
+
+    angular.module("HiCosAppletModule", ["HiCosMessagesModule"]);
 
     angular.module("HiCosAppletModule")
-        .factory('hiCosApplet', ['$q', '$log', hiCosApplet]);
+        .factory('hiCosApplet', ['$q', '$log', 'hiCosMessagesService', hiCosApplet]);
 
-    function hiCosApplet($q, $log) {
+    function hiCosApplet($q, $log, hiCosMessagesService) {
 
-	/* - 0806 : 無法啟動 
-        var attributes = {
-            id: 'loginApplet',
-            code: 'com.chttl.sac.pki.applet.HiCOSLoginApplet',
-            width: 0,
-            height: 0
-        };
+        var applet;
 
-        var parameters = {
-            jnlp_href: './HiCOSLoginApplet.jnlp', // FIXME 不要用相對路徑
-            separate_jvm: 'true',
-            java_status_events: 'true',
-            permissions: 'all-permissions'
-        };
+        if (typeof document.loginApplet == 'undefined') {
 
-        $(document.body).append("<div id='loginApplet'></div>");
-        var appletElement = deployJava.runApplet(attributes, parameters, '1.7');
-        $("#loginApplet").html(appletElement);
-	*/
-        var applet = document.loginApplet;
+            var attributes = {
+                id: 'loginApplet',
+                code: 'com.chttl.sac.pki.applet.HiCOSLoginApplet',
+                width: 0,
+                height: 0
+            };
+
+            var parameters = {
+                jnlp_href: './applet/HiCOSLoginApplet.jnlp', // FIXME 不要用相對路徑
+                separate_jvm: 'true',
+                java_status_events: 'true',
+                permissions: 'all-permissions'
+                // bgcolor: 'red'
+            };
+
+            $(document.body).append("<div id='loginAppletDiv'></div>");
+            // - 0807 : 需用舊版的 delployJava.js，新版不提供 getApplet 方法
+            var appletElement = deployJava.getApplet(attributes, parameters, '1.7');
+            $("#loginAppletDiv").html(appletElement);
+        }
+
+        applet = document.loginApplet;
 
         function appletFunctionInvoker(functionName, numberOfArguments) {
             if (!numberOfArguments && numberOfArguments >= 3) {
                 throw "No more than 3 arguments is allowed in function registration.";
-            }            
+            }
 
             if (applet[functionName]) {
                 return function () {
@@ -70,23 +76,25 @@
                         $log.error(exception);
                         exceptionMessage = exception.message;
                     }
-                    
+
                     if (!exceptionMessage) {
                         var code = applet.getHandleCode();
                         var message = applet.getHandleMessage();
-                        
+
+                        if (hiCosMessagesService.getMessage(code) != "unknown") message = hiCosMessagesService.getMessage(code);
+
                         var returnValue = {
-                                code: code,
-                                message: message,
-                                value: result
-                            };
-                        
+                            code: code,
+                            message: message,
+                            value: result
+                        };
+
                         if (code === "0x00000000" || functionName === "getVersionInfo") {
                             deferred.resolve(returnValue);
                         } else {
                             deferred.reject(returnValue);
                         }
-                        
+
                     } else {
                         deferred.reject({
                             message: exceptionMessage
@@ -98,7 +106,7 @@
 
             } else {
                 $log.error("\"" + functionName + "\" is undefined in loginApplet.");
-                return function() {
+                return function () {
                     return $q.reject("\"" + functionName + "\" is undefined in loginApplet.");
                 }
             }

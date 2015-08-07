@@ -9,53 +9,36 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta content="width=1024" />
     <meta name="GENERATOR" content="MSHTML 10.00.9200.16686" />
-    <title>HiCOSLogin Chrome Native Message Testing</title>
-    <link href="../static/min.css" rel="stylesheet" />
-    <link href="../static/tabzilla-min.css" rel="stylesheet" />
-    <link href="../static/css" rel="stylesheet" type="text/css" />
-    <link href="../static/firefox-notes.css" rel="stylesheet" media="screen" />
-    <script id="undefined" src="../static/inpage_linkid.js" type="text/javascript" async=""></script>
-    <script src="../static/ga.js" type="text/javascript" async=""></script>
-    <script src="../static/min.js"></script>
-    <script src="../static/jquery-1.7.1.min.js"></script>
+    <title>HiCOSLogin Integration Test</title>
+    <link href="./static/min.css" rel="stylesheet" />
+    <link href="./static/tabzilla-min.css" rel="stylesheet" />
+    <link href="./static/css" rel="stylesheet" type="text/css" />
+    <link href="./static/firefox-notes.css" rel="stylesheet" media="screen" />
+    <script id="undefined" src="./static/inpage_linkid.js" type="text/javascript" async=""></script>
+    <script src="./static/ga.js" type="text/javascript" async=""></script>
+    <script src="./static/min.js"></script>
+    <script src="./static/jquery-1.7.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
-    <script src="../static/angular-utf8-base64.js"></script>
-    <script src="../static/hicos_error_messages.js"></script>
-    <script src="../static/hicos_applet.js"></script>
-    <script src="./deployJava.js"></script>
+    <script src="./static/angular-utf8-base64.js"></script>
+	<script src="./static/re-tree.min.js"></script>
+	<script src="./static/ng-device-detector.min.js"></script>
+    <script src="./static/hicos_error_messages.js"></script>
+	<script src="./static/hicos_applet.js"></script>
+	<script src="./static/hicos_native_messaging.js"></script>
+	<script src="./applet/deployJava_old.js"></script>
+    <script src="./static/hicos_integration.js"></script>
     <script type="text/javascript">
-        //<![CDATA[
-        var attributes = {
-            id: 'loginApplet',
-            code: 'com.chttl.sac.pki.applet.HiCOSLoginApplet',
-            width: 200,
-            height: 50
-        };
-        var parameters = {
-            jnlp_href: 'HiCOSLoginApplet.jnlp',
-            separate_jvm: 'true',
-            java_status_events: 'true',
-            permissions: 'all-permissions',
-            bgcolor: 'red'
-        };
-
-        angular.module('certApp', ['HiCosAppletModule'])
-            .controller('certController', function($scope, $log, hiCosApplet) {
-
-                var cert = this;
-
-                cert.result;
-                cert.version;
-                cert.slotId;
-                cert.slotInfo;
-                cert.tokenId;
-                cert.tokenInfo;
-                cert.loginValid;
-                cert.signdataValid;
-
+		
+		angular.module('certApp', ['HiCosIntegratoinModule'])
+            .controller('certController', function($scope, $log, hiCosService) {
+			
+				var cert = this;
+				
+				cert.version;
+								
                 cert.getVersionInfo = function() {
                     
-                    hiCosApplet.getVersionInfo().then(
+                    hiCosService.getVersionInfo().then(
 
                         function(result) {
 
@@ -68,10 +51,10 @@
                         }
                     );
                 }
+				
+               cert.getSlotIdListWithToken = function() {
 
-                cert.getSlotIdListWithToken = function() {
-
-                    hiCosApplet.getSlotIdListWithToken().then(
+                    hiCosService.getSlotIdListWithToken().then(
 
                         function(result) {
 
@@ -93,140 +76,10 @@
                             cert.result = "Fail: " + fail.code + "-" + fail.message;
                         }
                     );
-                }
-
-                cert.getSlotInfoWithToken = function(slotId) {
-
-                    hiCosApplet.getSlotInfoWithToken(slotId).then(
-
-                        function(result) {
-                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                            cert.slotInfo = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
-
-                cert.getTokenInfo = function(slotId) {
-
-                    hiCosApplet.getTokenInfo(slotId).then(
-
-                        function(result) {
-                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                            cert.tokenInfo = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
-
-                /* loginApplet 沒有實作此方法
-                cert.getTokenId = function(slotId) {
-
-                    hiCosApplet.getTokenId(slotId).then(
-
-                        function(result) {
-                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                            cert.tokenId = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
-                */
-
-                cert.getPemX509Certificate = function(pin, type) {
-
-                    hiCosApplet.getPemX509Certificate(pin, type).then(
-
-                        function(result) {
-                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                            $scope.signcertPem = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
-
-                cert.getJsonX509Certificate = function(pin, type) {
-
-                    hiCosApplet.getJsonX509Certificate(pin, type).then(
-
-                        function(result) {
-                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                            $scope.signcertJson = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
-
-                cert.checkLoginValid = function(pin, idn) {
-
-                    hiCosApplet.checkLoginValid(pin, idn).then(
-
-                        function(result) {
-                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                            cert.loginValidResult = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
-
-                cert.makePemLoginSignedMessage = function(pin, slotId) {
-
-                    hiCosApplet.makePemLoginSignedMessage(pin, slotId).then(
-
-                        function(result) {
-                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                            $scope.loginpkcs7sign = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
-
-                cert.verifySignature = function(pemSignedData) {
-
-                    hiCosApplet.verifySignature(pemSignedData).then(
-
-                        function(result) {
-                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                            cert.signdataValid = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
-
-                cert.getLoginInfoFromPemSignedData = function(pemSignedData) {
-
-                    hiCosApplet.getLoginInfoFromPemSignedData(pemSignedData).then(
-
-                        function(result) {
-                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                            $scope.logininfo = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
-                
-                cert.getVersionInfo();
-                cert.getSlotIdListWithToken();
-            });
-        //]]>
+                }				
+				
+			});
+		
     </script>
     <noscript>A browser with Javascript enabled is required for this page to operate properly.</noscript>
 </head>
@@ -237,12 +90,7 @@
             <div id="doc">
                 <div id="main-content">
                     <section id="test">
-                        <h3>HiCOSLoginApplet 測試
-						  <script>
-                            //<![CDATA[
-							deployJava.runApplet(attributes, parameters, '1.7');
-							//]]>
-						  </script>                            
+                        <h3>HiCOS Login Integration 測試                            
                         </h3>
                         <div class="section-contents" ng-app="certApp" ng-controller="certController as cert">
                             <ul>
@@ -273,6 +121,9 @@
                                             <td>
                                                 <div id="version">{{ cert.version }}</div>
                                             </td>
+											<td>
+												<button ng-click="cert.getVersionInfo()">getVersionInfo</button>
+											</td>											
                                         </tr>
                                     </table>
                                 </li>
