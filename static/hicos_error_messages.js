@@ -11,7 +11,7 @@
             hicosMessages["0x00000000"] = "CKR_OK";
             hicosMessages["0x00000001"] = "CKR_CANCEL";
             hicosMessages["0x00000002"] = "CKR_HOST_MEMORY";
-            hicosMessages["0x00000003"] = "CKR_SLOT_ID_INVALID";
+            hicosMessages["0x00000003"] = "CKR_SLOT_ID_INVALID";               
             hicosMessages["0x00000005"] = "CKR_GENERAL_ERROR";
             hicosMessages["0x00000006"] = "CKR_FUNCTION_FAILED";
             hicosMessages["0x00000007"] = "CKR_ARGUMENTS_BAD";

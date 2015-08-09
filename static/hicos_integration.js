@@ -8,7 +8,7 @@
 
 	function hiCosService($injector, deviceDetector) {	
 		
-		var status = "abc";
+		var status;
 		var version;
 		var hiCosInstance;
 		
@@ -28,7 +28,15 @@
 						},
 			getBrowser: deviceDetector.browser,
 			getVersionInfo:  hiCosInstance.getVersionInfo,
-			getSlotIdListWithToken: hiCosInstance.getSlotIdListWithToken
+			getSlotIdListWithToken: hiCosInstance.getSlotIdListWithToken,
+            getSlotInfoWithToken: hiCosInstance.getSlotInfoWithToken,
+            getTokenInfo: hiCosInstance.getTokenInfo,
+            getPemX509Certificate: hiCosInstance.getPemX509Certificate,
+            getJsonX509Certificate: hiCosInstance.getJsonX509Certificate,
+            checkLoginValid: hiCosInstance.checkLoginValid,
+            makePemLoginSignedMessage: hiCosInstance.makePemLoginSignedMessage,
+            verifySignature: hiCosInstance.verifySignature,
+            getLoginInfoFromPemSignedData: hiCosInstance.getLoginInfoFromPemSignedData
 		};
 	};
 

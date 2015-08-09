@@ -17,6 +17,8 @@
     <script id="undefined" src="./static/inpage_linkid.js" type="text/javascript" async=""></script>
     <script src="./static/ga.js" type="text/javascript" async=""></script>
     <script src="./static/min.js"></script>
+    
+    <!-- hicos 必要的 javascript begin -->
     <script src="./static/jquery-1.7.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
     <script src="./static/angular-utf8-base64.js"></script>
@@ -27,10 +29,12 @@
 	<script src="./static/hicos_native_messaging.js"></script>
 	<script src="./applet/deployJava_old.js"></script>
     <script src="./static/hicos_integration.js"></script>
+    <!-- hicos 必要的 javascript end -->
+    
     <script type="text/javascript">
 		
-		angular.module('certApp', ['HiCosIntegratoinModule'])
-            .controller('certController', function($scope, $log, hiCosService) {
+		angular.module('certApp', ['HiCosIntegratoinModule', 'HiCosAppletModule', 'HiCosNativeMessagingModule'])
+            .controller('certController', function($scope, $log, hiCosService, hiCosApplet, hiCosNativeMessaging) {
 			
 				var cert = this;
 				
@@ -78,6 +82,118 @@
                     );
                 }				
 				
+                cert.getSlotInfoWithToken = function(slotId) {
+
+                    hiCosService.getSlotInfoWithToken(slotId).then(
+
+                        function(result) {
+                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                            cert.slotInfo = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+                
+                cert.getTokenInfo = function(slotId) {
+
+                    hiCosService.getTokenInfo(slotId).then(
+
+                        function(result) {
+                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                            cert.tokenInfo = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }        
+                
+                cert.getPemX509Certificate = function(pin, slotId, type) {
+
+                    hiCosService.getPemX509Certificate(pin, slotId, type).then(
+
+                        function(result) {
+                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                            $scope.signcertPem = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.getJsonX509Certificate = function(pin, slotId) {
+
+                    hiCosService.getJsonX509Certificate(pin, slotId).then(
+
+                        function(result) {
+                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                            $scope.signcertJson = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.checkLoginValid = function(pin, idn) {
+
+                    hiCosService.checkLoginValid(pin, idn).then(
+
+                        function(result) {
+                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                            cert.loginValidResult = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.makePemLoginSignedMessage = function(pin, slotId) {
+
+                    hiCosService.makePemLoginSignedMessage(pin, slotId).then(
+
+                        function(result) {
+                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                            $scope.loginpkcs7sign = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.verifySignature = function(pemSignedData) {
+
+                    hiCosService.verifySignature(pemSignedData).then(
+
+                        function(result) {
+                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                            cert.signdataValid = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+
+                cert.getLoginInfoFromPemSignedData = function(pemSignedData) {
+
+                    hiCosService.getLoginInfoFromPemSignedData(pemSignedData).then(
+
+                        function(result) {
+                            cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                            $scope.logininfo = result.value;
+                        },
+                        function(fail) {
+                            cert.result = "Fail: " + fail.code + "-" + fail.message;
+                        }
+                    );
+                }
+                
 			});
 		
     </script>
@@ -200,7 +316,7 @@
                                     <div id="signcertPemdiv">
                                         <textarea id="signcertPem" ng-model="signcertPem" cols="55" rows="10">
                                         </textarea>
-                                        <button ng-click="cert.getPemX509Certificate(pin, 1)">getPemX509Certificate</button>
+                                        <button ng-click="cert.getPemX509Certificate(pin, cert.slotId, 1)">getPemSignatureCertificate</button>
                                     </div>
 
                                     <div id="signcertJsondiv">

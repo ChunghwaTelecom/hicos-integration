@@ -200,7 +200,7 @@
 		document.addEventListener("hicosresp", function (response) {
 			var message = response.detail;
 			$log.log("Received message (" + message.correlId + "): " + message.code + "-" + message.desc);
-
+            
 			if (correls[message.correlId]) {
 				var functionId = correls[message.correlId].functionId;
 				var deferred = correls[message.correlId].deferred;
@@ -230,6 +230,7 @@
 					case "verifyPemPKCS7Signature":
 					case "makePKCS7EnvelopedData":
 					case "decryptPemPKCS7EnvelopedData":
+                    case "getPemX509Certificate":
 					case "getPemSignatureCertficate":
 					case "getPemEncryptedCertficate":
 					case "checkLoginValid":
@@ -240,8 +241,8 @@
 						value = message.rtn;
 						break;
 
-
 					case "decryptBase64PKCS1RawData":
+                    case "getJsonX509Certificate":
 					case "getJsonSignatureCertficate":
 					case "getJsonEncryptedCertficate":
 					case "getLoginInfoFromPemSignedData":
