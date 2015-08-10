@@ -11,14 +11,37 @@
 		var status;
 		var version;
 		var hiCosInstance;
+		var isRunApplet = true;
 		
-		// FIXME : 需增加環境的判斷
+		//抄eps的
+		function isJavaAvailable() {
+			var javaRegex = /(Java)(\(TM\)| Deployment)/,
+				plugins = navigator.plugins;
+			if (navigator && plugins) {
+				for (var plugin in plugins){
+					if(plugins.hasOwnProperty(plugin) &&
+							javaRegex.exec(plugins[plugin].name)) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+		
 		if (deviceDetector.browser == "chrome") {
-			
-			hiCosInstance = $injector.get("hiCosNativeMessaging");
-		} else {
-			
+			var chromeVersion = window.navigator.userAgent.match(/Chrome\/(\d+)\./);
+			if (chromeVersion && chromeVersion[1]) {
+				if (parseInt(chromeVersion[1], 10)  >= 42 && !isJavaAvailable()){
+					isRunApplet = false;
+				}
+			}
+
+		} 
+
+		if(isRunApplet){
 			hiCosInstance = $injector.get("hiCosApplet");
+		}else{
+			hiCosInstance = $injector.get("hiCosNativeMessaging");
 		}
 		
 		return {
