@@ -1,9 +1,9 @@
 (function (angular) {
     'use strict';
 
-    angular.module('HiCosIntegratoinModule', ['HiCosNativeMessagingModule', 'HiCosAppletModule', 'ng.deviceDetector']);
+    angular.module('HiCosIntegrationModule', ['HiCosNativeMessagingModule', 'HiCosAppletModule', 'ng.deviceDetector']);
 
-    angular.module('HiCosIntegratoinModule')
+    angular.module('HiCosIntegrationModule')
         .factory('hiCosService', ['$injector', 'deviceDetector', hiCosService]);
 
     function hiCosService($injector, deviceDetector) {
