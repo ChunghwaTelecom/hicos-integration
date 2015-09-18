@@ -151,25 +151,43 @@
                 deferred: deferred
             };
 
+            var timeout;
+            if (message.f === "getVersionInfo") {
+                timeout = 100;
+            } else {
+                timeout = 10000
+            }
             var timeoutPromise = $timeout(function () {
                 if (correls[messageId]) {
                     deferred.reject("作業逾時");
                     delete correls[messageId];
                 }
-            }, 10000);
+            }, timeout);
             correls[messageId].timeoutPromise = timeoutPromise;
 
-            var event = new CustomEvent(
-                "hicosreq",
-                {
-                    detail: {
-                        message: message
-                    },
-                    bubbles: true,
-                    cancelable: true
+            try {
+                var event = new CustomEvent(
+                    "hicosreq",
+                    {
+                        detail: {
+                            message: message
+                        },
+                        bubbles: true,
+                        cancelable: true
+                    }
+                );
+                document.dispatchEvent(event);
+
+            } catch (exception) {
+                // new CustomeEvent may raise TypeError: Object doesn't support this action in IE.
+                if (timeoutPromise) {
+                    $timeout.cancel(timeoutPromise);
                 }
-            );
-            document.dispatchEvent(event);
+
+                delete correls[message.correlId];
+
+                deferred.reject(exception);
+            }
 
             return deferred.promise;
         }
@@ -250,28 +268,37 @@
         });
 
         return {
-            getVersionInfo: getVersionInfo,
-            getSlotIdListWithToken: getSlotIdListWithToken,
-            getSlotInfoWithToken: getSlotInfoWithToken,
-            getTokenInfo: getTokenInfo,
-            getTokenId: getTokenId,
-            getPemX509Certificate: getPemX509Certificate,
-            getPemSignatureCertificate: getPemSignatureCertficate,
-            getPemEncryptedCertificate: getPemEncryptedCertficate,
-            getJsonX509Certificate: getJsonX509Certificate,
-            getJsonSignatureCertificate: getJsonSignatureCertficate,
-            getJsonEncryptedCertificate: getJsonEncryptedCertficate,
-            checkLoginValid: checkLoginValid,
-            makePemLoginSignedMessage: makePemLoginSignedMessage,
-            verifySignature: verifySignature,
-            getLoginInfoFromPemSignedData: getLoginInfoFromPemSignedData,
-            makeBase64PKCS1Signature: makeBase64PKCS1Signature,
-            verifyBase64PKCS1Signature: verifyBase64PKCS1Signature,
-            makeBase64PKCS1RawData: makeBase64PKCS1RawData,
-            decryptBase64PKCS1RawData: decryptBase64PKCS1RawData,
-            makePKCS7EnvelopedData: makePKCS7EnvelopedData,
-            decryptPemPKCS7EnvelopedData: decryptPemPKCS7EnvelopedData
-        };
+            getInstance: function () {
+                return getVersionInfo().then(
+                    function () {
+                        $log.debug("HiCOS Chrome Extension loaded successfully.");
+                        return {
+                            getVersionInfo: getVersionInfo,
+                            getSlotIdListWithToken: getSlotIdListWithToken,
+                            getSlotInfoWithToken: getSlotInfoWithToken,
+                            getTokenInfo: getTokenInfo,
+                            getTokenId: getTokenId,
+                            getPemX509Certificate: getPemX509Certificate,
+                            getPemSignatureCertificate: getPemSignatureCertficate,
+                            getPemEncryptedCertificate: getPemEncryptedCertficate,
+                            getJsonX509Certificate: getJsonX509Certificate,
+                            getJsonSignatureCertificate: getJsonSignatureCertficate,
+                            getJsonEncryptedCertificate: getJsonEncryptedCertficate,
+                            checkLoginValid: checkLoginValid,
+                            makePemLoginSignedMessage: makePemLoginSignedMessage,
+                            verifySignature: verifySignature,
+                            getLoginInfoFromPemSignedData: getLoginInfoFromPemSignedData,
+                            makeBase64PKCS1Signature: makeBase64PKCS1Signature,
+                            verifyBase64PKCS1Signature: verifyBase64PKCS1Signature,
+                            makeBase64PKCS1RawData: makeBase64PKCS1RawData,
+                            decryptBase64PKCS1RawData: decryptBase64PKCS1RawData,
+                            makePKCS7EnvelopedData: makePKCS7EnvelopedData,
+                            decryptPemPKCS7EnvelopedData: decryptPemPKCS7EnvelopedData
+                        };
+                    }
+                );
+            }
+        }
     };
 
     angular.module("HiCosNativeMessagingModule")

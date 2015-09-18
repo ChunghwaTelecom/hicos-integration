@@ -1,65 +1,39 @@
 (function (angular) {
     'use strict';
 
-    angular.module('HiCosIntegrationModule', ['HiCosNativeMessagingModule', 'HiCosAppletModule', 'ng.deviceDetector']);
+    angular.module('HiCosIntegrationModule', ['HiCosNativeMessagingModule', 'HiCosAppletModule']);
 
     angular.module('HiCosIntegrationModule')
-        .factory('hiCosService', ['$injector', 'deviceDetector', hiCosService]);
+        .factory('hiCosService', ['$injector', '$log', hiCosService]);
 
-    function hiCosService($injector, deviceDetector) {
+    function hiCosService($injector, $log) {
 
-        var status;
-        var version;
-        var hiCosInstance;
-        var isRunApplet = true;
+        function getLoginService() {
+            return $injector.get("hiCosNativeMessaging").getInstance().catch(
+                function (message) {
+                    $log.warn("Failed to load HiCOS Chrome extension. Caused by: " + message);
+                    $log.info("Try to load HiCOS Login Applet.")
 
-        //抄 eps 的
-        function isJavaAvailable() {
-            var javaRegex = /(Java)(\(TM\)| Deployment)/,
-                plugins = navigator.plugins;
-            if (navigator && plugins) {
-                for (var plugin in plugins) {
-                    if (plugins.hasOwnProperty(plugin) &&
-                        javaRegex.exec(plugins[plugin].name)) {
-                        return true;
-                    }
-                }
-            }
-            return false;
+                    // 載不到 native messaging 模組就馬上再試 applet 版
+                    return $injector.get("hiCosLoginApplet").getInstance();
+                });
         }
 
-        if (deviceDetector.browser == "chrome") {
-            var chromeVersion = window.navigator.userAgent.match(/Chrome\/(\d+)\./);
-            if (chromeVersion && chromeVersion[1]) {
-                if (parseInt(chromeVersion[1], 10) >= 42 && !isJavaAvailable()) {
-                    isRunApplet = false;
-                }
-            }
-        }
+        function getPkiService() {
+            return $injector.get("hiCosNativeMessaging").getInstance().catch(
+                function (message) {
+                    $log.warn("Failed to load HiCOS Chrome extension. Caused by: " + message);
+                    $log.info("Try to load HiCOS PKI Applet.")
 
-        if (isRunApplet) {
-            hiCosInstance = $injector.get("hiCosApplet");
-        } else {
-            hiCosInstance = $injector.get("hiCosNativeMessaging");
+                    // 載不到 native messaging 模組就馬上再試 applet 版
+                    return $injector.get("hiCosPkiApplet").getInstance();
+                });
         }
 
         return {
-            getStatus: function () {
-                console.log(status);
-                return status;
-            },
-            getBrowser: deviceDetector.browser,
-            getVersionInfo: hiCosInstance.getVersionInfo,
-            getSlotIdListWithToken: hiCosInstance.getSlotIdListWithToken,
-            getSlotInfoWithToken: hiCosInstance.getSlotInfoWithToken,
-            getTokenInfo: hiCosInstance.getTokenInfo,
-            getPemX509Certificate: hiCosInstance.getPemX509Certificate,
-            getJsonX509Certificate: hiCosInstance.getJsonX509Certificate,
-            checkLoginValid: hiCosInstance.checkLoginValid,
-            makePemLoginSignedMessage: hiCosInstance.makePemLoginSignedMessage,
-            verifySignature: hiCosInstance.verifySignature,
-            getLoginInfoFromPemSignedData: hiCosInstance.getLoginInfoFromPemSignedData
+            getLoginService: getLoginService,
+            getPkiService: getPkiService
         };
-    };
+    }
 
 }(angular));

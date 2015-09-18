@@ -24,8 +24,10 @@
     <script src="./static/angular-utf8-base64.js"></script>
 	<script src="./static/re-tree.min.js"></script>
 	<script src="./static/ng-device-detector.min.js"></script>
+    <script src="./static/appletLoader.js"></script>
     <script src="./static/hicos_error_messages.js"></script>
 	<script src="./static/hicos_applet.js"></script>
+	<script src="./static/hicos_applet_login.js"></script>
 	<script src="./static/hicos_native_messaging.js"></script>
 	<script src="./applet/deployJava_old.js"></script>
     <script src="./static/hicos_integration.js"></script>
@@ -33,13 +35,14 @@
     
     <script type="text/javascript">
 		
-        angular.module('certApp', ['HiCosIntegrationModule', 'HiCosAppletModule', 'HiCosNativeMessagingModule'])
-            .controller('certController', function($scope, $log, hiCosService, hiCosApplet, hiCosNativeMessaging) {
+        angular.module('certApp', ['HiCosIntegrationModule'])
+            .controller('certController', function($scope, $log, hiCosService) {
 			
 				var cert = this;
 				
 				cert.version;
-								
+
+        hiCosService.getLoginService().then(function (hiCosService) {
                 cert.getVersionInfo = function() {
                     
                     hiCosService.getVersionInfo().then(
@@ -193,6 +196,9 @@
                         }
                     );
                 }
+        }, function (errorMessage) {
+            cert.result = errorMessage;
+        });
                 
 			});
 		
