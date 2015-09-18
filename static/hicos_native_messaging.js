@@ -21,7 +21,7 @@
 
         function getSlotInfoWithToken(slotId) {
             var message = {"f": "getSlotInfoWithToken", "slotId": slotId};
-            return dispatchMessage(message)
+            return dispatchMessage(message);
         }
 
         function getTokenInfo(slotId) {
@@ -155,7 +155,7 @@
             if (message.f === "getVersionInfo") {
                 timeout = 100;
             } else {
-                timeout = 10000
+                timeout = 10000;
             }
             var timeoutPromise = $timeout(function () {
                 if (correls[messageId]) {
@@ -298,7 +298,7 @@
                     }
                 );
             }
-        }
+        };
     };
 
     angular.module("HiCosNativeMessagingModule")
