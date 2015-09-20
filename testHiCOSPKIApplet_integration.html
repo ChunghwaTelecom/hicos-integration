@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0055)http://www.mozilla.org/en-US/firefox/24.0/releasenotes/ -->
+
+<html lang="en-US" dir="ltr">
+
+<head>
+    <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <meta content="IE=10.000" http-equiv="X-UA-Compatible" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=1024" />
+    <meta name="GENERATOR" content="MSHTML 10.00.9200.16686" />
+    <title>HiCOSPKI Integration Test</title>
+    <link href="./static/min.css" rel="stylesheet" />
+    <link href="./static/tabzilla-min.css" rel="stylesheet" />
+    <link href="./static/css" rel="stylesheet" type="text/css" />
+    <link href="./static/firefox-notes.css" rel="stylesheet" media="screen" />
+    <script id="undefined" src="./static/inpage_linkid.js" type="text/javascript" async=""></script>
+    <script src="./static/ga.js" type="text/javascript" async=""></script>
+    <script src="./static/min.js"></script>
+
+    <!-- hicos 必要的 javascript begin -->
+    <script src="./static/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
+    <script src="./static/angular-utf8-base64.js"></script>
+    <script src="./static/re-tree.min.js"></script>
+    <script src="./static/ng-device-detector.min.js"></script>
+    <script src="./static/appletLoader.js"></script>
+    <script src="./static/hicos_error_messages.js"></script>
+    <script src="./static/hicos_applet.js"></script>
+    <script src="./static/hicos_applet_pki.js"></script>
+    <script src="./static/hicos_native_messaging.js"></script>
+    <script src="./applet/deployJava_old.js"></script>
+    <script src="./static/hicos_integration.js"></script>
+    <!-- hicos 必要的 javascript end -->
+
+    <script type="text/javascript">
+        angular.module('certApp', ['HiCosIntegrationModule'])
+            .controller('certController', function($scope, $log, hiCosService) {
+
+                var cert = this;
+
+                cert.version;
+
+                hiCosService.getPkiService().then(function(hiCosService) {
+                    cert.getVersionInfo = function() {
+
+                        hiCosService.getVersionInfo().then(
+
+                            function(result) {
+
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.version = result.value;
+                            },
+                            function(fail) {
+
+                                cert.version = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                    cert.getSlotIdListWithToken = function() {
+
+                        hiCosService.getSlotIdListWithToken().then(
+
+                            function(result) {
+
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+
+                                var slots = result.value;
+
+                                if (slots.length == 0) {
+                                    slotId = "無卡片存在";
+                                } else {
+                                    if (slots.length > 1) {
+                                        slotId = "有兩張以上的卡片存在";
+                                    }
+                                }
+
+                                cert.slotId = slots[0];
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                    cert.getSlotInfoWithToken = function(slotId) {
+
+                        hiCosService.getSlotInfoWithToken(slotId).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.slotInfo = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                    cert.getTokenInfo = function(slotId) {
+
+                        hiCosService.getTokenInfo(slotId).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.tokenInfo = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                    cert.getPemX509Certificate = function(pin, slotId, type) {
+
+                        hiCosService.getPemX509Certificate(pin, slotId, type).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                $scope.signcertPem = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                    cert.getJsonX509Certificate = function(pin, slotId) {
+
+                        hiCosService.getJsonX509Certificate(pin, slotId).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                $scope.signcertJson = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                    cert.makeBase64PKCS1Signature = function(originalData, pin, slotId) {
+
+                        hiCosService.makeBase64PKCS1Signature(originalData, pin, slotId).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                $scope.pkcs1SignData = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                    cert.verifyBase64PKCS1Signature = function(originalData, pkcs1SignData, pin, slotId) {
+
+                        hiCosService.verifyBase64PKCS1Signature(originalData, pkcs1SignData, pin, slotId).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.pkcs1SignatureValid = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                }, function(errorMessage) {
+                    cert.result = errorMessage;
+                });
+
+            });
+    </script>
+    <noscript>A browser with Javascript enabled is required for this page to operate properly.</noscript>
+</head>
+
+<body class="js platform-windows" id="firefox-notes">
+    <div id="outer-wrapper">
+        <div id="wrapper">
+            <div id="doc">
+                <div id="main-content">
+                    <section id="test">
+                        <h3>HiCOS PKI Integration 測試                            
+                        </h3>
+                        <div class="section-contents" ng-app="certApp" ng-controller="certController as cert">
+                            <ul>
+                                <li>
+                                    <div>
+                                        卡片密碼 :
+                                        <input type="password" id="password" ng-model="pin">
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-unresolved">錯誤資訊</span>
+                                    <!-- The description is the title for now -->
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="result">{{ cert.result }}</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">元件版本資訊</span>
+                                    <!-- The description is the title for now -->
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="version">{{ cert.version }}</div>
+                                            </td>
+                                            <td>
+                                                <button ng-click="cert.getVersionInfo()">getVersionInfo</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">讀卡機連接埠</span>
+                                    <!-- The description is the title for now -->
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="slotId">{{ cert.slotId }}</div>
+                                            </td>
+                                            <td>
+                                                <button ng-click="cert.getSlotIdListWithToken()">getSlotIdListWithToken</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">讀卡機資訊</span>
+                                    <!-- The description is the title for now -->
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="slotInfo">{{ cert.slotInfo }}</div>
+                                            </td>
+                                            <td>
+                                                <button ng-click="cert.getSlotInfoWithToken(cert.slotId)">getSlotInfoWithToken</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">卡片資訊</span>
+                                    <!-- The description is the title for now -->
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="tokenInfo">{{ cert.tokenInfo }}</div>
+                                            </td>
+
+                                            <td>
+                                                <button ng-click="cert.getTokenInfo(cert.slotId)">getTokenInfo</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                                <!--
+                                <li>
+                                    <span class="tag tag-resolved">卡號</span>                                    
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="tokenInfo">{{ cert.tokenId }}</div>
+                                            </td>
+
+                                            <td>
+                                                <button ng-click="cert.getTokenId(cert.slotId)">getTokenId</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                                -->
+                                <li>
+                                    <span class="tag tag-resolved">簽章憑證資訊</span>
+                                    <!-- The description is the title for now -->
+
+                                    <div id="signcertPemdiv">
+                                        <textarea id="signcertPem" ng-model="signcertPem" cols="55" rows="10">
+                                        </textarea>
+                                        <button ng-click="cert.getPemX509Certificate(pin, cert.slotId, 1)">getPemSignatureCertificate</button>
+                                    </div>
+
+                                    <div id="signcertJsondiv">
+                                        <textarea id="signcertJson" ng-model="signcertJson" cols="55" rows="10">
+                                        </textarea>
+                                        <button ng-click="cert.getJsonX509Certificate(pin, 1)">getJsonSignatureCertificate</button>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">PKCS#1 簽章</span>
+                                    <!-- The description is the title for now -->
+                                    <div id="pkcs1signdiv">
+                                        原始資料
+                                        <br>
+                                        <input id="originalData" type="text" ng-model="originalData" size="50"></input>
+                                        <br> 簽章資料 Base64
+                                        <br>
+                                        <textarea id="pkcs1SignData" ng-model="pkcs1SignData" cols="55" rows="8"></textarea>
+                                        <button ng-click="cert.makeBase64PKCS1Signature(originalData, pin, cert.slotId)">makeBase64PKCS1Signature</button>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <span class="tag tag-resolved">PKCS#1 驗章</span>
+                                    <!-- The description is the title for now -->
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="pkcs1signresultdiv"> {{ cert.pkcs1SignatureValid}} </div>
+                                            </td>
+                                            <td>
+												<button ng-click="cert.verifyBase64PKCS1Signature(originalData, pkcs1SignData, pin, cert.slotId)">verifyBase64PKCS1Signature</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="releasenotes">
+                        <h3>Release Note</h3>
+
+                        <div class="section-contents">
+                            <h5>- ver. 0.9.0807</h5>
+
+                            <ul>
+                                <li><span class="tag tag-new">NEW</span> 增加 hicos 訊息模組</li>
+                            </ul>
+                            <h5>- ver. 0.9.0801</h5>
+
+                            <ul>
+                                <li><span class="tag tag-resolved">Initial</span> 初版</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="knownissues">
+                        <h3>Known Issues</h3>
+
+                        <div class="section-contents">
+                            <ul>
+                                <li><span class="tag tag-unresolved">Unresolved</span> 無法文件初始化時自動顯示元件版本</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <!-- end #main-content div -->
+            </div>
+            <!-- end #doc -->
+        </div>
+        <!-- end #wrapper -->
+    </div>
+    <!-- end #outer-wrapper -->
+</body>
+
+</html>

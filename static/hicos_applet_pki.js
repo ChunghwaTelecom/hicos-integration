@@ -40,7 +40,7 @@
             };
 
             var parameters = {
-                jnlp_href: './certification/HiCOSPKIApplet.jnlp',
+                jnlp_href: './applet/HiCOSPKIApplet.jnlp',
                 separate_jvm: 'true',
                 java_status_events: 'true',
                 permissions: 'all-permissions'

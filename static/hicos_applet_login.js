@@ -33,7 +33,7 @@
             };
 
             var parameters = {
-                jnlp_href: './certification/HiCOSLoginApplet.jnlp', // FIXME 不要用相對路徑
+                jnlp_href: './applet/HiCOSLoginApplet.jnlp', // FIXME 不要用相對路徑
                 separate_jvm: 'true',
                 java_status_events: 'true',
                 permissions: 'all-permissions'
