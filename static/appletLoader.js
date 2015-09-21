@@ -1,12 +1,12 @@
 (function (angular) {
     'use strict';
 
-    angular.module("JavaAppletModule", []);
+    angular.module("JavaAppletModule", ['c.urls']);
 
     angular.module("JavaAppletModule")
-        .factory('appletLoader', ['$q', '$log', '$rootScope', '$timeout', appletLoader]);
+        .factory('appletLoader', ['$q', '$log', '$timeout', 'cUrls', appletLoader]);
 
-    function appletLoader($q, $log, $rootScope, $timeout) {
+    function appletLoader($q, $log, $timeout, cUrls) {
 
         var LOADING = 1;
         var READY = 2;
@@ -20,6 +20,9 @@
             if (isJavaAvailable()) {
                 if (deployJava && deployJava.getApplet) {
                     if (attributes && attributes.id) {
+                        if (parameters && parameters['jnlp_href']) {
+                            parameters['jnlp_href'] = cUrls.expandContext(parameters['jnlp_href']);
+                        }
                         loadApplet(attributes, parameters, minimumVersion, deferred);
 
                     } else {
