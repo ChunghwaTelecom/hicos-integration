@@ -8,14 +8,14 @@
             width: 0,
             height: 0
         })
-        .value('"hiCosPkiAppletAttributes', {})
+        .value('hiCosPkiAppletAttributes', {})
         .constant('hiCosPkiAppletParametersDefault', {
             jnlp_href: '@{/certification/HiCOSPKIApplet.jnlp}',
             separate_jvm: 'true',
             java_status_events: 'true',
             permissions: 'all-permissions'
         })
-        .value('"hiCosPkiAppletParameters', {})
+        .value('hiCosPkiAppletParameters', {})
         .factory('hiCosPkiApplet', ['$log', 'appletLoader', 'hiCosAppletWrapper',
             'hiCosPkiAppletAttributesDefault', 'hiCosPkiAppletAttributes', 'hiCosPkiAppletParametersDefault', 'hiCosPkiAppletParameters',
             hiCosPkiApplet]);

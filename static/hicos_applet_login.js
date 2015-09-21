@@ -8,14 +8,14 @@
             width: 0,
             height: 0
         })
-        .value('"hiCosLoginAppletAttributes', {})
+        .value('hiCosLoginAppletAttributes', {})
         .constant('hiCosLoginAppletParametersDefault', {
             jnlp_href: './certification/HiCOSLoginApplet.jnlp', // FIXME 不要用相對路徑，但是登入頁 cEnvironment 還沒好...
             separate_jvm: 'true',
             java_status_events: 'true',
             permissions: 'all-permissions'
         })
-        .value('"hiCosLoginAppletParameters', {})
+        .value('hiCosLoginAppletParameters', {})
         .factory('hiCosLoginApplet', ['$log', 'appletLoader', 'hiCosAppletWrapper',
             'hiCosLoginAppletAttributesDefault', 'hiCosLoginAppletAttributes', 'hiCosLoginAppletParametersDefault', 'hiCosLoginAppletParameters',
             hiCosLoginApplet]);
