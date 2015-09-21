@@ -29,12 +29,12 @@
 
             var getJsonX509Certificate = wrappedApplet.wrapFunction("getJsonX509Certificate", 2);
 
-            var getJsonSignatureCertificate = function (password) {
-                return getJsonX509Certificate(password, 1);
+            var getJsonSignatureCertificate = function (pin) {
+                return getJsonX509Certificate(pin, 1);
             };
 
-            var getJsonEncryptedCertificate = function (password) {
-                return getJsonX509Certificate(password, 2);
+            var getJsonEncryptedCertificate = function (pin) {
+                return getJsonX509Certificate(pin, 2);
             };
 
             return {
