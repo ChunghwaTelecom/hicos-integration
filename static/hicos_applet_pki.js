@@ -2,20 +2,49 @@
     'use strict';
 
     angular.module("HiCosAppletModule")
-        .factory('hiCosPkiApplet', ['$log', 'appletLoader', 'hiCosAppletWrapper', hiCosPkiApplet]);
+        .constant('hiCosPkiAppletAttributesDefault', {
+            id: 'pkiApplet',
+            code: 'com.chttl.sac.pki.applet.HiCOSPKIApplet',
+            width: 0,
+            height: 0
+        })
+        .value('"hiCosPkiAppletAttributes', {})
+        .constant('hiCosPkiAppletParametersDefault', {
+            jnlp_href: '@{/certification/HiCOSPKIApplet.jnlp}',
+            separate_jvm: 'true',
+            java_status_events: 'true',
+            permissions: 'all-permissions'
+        })
+        .value('"hiCosPkiAppletParameters', {})
+        .factory('hiCosPkiApplet', ['$log', 'appletLoader', 'hiCosAppletWrapper',
+            'hiCosPkiAppletAttributesDefault', 'hiCosPkiAppletAttributes', 'hiCosPkiAppletParametersDefault', 'hiCosPkiAppletParameters',
+            hiCosPkiApplet]);
 
-    function hiCosPkiApplet($log, appletLoader, hiCosAppletWrapper) {
+    function hiCosPkiApplet($log, appletLoader, hiCosAppletWrapper,
+                            hiCosPkiAppletAttributesDefault, hiCosPkiAppletAttributes, hiCosPkiAppletParametersDefault, hiCosPkiAppletParameters) {
 
         function wrapApplet(applet) {
 
             var wrappedApplet = hiCosAppletWrapper.wrap(applet);
+
+            var getJsonX509Certificate = wrappedApplet.wrapFunction("getJsonX509Certificate", 2);
+
+            var getJsonSignatureCertificate = function (password) {
+                return getJsonX509Certificate(password, 1);
+            };
+
+            var getJsonEncryptedCertificate = function (password) {
+                return getJsonX509Certificate(password, 2);
+            };
 
             return {
                 getVersionInfo: wrappedApplet.wrapFunction("getVersionInfo", 0),
                 decryptBase64PKCS1RawData: wrappedApplet.wrapFunction("decryptBase64PKCS1RawData", 3),
                 decryptPemPKCS7EnvelopedData: wrappedApplet.wrapFunction("decryptPemPKCS7EnvelopedData", 3),
                 // getAllSlots: wrappedApplet.wrapFunction("getAllSlots", 0),
-                getJsonX509Certificate: wrappedApplet.wrapFunction("getJsonX509Certificate", 2),
+                getJsonX509Certificate: getJsonX509Certificate,
+                getJsonSignatureCertificate: getJsonSignatureCertificate,
+                getJsonEncryptedCertificate: getJsonEncryptedCertificate,
                 getPemX509Certificate: wrappedApplet.wrapFunction("getPemX509Certificate", [2, 3]),
                 getSlotIdListWithToken: wrappedApplet.wrapFunction("getSlotIdListWithToken", 0),
                 getSlotInfoWithToken: wrappedApplet.wrapFunction("getSlotInfoWithToken", 1),
@@ -32,19 +61,8 @@
         }
 
         var getInstance = function () {
-            var attributes = {
-                id: 'pkiApplet',
-                code: 'com.chttl.sac.pki.applet.HiCOSPKIApplet',
-                width: 0,
-                height: 0
-            };
-
-            var parameters = {
-                jnlp_href: './certification/HiCOSPKIApplet.jnlp',
-                separate_jvm: 'true',
-                java_status_events: 'true',
-                permissions: 'all-permissions'
-            };
+            var attributes = angular.extend({}, hiCosPkiAppletAttributesDefault, hiCosPkiAppletAttributes);
+            var parameters = angular.extend({}, hiCosPkiAppletParametersDefault, hiCosPkiAppletParameters);
 
             return appletLoader.load(attributes, parameters).then(
                 function (applet) {

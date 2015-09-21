@@ -2,9 +2,26 @@
     'use strict';
 
     angular.module("HiCosAppletModule")
-        .factory('hiCosLoginApplet', ['$log', 'appletLoader', 'hiCosAppletWrapper', hiCosLoginApplet]);
+        .constant('hiCosLoginAppletAttributesDefault', {
+            id: 'loginApplet',
+            code: 'com.chttl.sac.pki.applet.HiCOSLoginApplet',
+            width: 0,
+            height: 0
+        })
+        .value('"hiCosLoginAppletAttributes', {})
+        .constant('hiCosLoginAppletParametersDefault', {
+            jnlp_href: './certification/HiCOSLoginApplet.jnlp', // FIXME 不要用相對路徑，但是登入頁 cEnvironment 還沒好...
+            separate_jvm: 'true',
+            java_status_events: 'true',
+            permissions: 'all-permissions'
+        })
+        .value('"hiCosLoginAppletParameters', {})
+        .factory('hiCosLoginApplet', ['$log', 'appletLoader', 'hiCosAppletWrapper',
+            'hiCosLoginAppletAttributesDefault', 'hiCosLoginAppletAttributes', 'hiCosLoginAppletParametersDefault', 'hiCosLoginAppletParameters',
+            hiCosLoginApplet]);
 
-    function hiCosLoginApplet($log, appletLoader, hiCosAppletWrapper) {
+    function hiCosLoginApplet($log, appletLoader, hiCosAppletWrapper,
+                              hiCosLoginAppletAttributesDefault, hiCosLoginAppletAttributes, hiCosLoginAppletParametersDefault, hiCosLoginAppletParameters) {
 
         function wrapApplet(applet) {
 
@@ -25,19 +42,8 @@
         }
 
         var getInstance = function () {
-            var attributes = {
-                id: 'loginApplet',
-                code: 'com.chttl.sac.pki.applet.HiCOSLoginApplet',
-                width: 0,
-                height: 0
-            };
-
-            var parameters = {
-                jnlp_href: './certification/HiCOSLoginApplet.jnlp', // FIXME 不要用相對路徑
-                separate_jvm: 'true',
-                java_status_events: 'true',
-                permissions: 'all-permissions'
-            };
+            var attributes = angular.extend({}, hiCosLoginAppletAttributesDefault, hiCosLoginAppletAttributes);
+            var parameters = angular.extend({}, hiCosLoginAppletParametersDefault, hiCosLoginAppletParameters);
 
             return appletLoader.load(attributes, parameters).then(
                 function (applet) {
