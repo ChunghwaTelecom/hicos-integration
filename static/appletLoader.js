@@ -92,17 +92,7 @@
     }
 
     function isJavaAvailable() {
-        var javaRegex = /(Java)(\(TM\)| Deployment)/,
-            plugins = navigator.plugins;
-        if (navigator && plugins) {
-            for (var plugin in plugins) {
-                if (plugins.hasOwnProperty(plugin) &&
-                    javaRegex.exec(plugins[plugin].name)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+         return deployJava.versionCheck("1.7+");
     }
 
 }(angular));

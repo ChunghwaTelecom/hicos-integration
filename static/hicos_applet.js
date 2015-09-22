@@ -97,7 +97,7 @@
                 return deferred.promise;
             }
 
-            if (applet[functionName]) {
+            if (applet.hasOwnProperty(functionName) || applet[functionName]) {
                 return promisifiedFunction;
 
             } else {

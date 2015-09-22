@@ -36,7 +36,7 @@
     <!-- hicos 必要的 javascript end -->
     
     <script type="text/javascript">
-		
+		angular.module('HiCosAppletModule').value('hiCosLoginAppletParameters', { jnlp_href: './applet/HiCOSLoginApplet.jnlp' });
         angular.module('certApp', ['HiCosIntegrationModule'])
             .controller('certController', function($scope, $log, hiCosService) {
 			
