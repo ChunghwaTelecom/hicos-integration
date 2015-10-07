@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML lang="en-US" dir="ltr">
+
+<HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <TITLE>HiCOS Chrome 版本讀卡元件偵測</TITLE>    
+</HEAD>
+<script>
+    var correls = {};
+    var slotId = 0;
+    var handler;
+
+    function getVersionInfo() {
+        message = {
+            "f": "getVersionInfo"
+        };
+        dispatchEvent(message);
+        
+        // 判斷 5 秒沒有回應就認定沒有安裝元件
+        handler = setTimeout(function () {
+            document.getElementById("version").textContent = "沒有安裝中華電信 Chrome 讀卡元件";
+        }, 5000);        
+    }
+
+    function dispatchEvent(message) {
+        message.correlId = randomString();
+
+        var event = new CustomEvent(
+            "hicosreq", {
+                detail: {
+                    message: message,
+                },
+                bubbles: true,
+                cancelable: true
+            }
+        );
+
+        document.dispatchEvent(event);
+        correls[message.correlId] = {
+            f: message.f
+        };
+    }
+
+    function randomString() {
+        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        var string_length = 16;
+        var result = '';
+        for (var i = 0; i < string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            result += chars.substring(rnum, rnum + 1);
+        }
+
+        return result;
+    }
+
+    var go = function() {
+        getVersionInfo();
+    }
+
+    document.addEventListener("hicosresp", function(data) {
+        
+        clearTimeout(handler);
+        
+        //alert('contentscript said: ' + data);
+        //alert("data.type = " + data.type);
+        //alert("code = " + data.detail.code + ", desc = " + data.detail.desc + ", rtn = " + data.detail.rtn);
+        alert(data.detail.code + "-" + data.detail.desc);
+
+        if (correls[message.correlId]) {
+            var f = correls[message.correlId].f;
+            delete correls[message.correlId];
+
+            switch (f) {
+                case "getVersionInfo":
+                    document.getElementById("version").textContent = data.detail.rtn;
+                    break;
+            }
+        }
+    });
+</script>
+<noscript>A browser with Javascript enabled is required for this page to operate properly.</noscript>
+
+<BODY>
+    <SPAN>HiCOS Chrome 版本讀卡元件版本資訊</SPAN>
+    <!-- The description is the title for now -->
+    <table>
+        <tr>
+            <td>
+                <div id="version"></div>
+            </td>
+            <td>
+                <input type="button" value="getVersionInfo" onclick="getVersionInfo()">
+            </td>
+        </tr>
+    </table>
+</BODY>
+
+</HTML>

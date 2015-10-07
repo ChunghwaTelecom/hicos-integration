@@ -72,7 +72,7 @@
                     var code = applet.getHandleCode();
                     var message = applet.getHandleMessage();
 
-                    if (hiCosMessagesService.getMessage(code) != "unknown") {
+                    if (hiCosMessagesService.hasCode(code)) {
                         message = hiCosMessagesService.getMessage(code);
                     }
 
@@ -98,6 +98,7 @@
             }
 
             if (applet.hasOwnProperty(functionName) || applet[functionName]) {
+                // 嗯，IE 只能用 applet.hasOwnProperty(functionName), Firefox 只認 applet[functionName]...
                 return promisifiedFunction;
 
             } else {

@@ -1,5 +1,5 @@
 (function (angular) {
-    angular.module("HiCosNativeMessagingModule", ['ab-base64']);
+    angular.module("HiCosNativeMessagingModule", ['ab-base64', 'HiCosMessagesModule']);
 
     var counter = 0;
     var correls = {};
@@ -8,7 +8,7 @@
         return counter++ + "";
     }
 
-    var hiCosNativeMessaging = function ($q, $timeout, $log, $rootScope, base64) {
+    var hiCosNativeMessaging = function ($q, $timeout, $log, $rootScope, base64, hiCosMessagesService) {
         function getVersionInfo() {
             var message = {"f": "getVersionInfo"};
             return dispatchMessage(message);
@@ -252,9 +252,14 @@
                 }
 
                 $rootScope.$apply(function () {
+                    var code = message.code;
+                    var description = message.desc;
+                    if (hiCosMessagesService.hasCode(code)) {
+                        description = hiCosMessagesService.getMessage(code);
+                    }
                     var result = {
                         code: message.code,
-                        message: message.desc,
+                        message: description,
                         value: value
                     };
 
@@ -302,6 +307,6 @@
     };
 
     angular.module("HiCosNativeMessagingModule")
-        .factory('hiCosNativeMessaging', ['$q', '$timeout', '$log', '$rootScope', 'base64', hiCosNativeMessaging]);
+        .factory('hiCosNativeMessaging', ['$q', '$timeout', '$log', '$rootScope', 'base64', 'hiCosMessagesService', hiCosNativeMessaging]);
 
 })(angular);
