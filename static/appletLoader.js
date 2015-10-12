@@ -57,7 +57,7 @@
 
                 var applet = document[id];
                 if (applet) {
-                    resolveUntilAppletReady(applet, deferred);
+                    resolveUntilAppletReady(applet, id, deferred);
 
                 } else {
                     deferred.reject("Applet failed to load.");
@@ -65,18 +65,20 @@
             }
         }
 
-        function resolveUntilAppletReady(applet, deferred) {
+        function resolveUntilAppletReady(applet, id, deferred) {
             var status = applet.status;
 
             switch (status) {
                 case undefined:
                 case LOADING:
                     $timeout(function () {
-                        resolveUntilAppletReady(applet, deferred);
+                        resolveUntilAppletReady(applet, id, deferred);
                     }, 100);
                     break;
 
                 case READY:
+                    // TODO Should we register applet.onStop to cleanup cached instance?
+                    loadedApplets[id] = applet;
                     deferred.resolve(applet);
                     break;
 
@@ -92,7 +94,10 @@
     }
 
     function isJavaAvailable() {
-         return deployJava.versionCheck("1.7+");
+        if (deployJava && deployJava.versionCheck) {
+            return deployJava.versionCheck("1.7.0+");
+        }
+        return false;
     }
 
 }(angular));

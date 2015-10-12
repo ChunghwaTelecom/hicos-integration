@@ -101,28 +101,39 @@
             messages["0x80000001"] = {"name": "CKR_CHT_AMBIGUOUS_TOKEN_FOUND", "description": "偵測到兩張以上卡片，請退出所有不必要之卡片"};
             messages["0x80000002"] = {"name": "CKR_CHT_BAD_REQUEST", "description": "格式錯誤，HiCOS 無法識別"};
 
-            return {
-                getMessage: function (code) {
+            var normalizeCode = function (code) {
+                if (typeof code === "string") {
+                    code = code.toUpperCase().replace("X", "x");
+                }
+                return code;
+            };
 
-                    var message = "無法取得 " + code + " 的代碼訊息";
+            var hasCode = function (code) {
+                code = normalizeCode(code);
+                return (typeof messages[code] !== "undefined");
+            };
 
-                    if (typeof code === "string") {
-                        code = code.toUpperCase().replace("X", "x");
-                    }
+            var getMessage = function (code) {
+                var message = "無法取得 " + code + " 的代碼訊息";
+                if (hasCode(code)) {
+                    code = normalizeCode(code);
 
-                    if (typeof messages[code] !== "undefined") {
-                        var name = messages[code].name;
-                        var description = messages[code].description;
+                    var name = messages[code].name;
+                    var description = messages[code].description;
 
-                        if (description) {
-                            message = description + " [" + name + "]";
-                        } else {
-                            message = name;
-                        }
+                    if (description) {
+                        message = description + " [" + name + "]";
+                    } else {
+                        message = name;
                     }
 
                     return message;
                 }
+            };
+
+            return {
+                hasCode: hasCode,
+                getMessage: getMessage
             };
         });
 
