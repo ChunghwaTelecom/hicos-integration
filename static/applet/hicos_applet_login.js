@@ -35,7 +35,7 @@
                 getPemX509Certificate: wrappedApplet.wrapFunction("getPemX509Certificate", [2, 3]),
                 getJsonX509Certificate: wrappedApplet.wrapFunction("getJsonX509Certificate", [1, 2]),
                 checkLoginValid: wrappedApplet.wrapFunction("checkLoginValid", 2),
-                makePemLoginSignedMessage: wrappedApplet.wrapFunction("makePemLoginSignedMessage", 2),
+                makePemLoginSignedMessage: wrappedApplet.wrapFunction("makePemLoginSignedMessage", [1, 2]),
                 verifySignature: wrappedApplet.wrapFunction("verifySignature", 1),
                 getLoginInfoFromPemSignedData: wrappedApplet.wrapFunction("getLoginInfoFromPemSignedData", 1),
             };

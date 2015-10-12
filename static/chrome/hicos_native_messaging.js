@@ -1,11 +1,10 @@
 (function (angular) {
     angular.module("HiCosNativeMessagingModule", ['ab-base64', 'HiCosMessagesModule']);
 
-    var counter = 0;
     var correls = {};
 
     function generateId() {
-        return counter++ + "";
+        return Math.random().toString(36).slice(2);
     }
 
     var hiCosNativeMessaging = function ($q, $timeout, $log, $rootScope, base64, hiCosMessagesService) {
