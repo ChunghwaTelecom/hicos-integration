@@ -10,200 +10,197 @@
     <meta content="width=1024" />
     <meta name="GENERATOR" content="MSHTML 10.00.9200.16686" />
     <title>HiCOSLogin Chrome Native Message Testing</title>
-    <link href="../static/min.css" rel="stylesheet" />
-    <link href="../static/tabzilla-min.css" rel="stylesheet" />
-    <link href="../static/css" rel="stylesheet" type="text/css" />
-    <link href="../static/firefox-notes.css" rel="stylesheet" media="screen" />
-    <script id="undefined" src="../static/inpage_linkid.js" type="text/javascript" async=""></script>
-    <script src="../static/ga.js" type="text/javascript" async=""></script>
-    <script src="../static/min.js"></script>
-    <script src="../static/jquery-1.7.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
-    <script src="../static/angular-utf8-base64.js"></script>
-    <script src="../static/hicos_native_messaging.js"></script>
+    <link href="../static/css/min.css" rel="stylesheet" />
+    <link href="../static/css/tabzilla-min.css" rel="stylesheet" />
+    <link href="../static/css/css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/firefox-notes.css" rel="stylesheet" media="screen" />
+    <script id="undefined" src="../static/misc/inpage_linkid.js" type="text/javascript" async=""></script>
+    <script src="../static/misc/ga.js" type="text/javascript" async=""></script>
+    <script src="../static/misc/min.js"></script>
+
+    <!-- hicos 必要的 javascript begin -->
+    <script src="../static/misc/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.js"></script>
+    <script src="../static/misc/angular-utf8-base64.js"></script>
+    <script src="../static/misc/re-tree.min.js"></script>
+    <script src="../static/misc/ng-device-detector.min.js"></script>
+    <script src="../static/misc/environment.js"></script>
+    <script src="../static/misc/urls.js"></script>
+    <script src="../static/common/hicos_error_messages.js"></script>
+    <script src="../static/applet/appletLoader.js"></script>
+    <script src="../static/applet/hicos_applet.js"></script>
+    <script src="../static/applet/hicos_applet_login.js"></script>
+    <script src="../static/applet/deployJava_old.js"></script>
+    <script src="../static/chrome/hicos_native_messaging.js"></script>
+    <script src="../static/common/hicos_integration.js"></script>
+    <!-- hicos 必要的 javascript end -->
+
     <script type="text/javascript">
-        angular.module('certApp', ['HiCosNativeMessagingModule'])
-            .controller('certController', function($scope, $log, hiCosNativeMessaging) {
+        angular.module('certApp', ['HiCosIntegrationModule'])
+            .controller('certController', function($scope, $log, hiCosService) {
 
                 var cert = this;
 
-                cert.result = "";
-                cert.version = "";
-                cert.slotId = "";
-                cert.slotInfo = "";
-                cert.tokenId = "";
-                cert.tokenInfo = "";
-                cert.loginValid = "";
-                cert.signdataValid = "";
+                cert.version;
 
-                cert.getVersionInfo = function() {
-                    hiCosNativeMessaging.getVersionInfo().then(
+                hiCosService.getLoginService().then(function(service) {
+                    cert.getVersionInfo = function() {
 
-                        function(result) {
+                        service.getVersionInfo().then(
 
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-                            cert.version = result.value;
-                        },
-                        function(fail) {
+                            function(result) {
 
-                            cert.version = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.version = result.value;
+                            },
+                            function(fail) {
 
-                cert.getSlotIdListWithToken = function() {
-
-                    hiCosNativeMessaging.getSlotIdListWithToken().then(
-
-                        function(result) {
-
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-
-                            var slots = result.value;
-
-                            if (slots.length == 0) {
-                                slotId = "無卡片存在";
-                            } else {
-                                if (slots.length > 1) {
-                                    slotId = "有兩張以上的卡片存在";
-                                }
+                                cert.version = "Fail: " + fail.code + "-" + fail.message;
                             }
+                        );
+                    }
 
-                            cert.slotId = slots[0];
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                    cert.getSlotIdListWithToken = function() {
 
-                cert.getSlotInfoWithToken = function(slotId) {
+                        service.getSlotIdListWithToken().then(
 
-                    hiCosNativeMessaging.getSlotInfoWithToken(slotId).then(
+                            function(result) {
 
-                        function(result) {
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-                            cert.slotInfo = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
 
-                cert.getTokenInfo = function(slotId) {
+                                var slots = result.value;
 
-                    hiCosNativeMessaging.getTokenInfo(slotId).then(
+                                if (slots.length == 0) {
+                                    slotId = "無卡片存在";
+                                } else {
+                                    if (slots.length > 1) {
+                                        slotId = "有兩張以上的卡片存在";
+                                    }
+                                }
 
-                        function(result) {
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-                            cert.tokenInfo = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                                cert.slotId = slots[0];
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
 
-                cert.getTokenId = function(slotId) {
+                    cert.getSlotInfoWithToken = function(slotId) {
 
-                    hiCosNativeMessaging.getTokenId(slotId).then(
+                        service.getSlotInfoWithToken(slotId).then(
 
-                        function(result) {
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-                            cert.tokenId = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.slotInfo = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
 
-                cert.getPemSignatureCertificate = function(pin, slotId) {
+                    cert.getTokenInfo = function(slotId) {
 
-                    hiCosNativeMessaging.getPemSignatureCertificate(pin, slotId).then(
+                        service.getTokenInfo(slotId).then(
 
-                        function(result) {
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-                            $scope.signcertPem = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.tokenInfo = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
 
-                cert.getJsonSignatureCertificate = function(pin, slotId) {
+                    cert.getPemX509Certificate = function(pin, slotId, type) {
 
-                    hiCosNativeMessaging.getJsonSignatureCertificate(pin, slotId).then(
+                        service.getPemX509Certificate(pin, slotId, type).then(
 
-                        function(result) {
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-                            $scope.signcertJson = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                $scope.signcertPem = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
 
-                cert.checkLoginValid = function(pin, idn) {
+                    cert.getJsonX509Certificate = function(pin, slotId) {
 
-                    hiCosNativeMessaging.checkLoginValid(pin, idn).then(
+                        service.getJsonX509Certificate(pin, slotId).then(
 
-                        function(result) {
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-                            cert.loginValidResult = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                $scope.signcertJson = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
 
-                cert.makePemLoginSignedMessage = function(pin, slotId) {
+                    cert.checkLoginValid = function(pin, idn) {
 
-                    hiCosNativeMessaging.makePemLoginSignedMessage(pin, slotId).then(
+                        service.checkLoginValid(pin, idn).then(
 
-                        function(result) {
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-                            $scope.loginpkcs7sign = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.loginValidResult = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
 
-                cert.verifySignature = function(pemSignedData) {
+                    cert.makePemLoginSignedMessage = function(pin, slotId) {
 
-                    hiCosNativeMessaging.verifySignature(pemSignedData).then(
+                        service.makePemLoginSignedMessage(pin, slotId).then(
 
-                        function(result) {
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-                            cert.signdataValid = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                $scope.loginpkcs7sign = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
 
-                cert.getLoginInfoFromPemSignedData = function(pemSignedData) {
+                    cert.verifySignature = function(pemSignedData) {
 
-                    hiCosNativeMessaging.getLoginInfoFromPemSignedData(pemSignedData).then(
+                        service.verifySignature(pemSignedData).then(
 
-                        function(result) {
-                            cert.result = "Success: " + result.value + "(" + result.code + "-" + result.message + ")";
-                            $scope.logininfo = result.value;
-                        },
-                        function(fail) {
-                            cert.result = "Fail: " + fail.code + "-" + fail.message;
-                        }
-                    );
-                }
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.signdataValid = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
 
-                cert.getVersionInfo();
+                    cert.getLoginInfoFromPemSignedData = function(pemSignedData) {
+
+                        service.getLoginInfoFromPemSignedData(pemSignedData).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                $scope.logininfo = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+                }, function(errorMessage) {
+                    cert.result = errorMessage;
+                });
+
             });
     </script>
     <noscript>A browser with Javascript enabled is required for this page to operate properly.</noscript>

@@ -9,48 +9,45 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta content="width=1024" />
     <meta name="GENERATOR" content="MSHTML 10.00.9200.16686" />
-    <title>HiCOSLogin Integration Test</title>
-    <link href="./static/min.css" rel="stylesheet" />
-    <link href="./static/tabzilla-min.css" rel="stylesheet" />
-    <link href="./static/css" rel="stylesheet" type="text/css" />
-    <link href="./static/firefox-notes.css" rel="stylesheet" media="screen" />
-    <script id="undefined" src="./static/inpage_linkid.js" type="text/javascript" async=""></script>
-    <script src="./static/ga.js" type="text/javascript" async=""></script>
-    <script src="./static/min.js"></script>
+    <title>HiCOSPKI Integration Test</title>
+    <link href="../static/css/min.css" rel="stylesheet" />
+    <link href="../static/css/tabzilla-min.css" rel="stylesheet" />
+    <link href="../static/css/css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/firefox-notes.css" rel="stylesheet" media="screen" />
+    <script id="undefined" src="../static/misc/inpage_linkid.js" type="text/javascript" async=""></script>
+    <script src="../static/misc/ga.js" type="text/javascript" async=""></script>
+    <script src="../static/misc/min.js"></script>
 
     <!-- hicos 必要的 javascript begin -->
-    <script src="./static/jquery-1.7.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
-    <script src="./static/angular-utf8-base64.js"></script>
-    <script src="./static/re-tree.min.js"></script>
-    <script src="./static/ng-device-detector.min.js"></script>
-    <script src="./static/environment.js"></script>
-    <script src="./static/urls.js"></script>
-    <script src="./static/appletLoader.js"></script>
-    <script src="./static/hicos_error_messages.js"></script>
-    <script src="./static/hicos_applet.js"></script>
-    <script src="./static/hicos_applet_login.js"></script>
-    <script src="./static/hicos_native_messaging.js"></script>
-    <script src="./applet/deployJava_old.js"></script>
-    <script src="./static/hicos_integration.js"></script>
+    <script src="../static/misc/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.js"></script>
+    <script src="../static/misc/angular-utf8-base64.js"></script>
+    <script src="../static/misc/re-tree.min.js"></script>
+    <script src="../static/misc/ng-device-detector.min.js"></script>
+	<script src="../static/misc/environment.js"></script>
+	<script src="../static/misc/urls.js"></script>
+	<script src="../static/common/hicos_error_messages.js"></script>
+    <script src="../static/applet/appletLoader.js"></script>
+    <script src="../static/applet/hicos_applet.js"></script>
+    <script src="../static/applet/hicos_applet_pki.js"></script>
+    <script src="../static/applet/deployJava_old.js"></script>
+	<script src="../static/chrome/hicos_native_messaging.js"></script>
+    <script src="../static/common/hicos_integration.js"></script>
     <!-- hicos 必要的 javascript end -->
 
     <script type="text/javascript">
-        angular.module('HiCosAppletModule').value('hiCosLoginAppletParameters', {
-            jnlp_href: './applet/HiCOSLoginApplet.jnlp'
-        });
-
-        angular.module('certApp', ['HiCosIntegrationModule'])
-            .controller('certController', function($scope, $log, hiCosService) {
+        angular.module('HiCosAppletModule').value('hiCosPkiAppletParameters', { jnlp_href: '../applet/HiCOSPKIApplet.jnlp' });
+        angular.module('certApp', ['HiCosIntegrationModule', 'ab-base64'])
+            .controller('certController', function($scope, $log, hiCosService, base64) {
 
                 var cert = this;
 
                 cert.version;
 
-                hiCosService.getLoginService().then(function(service) {
+                hiCosService.getPkiService().then(function(hiCosService) {
                     cert.getVersionInfo = function() {
 
-                        service.getVersionInfo().then(
+                        hiCosService.getVersionInfo().then(
 
                             function(result) {
 
@@ -66,7 +63,7 @@
 
                     cert.getSlotIdListWithToken = function() {
 
-                        service.getSlotIdListWithToken().then(
+                        hiCosService.getSlotIdListWithToken().then(
 
                             function(result) {
 
@@ -92,7 +89,7 @@
 
                     cert.getSlotInfoWithToken = function(slotId) {
 
-                        service.getSlotInfoWithToken(slotId).then(
+                        hiCosService.getSlotInfoWithToken(slotId).then(
 
                             function(result) {
                                 cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
@@ -106,7 +103,7 @@
 
                     cert.getTokenInfo = function(slotId) {
 
-                        service.getTokenInfo(slotId).then(
+                        hiCosService.getTokenInfo(slotId).then(
 
                             function(result) {
                                 cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
@@ -118,13 +115,17 @@
                         );
                     }
 
-                    cert.getPemX509Certificate = function(pin, slotId, type) {
+                    cert.getPemX509Certificate = function(pin, type) {
 
-                        service.getPemX509Certificate(pin, slotId, type).then(
+                        hiCosService.getPemX509Certificate(pin, type).then(
 
                             function(result) {
                                 cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                                $scope.signcertPem = result.value;
+                                if (type == 1) {
+                                    $scope.signcertPem = result.value;
+                                } else if (type == 2) {
+                                    $scope.encryptcertPem = result.value;
+                                }
                             },
                             function(fail) {
                                 cert.result = "Fail: " + fail.code + "-" + fail.message;
@@ -132,13 +133,17 @@
                         );
                     }
 
-                    cert.getJsonX509Certificate = function(pin, slotId) {
+                    cert.getJsonX509Certificate = function(pin, type) {
 
-                        service.getJsonX509Certificate(pin, slotId).then(
+                        hiCosService.getJsonX509Certificate(pin, type).then(
 
                             function(result) {
                                 cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                                $scope.signcertJson = result.value;
+                                if (type == 1) {
+                                    $scope.signcertJson = result.value;
+                                } else if (type == 2) {
+                                    $scope.encryptcertJson = result.value;    
+                                }
                             },
                             function(fail) {
                                 cert.result = "Fail: " + fail.code + "-" + fail.message;
@@ -146,13 +151,13 @@
                         );
                     }
 
-                    cert.checkLoginValid = function(pin, idn) {
+                    cert.makeBase64PKCS1Signature = function(originalData, pin, slotId) {
 
-                        service.checkLoginValid(pin, idn).then(
+                        hiCosService.makeBase64PKCS1Signature(originalData, pin, slotId).then(
 
                             function(result) {
                                 cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                                cert.loginValidResult = result.value;
+                                $scope.pkcs1SignData = result.value;
                             },
                             function(fail) {
                                 cert.result = "Fail: " + fail.code + "-" + fail.message;
@@ -160,13 +165,13 @@
                         );
                     }
 
-                    cert.makePemLoginSignedMessage = function(pin, slotId) {
+                    cert.verifyBase64PKCS1Signature = function(originalData, pkcs1SignData, pin, slotId) {
 
-                        service.makePemLoginSignedMessage(pin, slotId).then(
+                        hiCosService.verifyBase64PKCS1Signature(originalData, pkcs1SignData, pin, slotId).then(
 
                             function(result) {
                                 cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                                $scope.loginpkcs7sign = result.value;
+                                cert.pkcs1SignatureValid = result.value;
                             },
                             function(fail) {
                                 cert.result = "Fail: " + fail.code + "-" + fail.message;
@@ -174,13 +179,13 @@
                         );
                     }
 
-                    cert.verifySignature = function(pemSignedData) {
+                    cert.makePemPKCS7Signature = function(originalData, pin, slotId) {
 
-                        service.verifySignature(pemSignedData).then(
+                        hiCosService.makePemPKCS7Signature(originalData, pin, slotId).then(
 
                             function(result) {
                                 cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                                cert.signdataValid = result.value;
+                                $scope.pkcs7SignData = result.value;
                             },
                             function(fail) {
                                 cert.result = "Fail: " + fail.code + "-" + fail.message;
@@ -188,19 +193,76 @@
                         );
                     }
 
-                    cert.getLoginInfoFromPemSignedData = function(pemSignedData) {
+                    cert.verifyPemPKCS7Signature = function(pkcs7SignData) {
 
-                        service.getLoginInfoFromPemSignedData(pemSignedData).then(
+                        hiCosService.verifyPemPKCS7Signature(pkcs7SignData).then(
 
                             function(result) {
                                 cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
-                                $scope.logininfo = result.value;
+                                cert.pkcs7SignatureValid = result.value;
                             },
                             function(fail) {
                                 cert.result = "Fail: " + fail.code + "-" + fail.message;
                             }
                         );
                     }
+
+                    cert.makeBase64PKCS1RawData = function(originalData, pin, slotId) {
+
+                        hiCosService.makeBase64PKCS1RawData(originalData, pin, slotId).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                $scope.pkcs1EncryptedData = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                    cert.decryptBase64PKCS1RawData = function(pkcs1EncryptedData, pin, slotId) {
+
+                        hiCosService.decryptBase64PKCS1RawData(pkcs1EncryptedData, pin, slotId).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.pkcs1DecryptedData = base64.decode(result.value);
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                    cert.makePemPKCS7EnvelopedData = function(originalData, pin, slotId) {
+
+                        hiCosService.makePKCS7EnvelopedData(originalData, pin, slotId).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                $scope.pkcs7EncryptedData = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+
+                    cert.decryptPemPKCS7EnvelopedData = function(pkcs7EncryptedData, pin, slotId) {
+
+                        hiCosService.decryptPemPKCS7EnvelopedData(pkcs7EncryptedData, pin, slotId).then(
+
+                            function(result) {
+                                cert.result = "Success (code:" + result.code + "-message:" + result.message + ")";
+                                cert.pkcs7DecryptedData = result.value;
+                            },
+                            function(fail) {
+                                cert.result = "Fail: " + fail.code + "-" + fail.message;
+                            }
+                        );
+                    }
+                    
                 }, function(errorMessage) {
                     cert.result = errorMessage;
                 });
@@ -216,7 +278,7 @@
             <div id="doc">
                 <div id="main-content">
                     <section id="test">
-                        <h3>HiCOS Login Integration 測試                            
+                        <h3>HiCOS PKI Integration 測試                            
                         </h3>
                         <div class="section-contents" ng-app="certApp" ng-controller="certController as cert">
                             <ul>
@@ -319,6 +381,7 @@
                                     </table>
                                 </li>
                                 -->
+
                                 <li>
                                     <span class="tag tag-resolved">簽章憑證資訊</span>
                                     <!-- The description is the title for now -->
@@ -326,7 +389,7 @@
                                     <div id="signcertPemdiv">
                                         <textarea id="signcertPem" ng-model="signcertPem" cols="55" rows="10">
                                         </textarea>
-                                        <button ng-click="cert.getPemX509Certificate(pin, cert.slotId, 1)">getPemSignatureCertificate</button>
+                                        <button ng-click="cert.getPemX509Certificate(pin, 1)">getPemSignatureCertificate</button>
                                     </div>
 
                                     <div id="signcertJsondiv">
@@ -334,58 +397,139 @@
                                         </textarea>
                                         <button ng-click="cert.getJsonX509Certificate(pin, 1)">getJsonSignatureCertificate</button>
                                     </div>
-                                </li>
-
+                                </li>                                
+                                
                                 <li>
-                                    <span class="tag tag-resolved">卡片登入驗證</span>
+                                    <span class="tag tag-resolved">加密憑證資訊</span>
                                     <!-- The description is the title for now -->
 
-                                    <div id="loginsigndiv">
-                                        請輸入身分證字號或公司統一編號
-                                        <input id="idn" type="text" size="10" ng-model="idn"> {{ cert.loginValidResult }}
-                                        <br>
-                                        <button ng-click="cert.checkLoginValid(pin, idn)">checkLoginValid</button>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <span class="tag tag-resolved">產生登入簽章</span>
-                                    <!-- The description is the title for now -->
-
-                                    <div id="loginsigndiv">
-                                        <textarea id="loginpkcs7sign" cols="55" rows="10" ng-model="loginpkcs7sign">
+                                    <div id="signcertPemdiv">
+                                        <textarea id="signcertPem" ng-model="encryptcertPem" cols="55" rows="10">
                                         </textarea>
-                                        <button ng-click="cert.makePemLoginSignedMessage(pin, cert.slotId)">makePemLoginSignedMessage</button>
+                                        <button ng-click="cert.getPemX509Certificate(pin, 2)">getPemEncryptCertificate</button>
+                                    </div>
+
+                                    <div id="signcertJsondiv">
+                                        <textarea id="signcertJson" ng-model="encryptcertJson" cols="55" rows="10">
+                                        </textarea>
+                                        <button ng-click="cert.getJsonX509Certificate(pin, 2)">getJsonEncryptCertificate</button>
                                     </div>
                                 </li>
 
                                 <li>
-                                    <span class="tag tag-resolved">檢驗登入簽章</span>
+                                    <span class="tag tag-resolved">PKCS#1 簽章</span>
                                     <!-- The description is the title for now -->
+                                    <div id="pkcs1signdiv">
+                                        原始資料
+                                        <br>
+                                        <input id="originalData" type="text" ng-model="originalData" size="50"></input>
+                                        <br> 簽章資料 Base64
+                                        <br>
+                                        <textarea id="pkcs1SignData" ng-model="pkcs1SignData" cols="55" rows="8"></textarea>
+                                        <button ng-click="cert.makeBase64PKCS1Signature(originalData, pin, cert.slotId)">makeBase64PKCS1Signature</button>
+                                    </div>
+                                </li>
 
+                                <li>
+                                    <span class="tag tag-resolved">PKCS#1 驗章</span>
+                                    <!-- The description is the title for now -->
                                     <table>
                                         <tr>
                                             <td>
-                                                <div id="loginsignresultdiv"> {{ cert.signdataValid}} </div>
+                                                <div id="pkcs1signresultdiv"> {{ cert.pkcs1SignatureValid}} </div>
                                             </td>
-
                                             <td>
-                                                <button ng-click="cert.verifySignature(loginpkcs7sign)">verifySignature</button>
+                                                <button ng-click="cert.verifyBase64PKCS1Signature(originalData, pkcs1SignData, pin, cert.slotId)">verifyBase64PKCS1Signature</button>
                                             </td>
                                         </tr>
                                     </table>
                                 </li>
 
-                                <li>
-                                    <span class="tag tag-resolved">取得登入簽章</span>
+                                <LI>
+                                    <SPAN class="tag tag-resolved">PKCS#7 簽章</SPAN>
                                     <!-- The description is the title for now -->
-
-                                    <div id="logininfodiv">
-                                        <textarea id="logininfo" cols="55" rows="10" ng-model="logininfo">
-                                        </textarea>
-                                        <button ng-click="cert.getLoginInfoFromPemSignedData(loginpkcs7sign)">getLoginInfoFromPemSignedData</button>
+                                    <div id="pkcs7signdiv">
+                                        原始資料
+                                        <br>
+                                        <input id="p7originalData" ng-model="p7originalData" type="text" size="50"></input>
+                                        <br> 簽章資料 PEM
+                                        <br>
+                                        <textarea id="pkcs7SignData" ng-model="pkcs7SignData" cols="55" rows="8"></textarea>
+                                        <button ng-click="cert.makePemPKCS7Signature(p7originalData, pin, cert.slotId)">makePemPKCS7Signature</button>
                                     </div>
-                                </li>
+                                </LI>
+                                <LI>
+                                    <SPAN class="tag tag-resolved">PKCS#7 驗章</SPAN>
+                                    <!-- The description is the title for now -->
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="pkcs7signresultdiv"> {{ cert.pkcs7SignatureValid }} </div>
+                                            </td>
+                                            <td>
+                                                <button ng-click="cert.verifyPemPKCS7Signature(pkcs7SignData)">verifyPemPKCS7Signature</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </LI>
+                                <LI>
+                                    <SPAN class="tag tag-resolved">PKCS#1 加密</SPAN>
+                                    <!-- The description is the title for now -->
+                                    <div id="pkcs1signdiv">
+                                        原始資料
+                                        <br>
+                                        <input id="p1OriginalDataforEncrypt" ng-model="p1OriginalDataforEncrypt" type="text" size="50"></input>
+                                        <br> 加密資料 Base64
+                                        <br>
+                                        <textarea id="pkcs1EncryptedData" ng-model="pkcs1EncryptedData" cols="55" rows="4"></textarea>
+                                        <button ng-click="cert.makeBase64PKCS1RawData(p1OriginalDataforEncrypt, pin, cert.slotId)">makeBase64PKCS1RawData</button>
+                                    </div>
+                                </LI>
+                                <LI>
+                                    <SPAN class="tag tag-resolved">PKCS#1 解密</SPAN>
+                                    <!-- The description is the title for now -->
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="pkcs1rawdatadiv"> {{ cert.pkcs1DecryptedData }} </div>
+                                            </td>
+                                            <td>
+                                                <button ng-click="cert.decryptBase64PKCS1RawData(pkcs1EncryptedData, pin, cert.slotId)">decryptBase64PKCS1RawData</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </LI>
+
+                                <LI>
+                                    <SPAN class="tag tag-resolved">PKCS#7 加密</SPAN>
+                                    <!-- The description is the title for now -->
+                                    <div id="pkcs7envelopediv">
+                                        原始資料
+                                        <br>
+                                        <input id="p7OriginalDataforEncrypt" ng-model="p7OriginalDataforEncrypt" type="text" size="50"></input>
+                                        <br> 加密資料 PEM
+                                        <br>
+                                        <textarea id="pkcs7EncryptedData" ng-model="pkcs7EncryptedData" cols="55" rows="8"></textarea>
+                                        <button ng-click="cert.makePemPKCS7EnvelopedData(p7OriginalDataforEncrypt, pin, cert.slotId)">makePemPKCS7EnvelopedData</button>                                    
+                                    </div>
+                                </LI>
+                                <LI>
+                                    <SPAN class="tag tag-resolved">PKCS#7 解密</SPAN>
+                                    <!-- The description is the title for now -->
+                                    <table>
+                                        <tr>
+                                            <td>解密資料
+                                                <div id="pkcs7decryptresultdiv"> {{ cert.pkcs7DecryptedData }} </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button ng-click="cert.decryptPemPKCS7EnvelopedData(pkcs7EncryptedData, pin, cert.slotId)">decryptPemPKCS7EnvelopedData</button>                                                
+                                            </td>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </LI>
                             </ul>
                         </div>
                     </section>
