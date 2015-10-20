@@ -152,7 +152,7 @@
 
             var timeout;
             if (message.f === "getVersionInfo") {
-                timeout = 100;
+                timeout = 5000;
             } else {
                 timeout = 10000;
             }
