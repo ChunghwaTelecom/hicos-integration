@@ -5,11 +5,16 @@
   var detecting = "偵測中 ......"
   var nonInstall = "未安裝";
   var installed = "已安裝";
+  var hicosNotPassed = "請確認中華電信 Chrome 讀卡元件、中華電信讀卡元件主控台是否安裝";
+  var jreNotPassed = "請確認Java 執行環境、HiCOS 卡片管理工具、中華電信憑證安控元件是否安裝";
   var showResult = function(id, condition) {
     if (condition) {
       $("#" + id).removeClass(defaultClass).addClass(successClass);
     } else {
       $("#" + id).removeClass(defaultClass).addClass(failClass);
+	  if(id == 'hicos') {
+	    $("#hicosNotPassedNote").html(hicosNotPassed);
+	  }
     }
   }
   
@@ -32,7 +37,8 @@
   $("#displaySuggest").html("1024 x 768 以上");
   showResult("display", (window.screen.width >= 1024 && window.screen.height >= 768));
   
-  //按瀏覽器種類進行 Java偵測 或是 HiCos讀卡機元件偵測
+  var detectEnvironment = function() {
+    //按瀏覽器種類進行 Java偵測 或是 HiCos讀卡機元件偵測
 	if (bowser.name == 'Chrome') {
 		$("#cht").show();
     $("#hicos").html(detecting);
@@ -48,6 +54,7 @@
         // 判斷 5 秒沒有回應就認定沒有安裝元件
         handler = setTimeout(function () {
             $("#hicos").removeClass(defaultClass).addClass(failClass).html(nonInstall);
+			$("#hicosNotPassedNote").html(hicosNotPassed);
         }, 5000);        
     }
     
@@ -105,5 +112,10 @@
 			$("#jre").removeClass(defaultClass).addClass(successClass).html(installed + " " + jreVersion);      
 		} else {
 			$("#jre").removeClass(defaultClass).addClass(failClass).html(nonInstall);
+			$("#jreNotPassedNote").html(jreNotPassed);
 		}
 	}
+  };
+  window.onload = setTimeout(detectEnvironment,100);
+  
+  
