@@ -1,7 +1,6 @@
 
 console.log("loading .... ");
 
-angular.module('HiCosAppletModule').value('hiCosLoginAppletParameters', { jnlp_href: './applet/HiCOSLoginApplet.jnlp' });
 angular.module('certApp', ['HiCosIntegrationModule'])
             .controller('certController', function($scope, $log, hiCosService) {
 			

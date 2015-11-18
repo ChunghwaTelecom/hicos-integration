@@ -36,11 +36,19 @@
     <!-- hicos 必要的 javascript end -->
 
     <script type="text/javascript">
-	
+		
+		window.name = "NG_DEFER_BOOTSTRAP!";
+		
 		function downloadJSAtOnload() {
-			var element = document.createElement("script");
-			element.src = "chrome.js";
-			document.body.appendChild(element);
+			// var element = document.createElement("script");
+			// element.src = "certapp.js";
+			// document.body.appendChild(element);
+			// angular.resumeBootstrap();
+			
+			$.getScript( 'certapp.js', function() {
+					
+					//angular.resumeBootstrap();
+			});
 		}
 		
 		if (window.addEventListener)
@@ -48,6 +56,8 @@
 		else if (window.attachEvent)
 			window.attachEvent("onload", downloadJSAtOnload);
 		else window.onload = downloadJSAtOnload;
+		
+		setTimeout(function(){ angular.resumeBootstrap(); }, 3000);
 		
     </script>
     <noscript>A browser with Javascript enabled is required for this page to operate properly.</noscript>

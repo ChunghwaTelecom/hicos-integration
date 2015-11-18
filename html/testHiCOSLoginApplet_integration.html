@@ -36,6 +36,9 @@
     <!-- hicos 必要的 javascript end -->
 
     <script type="text/javascript">
+		
+		window.name = "NG_DEFER_BOOTSTRAP!";
+		
         angular.module('HiCosAppletModule').value('hiCosLoginAppletParameters', {
             jnlp_href: '../applet/HiCOSLoginApplet.jnlp'
         });
@@ -206,6 +209,8 @@
                 });
 
             });
+			
+			setTimeout(function(){ angular.resumeBootstrap(); }, 3000);
     </script>
     <noscript>A browser with Javascript enabled is required for this page to operate properly.</noscript>
 </head>
