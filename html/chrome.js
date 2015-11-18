@@ -1,5 +1,8 @@
+
+console.log("loading .... ");
+
 angular.module('HiCosAppletModule').value('hiCosLoginAppletParameters', { jnlp_href: './applet/HiCOSLoginApplet.jnlp' });
-        angular.module('certApp', ['HiCosIntegrationModule'])
+angular.module('certApp', ['HiCosIntegrationModule'])
             .controller('certController', function($scope, $log, hiCosService) {
 			
 				var cert = this;
@@ -15,6 +18,7 @@ angular.module('HiCosAppletModule').value('hiCosLoginAppletParameters', { jnlp_h
                         },
                         function(fail) {
                             cert.version = "Fail: " + fail.code + "-" + fail.message;
+							
                         }
                     );
                 }
