@@ -36,29 +36,88 @@
     <!-- hicos 必要的 javascript end -->
 
     <script type="text/javascript">
-		
-		window.name = "NG_DEFER_BOOTSTRAP!";
-		
-		function downloadJSAtOnload() {
-			// var element = document.createElement("script");
-			// element.src = "certapp.js";
-			// document.body.appendChild(element);
-			// angular.resumeBootstrap();
+        window.name = "NG_DEFER_BOOTSTRAP!";
+
+        var randomString = function() {
+
+            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+            var string_length = 16;
+            var result = '';
+            for (var i = 0; i < string_length; i++) {
+                var rnum = Math.floor(Math.random() * chars.length);
+                result += chars.substring(rnum, rnum + 1);
+            }
+
+            return result;
+        }
+
+        function downloadJSAtOnload() {
 			
-			$.getScript( 'certapp.js', function() {
-					
-					//angular.resumeBootstrap();
-			});
-		}
-		
-		if (window.addEventListener)
-			window.addEventListener("load", downloadJSAtOnload, false);
-		else if (window.attachEvent)
-			window.attachEvent("onload", downloadJSAtOnload);
-		else window.onload = downloadJSAtOnload;
-		
-		setTimeout(function(){ angular.resumeBootstrap(); }, 3000);
-		
+			var jsInitChecktimer;
+			
+			$.getScript('certapp.js', function() {
+			
+				jsInitChecktimer = setInterval(checkForJS_Finish, 1000);
+			});		            
+
+            function checkForJS_Finish() {
+
+				console.log("test ....");
+			
+                var correls = {};
+
+                var getVersionInfo = function() {
+                    message = {
+                        "f": "getVersionInfo"
+                    };
+                    dispatchEvent(message);
+                }
+
+                var dispatchEvent = function(message) {
+
+                    message.correlId = randomString();
+                    var event = new CustomEvent("hicosreq", {
+                        detail: {
+                            message: message
+                        },
+                        bubbles: true,
+                        cancelable: true
+                    });
+
+                    document.dispatchEvent(event);
+                    correls[message.correlId] = {
+                        f: message.f
+                    };
+                }
+
+                document.addEventListener("hicosresp", function(data) {
+
+                    //alert('contentscript said: ' + data);
+                    //alert("data.type = " + data.type);
+                    //alert("code = " + data.detail.code + ", desc = " + data.detail.desc + ", rtn = " + data.detail.rtn);
+                    //alert(data.detail.code + "-" + data.detail.desc);
+                    if (correls[message.correlId]) {
+                        var f = correls[message.correlId].f;
+                        delete correls[message.correlId];
+                        switch (f) {
+                            case "getVersionInfo":
+								clearInterval(jsInitChecktimer);
+								console.log(data.detail.rtn);	
+								angular.resumeBootstrap();
+                                break;
+                        }
+                    }
+                });
+				
+				getVersionInfo(); 
+            }
+        }
+
+        if (window.addEventListener)
+            window.addEventListener("load", downloadJSAtOnload, false);
+        else if (window.attachEvent)
+            window.attachEvent("onload", downloadJSAtOnload);
+        else window.onload = downloadJSAtOnload;
     </script>
     <noscript>A browser with Javascript enabled is required for this page to operate properly.</noscript>
 </head>
