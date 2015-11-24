@@ -9,82 +9,137 @@
 
     var hiCosNativeMessaging = function ($q, $timeout, $log, $rootScope, base64, hiCosMessagesService) {
         function getVersionInfo() {
-            var message = {"f": "getVersionInfo"};
+            var message = {
+                "f": "getVersionInfo"
+            };
             return dispatchMessage(message);
         }
 
         function getSlotIdListWithToken() {
-            var message = {"f": "getSlotIdListWithToken"};
+            var message = {
+                "f": "getSlotIdListWithToken"
+            };
             return dispatchMessage(message);
         }
 
         function getSlotInfoWithToken(slotId) {
-            var message = {"f": "getSlotInfoWithToken", "slotId": slotId};
+            var message = {
+                "f": "getSlotInfoWithToken",
+                "slotId": slotId
+            };
             return dispatchMessage(message);
         }
 
         function getTokenInfo(slotId) {
-            var message = {"f": "getTokenInfo", "slotId": slotId};
+            var message = {
+                "f": "getTokenInfo",
+                "slotId": slotId
+            };
             return dispatchMessage(message);
         }
 
         function getTokenId(slotId) {
-            var message = {"f": "getTokenId", "slotId": slotId};
+            var message = {
+                "f": "getTokenId",
+                "slotId": slotId
+            };
             return dispatchMessage(message);
         }
 
         function getPemX509Certificate(pin, slotId, certType) {
-            var message = {"f": "getPemX509Certificate", "pin": pin, "slotId": slotId, "certType": certType};
+            var message = {
+                "f": "getPemX509Certificate",
+                "pin": pin,
+                "slotId": slotId,
+                "certType": certType
+            };
             return dispatchMessage(message);
         }
 
         function getPemSignatureCertficate(pin, slotId) {
-            var message = {"f": "getPemSignatureCertficate", "pin": pin, "slotId": slotId};
+            var message = {
+                "f": "getPemSignatureCertficate",
+                "pin": pin,
+                "slotId": slotId
+            };
             return dispatchMessage(message);
         }
 
         function getPemEncryptedCertficate(pin, slotId) {
-            var message = {"f": "getPemEncryptedCertficate", "pin": pin, "slotId": slotId};
+            var message = {
+                "f": "getPemEncryptedCertficate",
+                "pin": pin,
+                "slotId": slotId
+            };
             return dispatchMessage(message);
         }
 
         function getJsonX509Certificate(pin, certType) {
-            var message = {"f": "getJsonX509Certificate", "pin": pin, "certType": certType};
+            var message = {
+                "f": "getJsonX509Certificate",
+                "pin": pin,
+                "certType": certType
+            };
             return dispatchMessage(message);
         }
 
         function getJsonSignatureCertficate(pin) {
-            var message = {"f": "getJsonSignatureCertficate", "pin": pin};
+            var message = {
+                "f": "getJsonSignatureCertficate",
+                "pin": pin
+            };
             return dispatchMessage(message);
         }
 
         function getJsonEncryptedCertficate(pin) {
-            var message = {"f": "getJsonEncryptedCertficate", "pin": pin};
+            var message = {
+                "f": "getJsonEncryptedCertficate",
+                "pin": pin
+            };
             return dispatchMessage(message);
         }
 
         function checkLoginValid(pin, idn) {
-            var message = {"f": "checkLoginValid", "pin": pin, "idn": idn};
+            var message = {
+                "f": "checkLoginValid",
+                "pin": pin,
+                "idn": idn
+            };
             return dispatchMessage(message);
         }
 
         function makePemLoginSignedMessage(pin, slotId) {
-            var message = {"f": "makePemLoginSignedMessage", "pin": pin, "slotId": slotId};
+            var message = {
+                "f": "makePemLoginSignedMessage",
+                "pin": pin,
+                "slotId": slotId
+            };
             return dispatchMessage(message);
         }
 
         function verifySignature(pemSignedData) {
-            var message = {"f": "verifySignature", "pemSignedData": pemSignedData};
+            var message = {
+                "f": "verifySignature",
+                "pemSignedData": pemSignedData
+            };
             return dispatchMessage(message);
         }
 
         function getLoginInfoFromPemSignedData(pemSignedData) {
-            var message = {"f": "getLoginInfoFromPemSignedData", "pemSignedData": pemSignedData};
+            var message = {
+                "f": "getLoginInfoFromPemSignedData",
+                "pemSignedData": pemSignedData
+            };
             return dispatchMessage(message);
         }
 
         function makeBase64PKCS1Signature(tbs, pin, slotId) {
-            var message = {"f": "makeBase64PKCS1Signature", "tbs": tbs, "pin": pin, "slotId": slotId};
+            var message = {
+                "f": "makeBase64PKCS1Signature",
+                "tbs": tbs,
+                "pin": pin,
+                "slotId": slotId
+            };
             return dispatchMessage(message);
         }
 
@@ -100,7 +155,12 @@
         }
 
         function makeBase64PKCS1RawData(tbs, pin, slotId) {
-            var message = {"f": "makeBase64PKCS1RawData", "tbs": tbs, "pin": pin, "slotId": slotId};
+            var message = {
+                "f": "makeBase64PKCS1RawData",
+                "tbs": tbs,
+                "pin": pin,
+                "slotId": slotId
+            };
             return dispatchMessage(message);
         }
 
@@ -115,17 +175,30 @@
         }
 
         function makePemPKCS7Signature(tbs, pin, slotId) {
-            var message = {"f": "makePemPKCS7Signature", "tbs": tbs, "pin": pin, "slotId": slotId};
+            var message = {
+                "f": "makePemPKCS7Signature",
+                "tbs": tbs,
+                "pin": pin,
+                "slotId": slotId
+            };
             return dispatchMessage(message);
         }
 
         function verifyPemPKCS7Signature(pemSignedData) {
-            var message = {"f": "verifyPemPKCS7Signature", "pemSignedData": pemSignedData};
+            var message = {
+                "f": "verifyPemPKCS7Signature",
+                "pemSignedData": pemSignedData
+            };
             return dispatchMessage(message);
         }
 
         function makePKCS7EnvelopedData(tbs, pin, slotId) {
-            var message = {"f": "makePKCS7EnvelopedData", "tbs": tbs, "pin": pin, "slotId": slotId};
+            var message = {
+                "f": "makePKCS7EnvelopedData",
+                "tbs": tbs,
+                "pin": pin,
+                "slotId": slotId
+            };
             return dispatchMessage(message);
         }
 
@@ -138,55 +211,79 @@
             };
             return dispatchMessage(message);
         }
-
+		
         function dispatchMessage(message) {
-            var messageId = generateId();
-            message.correlId = messageId;
-
+			
+			var maxretry = 15;
             var deferred = $q.defer();
 
-            correls[messageId] = {
-                functionId: message.f,
-                deferred: deferred
-            };
+            function attemptDispatchMessage(counter, message) {
+				
+				console.log(counter);
+				
+                var messageId = generateId();
+                message.correlId = messageId;               
 
-            var timeout;
-            if (message.f === "getVersionInfo") {
-                timeout = 5000;
-            } else {
-                timeout = 10000;
-            }
-            var timeoutPromise = $timeout(function () {
-                if (correls[messageId]) {
-                    deferred.reject("作業逾時");
-                    delete correls[messageId];
-                }
-            }, timeout);
-            correls[messageId].timeoutPromise = timeoutPromise;
-
-            try {
-                var event = new CustomEvent(
-                    "hicosreq",
-                    {
-                        detail: {
-                            message: message
-                        },
-                        bubbles: true,
-                        cancelable: true
+                correls[messageId] = {
+                    functionId: message.f,
+                    deferred: deferred,
+                };
+				
+				var timeout;
+				var retry = false;
+				
+				if (message.f === "getVersionInfo") {
+					timeout = 200;
+					retry = true
+				} else {
+					timeout = 10000;
+				}
+				
+                var timeoutPromise = $timeout(function () {
+                    
+                    if (correls[messageId]) {
+						if (retry) {
+							if (counter >= maxretry) {
+								deferred.reject("作業逾時");
+								delete correls[messageId];
+							} else {
+								counter = counter + 1;
+								attemptDispatchMessage(counter, message);
+							}
+						} else {
+							deferred.reject("作業逾時");
+							delete correls[messageId];							
+						}
                     }
-                );
-                document.dispatchEvent(event);
+                }, timeout);
+                correls[messageId].timeoutPromise = timeoutPromise;
 
-            } catch (exception) {
-                // new CustomeEvent may raise TypeError: Object doesn't support this action in IE.
-                if (timeoutPromise) {
-                    $timeout.cancel(timeoutPromise);
+                try {
+                    var event = new CustomEvent(
+                        "hicosreq", {
+                            detail: {
+                                message: message
+                            },
+                            bubbles: true,
+                            cancelable: true
+                        }
+                    );
+                    document.dispatchEvent(event);
+
+                } catch (exception) {
+                    // new CustomeEvent may raise TypeError: Object doesn't support this action in IE.
+                    if (timeoutPromise) {
+                        $timeout.cancel(timeoutPromise);
+                    }
+
+                    delete correls[message.correlId];
+
+                    deferred.reject(exception);
                 }
 
-                delete correls[message.correlId];
-
-                deferred.reject(exception);
             }
+			
+			attemptDispatchMessage(1, message);
 
             return deferred.promise;
         }
@@ -212,9 +309,14 @@
                         var slots = JSON.parse(message.rtn);
                         /* 這裡沒有做勝淵範例裡的 slots 數目檢查，一來是為了要符名 function 名稱，二來為了跟 applet 版本相容。 */
                         value = slots;
+						
                         break;
 
                     case "getVersionInfo":
+                        // 可以直接使用的回傳值
+                        value = message.rtn;
+                        this.versionInfo = value;
+                        break;
                     case "getSlotInfoWithToken":
                     case "getTokenInfo":
                     case "makeBase64PKCS1Signature":
