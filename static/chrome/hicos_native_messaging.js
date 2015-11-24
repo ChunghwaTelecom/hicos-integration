@@ -211,15 +211,13 @@
             };
             return dispatchMessage(message);
         }
-
-        var versionInfo;
-
+		
         function dispatchMessage(message) {
-
-			var maxretry = 10;
+			
+			var maxretry = 15;
             var deferred = $q.defer();
 
-            function dispatchMessage2(counter, message) {
+            function attemptDispatchMessage(counter, message) {
 				
 				console.log(counter);
 				
@@ -228,27 +226,34 @@
 
                 correls[messageId] = {
                     functionId: message.f,
-                    deferred: deferred
+                    deferred: deferred,
                 };
-
-                var timeout;
-                if (message.f === "getVersionInfo") {
-                    timeout = 5000;
-                } else {
-                    timeout = 10000;
-                }
+				
+				var timeout;
+				var retry = false;
+				
+				if (message.f === "getVersionInfo") {
+					timeout = 200;
+					retry = true
+				} else {
+					timeout = 10000;
+				}
+				
                 var timeoutPromise = $timeout(function () {
                     
                     if (correls[messageId]) {
-                        if (this.versionInfo == 'undefined' || this.versionInfo == null) {
-                            if (counter >= maxretry) {
-                                deferred.reject("作業逾時");
-                                delete correls[messageId];
-                            } else {
-                                counter = counter + 1;
-                                dispatchMessage2(counter, message);
-                            }
-                        }
+						if (retry) {
+							if (counter >= maxretry) {
+								deferred.reject("作業逾時");
+								delete correls[messageId];
+							} else {
+								counter = counter + 1;
+								attemptDispatchMessage(counter, message);
+							}
+						} else {
+							deferred.reject("作業逾時");
+							delete correls[messageId];							
+						}
                     }
                 }, timeout);
                 correls[messageId].timeoutPromise = timeoutPromise;
@@ -278,7 +283,7 @@
 
             }
 			
-			dispatchMessage2(1, message);
+			attemptDispatchMessage(1, message);
 
             return deferred.promise;
         }
@@ -304,6 +309,7 @@
                         var slots = JSON.parse(message.rtn);
                         /* 這裡沒有做勝淵範例裡的 slots 數目檢查，一來是為了要符名 function 名稱，二來為了跟 applet 版本相容。 */
                         value = slots;
+						
                         break;
 
                     case "getVersionInfo":
