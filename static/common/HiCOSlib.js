@@ -31,7 +31,7 @@
             //讀取卡片
             getTokenSlotId: function() {
                 try {
-                    var slots = this.loginApplet.getSlotIdListWithToken();
+                    var slots = JSON.parse(this.loginApplet.getSlotIdListWithToken());
                     if (slots != null) {
                         if (slots.length == 0) {
                             this.doError("無卡片存在");

@@ -27,9 +27,17 @@
 
             var wrappedApplet = hiCosAppletWrapper.wrap(applet);
 
+            var getSlotIdListWithTokenNative = wrappedApplet.wrapFunction("getSlotIdListWithToken", 0);
+            var getSlotIdListWithToken = function () {
+                return getSlotIdListWithTokenNative().then(function (result) {
+                    result.value = JSON.parse(result.value);
+                    return result;
+                });
+            };            
+            
             return {
                 getVersionInfo: wrappedApplet.wrapFunction("getVersionInfo", 0),
-                getSlotIdListWithToken: wrappedApplet.wrapFunction("getSlotIdListWithToken", 0),
+                getSlotIdListWithToken: getSlotIdListWithToken,
                 getSlotInfoWithToken: wrappedApplet.wrapFunction("getSlotInfoWithToken", 1),
                 getTokenInfo: wrappedApplet.wrapFunction("getTokenInfo", 1),
                 getPemX509Certificate: wrappedApplet.wrapFunction("getPemX509Certificate", [2, 3]),

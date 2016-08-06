@@ -34,8 +34,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jnlp spec="1.0+" codebase="" href="">
     <information>
-        <title>HiCOS Sign Applet Demo</title>
-        <vendor>sy</vendor>
+        <title>HiCOS Login Applet</title>
+        <vendor>Chunghwa Telecom Co., Ltd.</vendor>
     </information>
     <security>
     	<all-permissions />
@@ -43,8 +43,7 @@
     <resources>
         <!-- Application Resources -->
         <j2se version="1.5+"
-              href="http://java.sun.com/products/autodl/j2se"
-			  java-vm-args="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=C:\Users\sychuang\Desktop"/>
+              href="http://java.sun.com/products/autodl/j2se"/>
         <jar href="bcpkix-jdk15on-1.49.jar" download="eager" main="false" />
         <jar href="bcprov-jdk15on-1.49.jar" download="eager" main="false" />
         <jar href="iaikPkcs11Wrapper.jar" download="eager" main="false" />              
@@ -53,7 +52,7 @@
         <jar href="HiCOSLoginApplet.jar" download="eager" main="false" />
     </resources>
     <applet-desc 
-         name="HiCOS Login Applet Demo"
+         name="HiCOS Login Applet"
          main-class="com.chttl.sac.pki.applet.HiCOSLoginApplet"
          width="300"
          height="300">

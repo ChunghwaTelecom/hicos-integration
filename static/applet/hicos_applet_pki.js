@@ -37,6 +37,14 @@
                 return getJsonX509Certificate(pin, 2);
             };
 
+            var getSlotIdListWithTokenNative = wrappedApplet.wrapFunction("getSlotIdListWithToken", 0);
+            var getSlotIdListWithToken = function () {
+                return getSlotIdListWithTokenNative().then(function (result) {
+                    result.value = JSON.parse(result.value);
+                    return result;
+                });
+            };
+            
             return {
                 getVersionInfo: wrappedApplet.wrapFunction("getVersionInfo", 0),
                 decryptBase64PKCS1RawData: wrappedApplet.wrapFunction("decryptBase64PKCS1RawData", 3),
@@ -46,7 +54,7 @@
                 getJsonSignatureCertificate: getJsonSignatureCertificate,
                 getJsonEncryptedCertificate: getJsonEncryptedCertificate,
                 getPemX509Certificate: wrappedApplet.wrapFunction("getPemX509Certificate", [2, 3]),
-                getSlotIdListWithToken: wrappedApplet.wrapFunction("getSlotIdListWithToken", 0),
+                getSlotIdListWithToken: getSlotIdListWithToken,
                 getSlotInfoWithToken: wrappedApplet.wrapFunction("getSlotInfoWithToken", 1),
                 getTokenId: wrappedApplet.wrapFunction("getTokenId", 1),
                 getTokenInfo: wrappedApplet.wrapFunction("getTokenInfo", 1),
