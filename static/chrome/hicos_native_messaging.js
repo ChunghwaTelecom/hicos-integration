@@ -306,9 +306,13 @@
                 var value;
                 switch (functionId) {
                     case "getSlotIdListWithToken":
-                        var slots = JSON.parse(message.rtn);
-                        /* 這裡沒有做勝淵範例裡的 slots 數目檢查，一來是為了要符名 function 名稱，二來為了跟 applet 版本相容。 */
-                        value = slots;
+						try {
+							var slots = JSON.parse(message.rtn);
+							/* 這裡沒有做勝淵範例裡的 slots 數目檢查，一來是為了要符名 function 名稱，二來為了跟 applet 版本相容。 */
+							value = slots;
+						} catch (exception) {
+							value = -1;
+						}
 						
                         break;
 
